@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Travers Smith – Client Area Wireframes v4</title>
+<title>Travers Smith – Client Area Wireframes v6</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -202,8 +202,11 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
 .a-bar{height:100%;background:var(--g6);border-radius:3px;}
 
 /* ann */
-.ann{display:inline-block;background:#fffbe6;border:1px dashed #ccaa00;border-radius:2px;font-size:10px;color:#7a6000;padding:2px 7px;font-style:italic;}
-.ann-row{margin-top:8px;}
+.ann{display:block;background:#fffbe6;border:1px dashed #ccaa00;border-radius:3px;font-size:10.5px;color:#6b5400;padding:7px 10px;font-style:normal;line-height:1.55;}
+.ann-row{margin-top:10px;}
+.ann b{color:#5a4600;font-weight:600;}
+.ann .ref{display:inline-block;background:#f0e4b8;border:1px solid #d9c87e;border-radius:2px;padding:0 5px;margin-right:2px;font-weight:600;color:#5a4600;font-size:9.5px;letter-spacing:.02em;}
+.ann .q{color:#8a7340;font-style:italic;}
 
 /* footer */
 .p-footer{background:var(--g7);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--g6);}
@@ -239,7 +242,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
 
 <!-- outer nav -->
 <div class="outer-chrome">
-  <span class="chrome-brand">TS Client Area · v4</span>
+  <span class="chrome-brand">TS Client Area · v6</span>
   <div class="chrome-sep"></div>
   <button class="chrome-btn" onclick="goTo('cover')">Index</button>
   <button class="chrome-btn" onclick="goTo('login')">Login</button>
@@ -250,7 +253,6 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
   <button class="chrome-btn" onclick="goTo('events')">Events</button>
   <button class="chrome-btn" onclick="goTo('enquiry')">Enquiry</button>
   <button class="chrome-btn" onclick="goTo('invite')">Invite</button>
-  <button class="chrome-btn" onclick="goTo('analytics')">Analytics</button>
   <button class="chrome-btn" onclick="goTo('briefing-detail')">Briefing Detail</button>
   <button class="chrome-btn" onclick="goTo('event-detail')">Event Detail</button>
 </div>
@@ -265,9 +267,9 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
   <!-- ════ COVER ════ -->
   <div class="page active" id="page-cover">
     <div class="cover-page">
-      <div class="cover-eye">Lo-fi wireframes · Phase 1 · v4.0 · Interactive</div>
+      <div class="cover-eye">Lo-fi wireframes · Phase 1 · v6.0 · Interactive · End-user experience</div>
       <div class="cover-title">Travers Smith – Client Area</div>
-      <div class="cover-sub">Structural wireframes for the gated client portal. Click any tile or use the bar above to navigate. All nav, dropdowns, filters, and the disclaimer modal are interactive.</div>
+      <div class="cover-sub">Structural wireframes for the gated client portal, reflecting the end-user (client member) experience. Click any tile or use the bar above to navigate. All nav, dropdowns, filters, and the disclaimer modal are interactive. Yellow notes map each screen to the requirements (e.g. <span style="background:#f0e4b8;border:1px solid #d9c87e;border-radius:2px;padding:0 4px;color:#5a4600;font-weight:600;font-size:11px;">F10</span>) by their #Ref.</div>
       <div class="cover-grid">
         <div class="cover-tile" onclick="goTo('login')"><div class="cover-tile-num">01</div><div class="cover-tile-label">Login</div></div>
         <div class="cover-tile" onclick="goTo('dashboard')"><div class="cover-tile-num">02</div><div class="cover-tile-label">Dashboard</div></div>
@@ -277,10 +279,9 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
         <div class="cover-tile" onclick="goTo('events')"><div class="cover-tile-num">06</div><div class="cover-tile-label">Events</div></div>
         <div class="cover-tile" onclick="goTo('enquiry')"><div class="cover-tile-num">07</div><div class="cover-tile-label">Make an Enquiry</div></div>
         <div class="cover-tile" onclick="goTo('invite')"><div class="cover-tile-num">08</div><div class="cover-tile-label">Invite a Colleague</div></div>
-        <div class="cover-tile" onclick="goTo('analytics')"><div class="cover-tile-num">09</div><div class="cover-tile-label">Analytics (Admin)</div></div>
-        <div class="cover-tile" onclick="goTo('briefing-detail')"><div class="cover-tile-num">10</div><div class="cover-tile-label">Briefing Detail Page</div></div>
-        <div class="cover-tile" onclick="goTo('event-detail')"><div class="cover-tile-num">11</div><div class="cover-tile-label">Event Detail Page</div></div>
-        <div class="cover-tile" style="opacity:.4;cursor:default;"><div class="cover-tile-num">12</div><div class="cover-tile-label">Disclaimer (inline)</div></div>
+        <div class="cover-tile" onclick="goTo('briefing-detail')"><div class="cover-tile-num">09</div><div class="cover-tile-label">Briefing Detail Page</div></div>
+        <div class="cover-tile" onclick="goTo('event-detail')"><div class="cover-tile-num">10</div><div class="cover-tile-label">Event Detail Page</div></div>
+        <div class="cover-tile" style="opacity:.4;cursor:default;"><div class="cover-tile-num">11</div><div class="cover-tile-label">Disclaimer (inline)</div></div>
       </div>
       <div class="cover-meta-row">
         <div><div class="cover-meta-k">Preview</div><div class="cover-meta-v">Sep 2026</div></div>
@@ -316,7 +317,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
     </div>
     <div style="background:var(--g8);padding:8px 24px;border-top:1px solid var(--g7);"><div style="font-size:10px;color:rgba(255,255,255,.2);text-align:center;">Privacy · Terms · Contact your TS administrator for access</div></div>
     <div style="padding:10px 14px;background:var(--g1);border-top:var(--bd);display:flex;gap:10px;align-items:center;">
-      <span class="ann">§7.1 · No client enumeration · Forgot-password, account-pending, and 2FA enrolment are sub-states of this route</span>
+      <span class="ann"><span class="ref">F9</span><span class="ref">NF1</span><span class="ref">NF3</span> <b>Per-person login</b> — no shared logins (F9). Each member authenticates individually. Security is paramount (NF1): URLs must not be scrapeable or enumerable (no <span class="q">/client/xyz</span> guessing), and cross-tenant isolation (NF3) guarantees a member of organisation A can never reach organisation B&rsquo;s content. <span class="q">Pen testing (NF2) and TS InfoSec sign-off (NF4) required before go-live.</span></span>
       <button class="btn btn-outline" style="font-size:10px;margin-left:auto;" onclick="goTo('login-pending')">→ Pending state</button>
       <button class="btn btn-outline" style="font-size:10px;" onclick="goTo('login-reset')">→ Reset password</button>
     </div>
@@ -330,7 +331,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
       <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:3px;padding:12px 20px;font-size:11px;color:rgba(255,255,255,.4);max-width:300px;">A confirmation email will be sent once your account is approved.</div>
       <button class="btn btn-outline" style="margin-top:4px;" onclick="goTo('login')">← Return to login</button>
     </div>
-    <div style="padding:10px 14px;background:var(--g1);border-top:var(--bd);"><span class="ann">F9 / §4.2 — Admin approval gate; account stays pending until named TS approver activates</span></div>
+    <div style="padding:10px 14px;background:var(--g1);border-top:var(--bd);"><span class="ann"><span class="ref">U1</span><span class="ref">F9</span> <b>TS Approver gate (Phase 1 safety net)</b> — every new member registration needs final sign-off before the account is activated. Until a named TS Approver approves, the account stays pending. Account creation, invites and approvals are TS Admin / TS Approver responsibilities (U1).</span></div>
   </div>
   <div class="page" id="page-login-reset">
     <div style="background:var(--g7);padding:12px 24px;border-bottom:1px solid var(--g6);"><div style="width:120px;height:18px;background:var(--g5);border-radius:2px;"></div></div>
@@ -341,7 +342,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
       <button class="btn btn-wide" style="background:var(--g5);color:var(--g8);">Send reset link</button>
       <div style="text-align:center;margin-top:12px;font-size:11px;color:rgba(255,255,255,.3);cursor:pointer;" onclick="goTo('login')">← Return to sign in</div>
     </div>
-    <div style="padding:10px 14px;background:var(--g1);border-top:var(--bd);"><span class="ann">§7.1 — Same route used for first-time account activation link</span></div>
+    <div style="padding:10px 14px;background:var(--g1);border-top:var(--bd);"><span class="ann"><span class="ref">F9</span> Password reset / first-time activation flow for an individual member account (F9, per-person login). Same secure route handles the activation link issued once a TS Approver has approved the registration.</span></div>
   </div>
 
   <!-- ════ DASHBOARD ════ -->
@@ -374,7 +375,6 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
         </div>
         <div class="sb-sect">
           <div class="sb-label">Account</div>
-          <button class="sb-item"><div class="sb-icon"></div>My Profile</button>
           <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
           <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
         </div>
@@ -398,7 +398,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
             <div style="padding:12px;"><div class="row" style="border:none;padding:0 0 7px;"><div class="face"></div><div><div style="font-size:12px;font-weight:500;">Eleanor Whittle</div><div style="font-size:10px;color:var(--g5);">Partner · Corporate M&A</div></div></div><div style="font-size:10px;color:var(--g5);">📧 e.whittle@traverssmith.com</div></div>
           </div>
         </div>
-        <div class="ann-row" style="margin-bottom:14px;"><span class="ann">F3 / §7.2 — Contacts from Person doc type; multi-node picker on client config node</span></div>
+        <div class="ann-row" style="margin-bottom:14px;"><span class="ann"><span class="ref">F1</span><span class="ref">F2</span><span class="ref">F3</span><span class="ref">F4</span><span class="ref">F5</span> <b>Client-specific landing page</b> — Niall: <span class="q">&ldquo;an area that feels personalised to a given client&rdquo;</span> (F1). Shows client logo &amp; name with <span class="q">&ldquo;Welcome back, [Name]&rdquo;</span> (F2), key TS contacts driven from the existing People document type via a person picker on the client config node (F3), a tailored content feed driven by service-area tags, configurable per client (F4), and links surfacing the relevant subset of the shared document &amp; video libraries (F5).</span></div>
         <div class="g2">
           <div class="card" style="margin-bottom:0;">
             <div class="card-head"><span class="card-head-title">Latest briefings</span><button class="card-link" onclick="goTo('briefings')">View all →</button></div>
@@ -458,7 +458,6 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
         </div>
         <div class="sb-sect">
           <div class="sb-label">Account</div>
-          <button class="sb-item"><div class="sb-icon"></div>My Profile</button>
           <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
           <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
         </div>
@@ -539,7 +538,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
           <div id="doc-no-results" style="display:none;"><div class="no-results">No documents match the current filters. <button class="btn btn-outline" style="font-size:11px;margin-left:10px;" onclick="clearDocPrac();clearDocSvc();">Clear filters</button></div></div>
         </div>
         <div id="doc-pagination" style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-bottom:10px;"></div>
-        <div class="ann-row"><span class="ann">F10 / F12 / F14 — Download triggers disclaimer modal; file streamed only after server records acceptance</span></div>
+        <div class="ann-row"><span class="ann"><span class="ref">F10</span><span class="ref">F12</span><span class="ref">F14</span> <b>Shared boilerplate library</b> accessible to all subscribed clients — single source of content, access governed by member group (F10). Download is gated by a server-enforced disclaimer + acceptance checkbox; the file is never served without a recorded acceptance (F12). Every download is tracked per-event as (member_id, client_org_id, asset_id, asset_type, practice_group, timestamp, disclaimer_version_accepted) feeding analytics and fee allocation (F14). <span class="q">Open (Leo): final document count, and filtering metadata — practice group / service area / topic / jurisdiction, single or multi-select?</span></span></div>
       </div>
     </div>
     <div class="p-footer"><div class="p-footer-l">Travers Smith LLP · Client Portal</div><div class="p-footer-r"><span>Privacy</span><span onclick="goTo('login')">Sign out</span></div></div>
@@ -572,7 +571,6 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
         </div>
         <div class="sb-sect">
           <div class="sb-label">Account</div>
-          <button class="sb-item"><div class="sb-icon"></div>My Profile</button>
           <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
           <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
         </div>
@@ -603,7 +601,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
           <div class="vid-card"><div class="vid-thumb"><div class="play-btn"><div class="play-tri"></div></div><div class="v-dur">28:15</div></div><div class="vid-body"><span class="badge" style="margin-bottom:6px;display:inline-block;">Tax</span><div style="font-size:12px;font-weight:500;margin-bottom:3px;line-height:1.4;">Carried interest reform: implications for PE managers</div><div style="font-size:10px;color:var(--g5);margin-bottom:8px;">Richard Jones · Feb 2026</div><button class="btn btn-wide">▶ Watch now</button></div></div>
           <div class="vid-card"><div class="vid-thumb"><div class="play-btn"><div class="play-tri"></div></div><div class="v-dur">22:48</div></div><div class="vid-body"><span class="badge" style="margin-bottom:6px;display:inline-block;">Finance</span><div style="font-size:12px;font-weight:500;margin-bottom:3px;line-height:1.4;">Facility agreement deep-dive: negotiating key terms</div><div style="font-size:10px;color:var(--g5);margin-bottom:8px;">Tom Bradley · Jan 2026</div><button class="btn btn-wide">▶ Watch now</button></div></div>
         </div>
-        <div class="ann-row"><span class="ann">F11 / F13 / F14 — Video hosting TBC (Q12). Events: video_play_started + video_play_completed.</span></div>
+        <div class="ann-row"><span class="ann"><span class="ref">F11</span><span class="ref">F13</span><span class="ref">F14</span> <b>Shared training-video library</b> — same access model as the document library (F11). Videos are hosted outside Vimeo for security (&sect;6.9). An access/disclaimer gate may precede playback, likely matching the document wording — confirm with Niall (F13). Each view is tracked per-event for analytics and fee allocation (F14). <span class="q">Open (Leo): do these videos already exist, how many, and how are they categorised?</span></span></div>
       </div>
     </div>
     <div class="p-footer"><div class="p-footer-l">Travers Smith LLP · Client Portal</div><div class="p-footer-r"><span>Privacy</span><span onclick="goTo('login')">Sign out</span></div></div>
@@ -635,7 +633,6 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
         </div>
         <div class="sb-sect">
           <div class="sb-label">Account</div>
-          <button class="sb-item"><div class="sb-icon"></div>My Profile</button>
           <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
           <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
         </div>
@@ -727,7 +724,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
           </div>
           <div id="b-no-results" class="card" style="display:none;"><div class="no-results">No briefings match the current filters. <button class="btn btn-outline" style="font-size:11px;margin-left:10px;" onclick="clearBriefingFilters()">Clear filters</button></div></div>
         </div>
-        <div class="ann-row"><span class="ann">F4 / F5 / F6 — SpecificRssFeed; Topics multi-select, Practices &amp; Services single-select. Premium badge = member-group gated.</span></div>
+        <div class="ann-row"><span class="ann"><span class="ref">F4</span><span class="ref">F5</span><span class="ref">F6</span> <b>Curated content feed</b> — tailored briefings &amp; insights driven by service-area tags initially, configurable per client (F4); the landing page deep-links into this filtered view (F5). The <b>Premium</b> badge marks optional exclusive briefings authored like a normal briefing but locked by member group, visible only to logged-in portal members (F6). <span class="q">Open (Leo): does F6 imply two tiers of client, and what are the content/feature implications of each?</span></span></div>
       </div>
     </div>
     <div class="p-footer"><div class="p-footer-l">Travers Smith LLP · Client Portal</div><div class="p-footer-r"><span>Privacy</span><span onclick="goTo('login')">Sign out</span></div></div>
@@ -759,7 +756,6 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
         </div>
         <div class="sb-sect">
           <div class="sb-label">Account</div>
-          <button class="sb-item"><div class="sb-icon"></div>My Profile</button>
           <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
           <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
         </div>
@@ -806,7 +802,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
             <div class="ts-event-row" onclick="goTo('event-detail')" style="cursor:pointer;"><div class="ts-ev-date" style="background:var(--g3);"><div class="ts-ev-day" style="color:var(--g5);">18</div><div class="ts-ev-mon">Feb</div><div class="ts-ev-yr">2026</div></div><div class="ts-ev-content" style="opacity:.7;"><div class="ts-ev-type">In person · Tax</div><div class="ts-ev-title">Spring Budget Preview: Tax Outlook for 2026</div><div class="ts-ev-meta">Travers Smith, London EC2A</div><span style="font-size:11px;color:var(--g5);">No recording available</span></div></div>
           </div>
         </div>
-        <div class="ann-row"><span class="ann">F8 — Filtered by service-area tags; registration logged; past events show recording CTA where available</span></div>
+        <div class="ann-row"><span class="ann"><span class="ref">F8</span> <b>Events widget</b> showing relevant upcoming events — Eleanor flagged the absence of this as a missed opportunity on the public site (F8). Filtered to the client&rsquo;s service areas. <span class="q">Open: where are events surfaced from? Not the public website today, but potentially the website in future.</span></span></div>
       </div>
     </div>
     <div class="p-footer"><div class="p-footer-l">Travers Smith LLP · Client Portal</div><div class="p-footer-r"><span>Privacy</span><span onclick="goTo('login')">Sign out</span></div></div>
@@ -837,7 +833,6 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
         </div>
         <div class="sb-sect">
           <div class="sb-label">Account</div>
-          <button class="sb-item"><div class="sb-icon"></div>My Profile</button>
           <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
           <button class="sb-item active"><div class="sb-icon"></div>Make Enquiry</button>
         </div>
@@ -868,7 +863,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
             <div style="display:flex;align-items:center;gap:14px;"><button class="btn">Send enquiry →</button><div style="font-size:11px;color:var(--g5);">This form does not create a retainer or legal relationship.</div></div>
           </div>
         </div>
-        <div class="ann-row"><span class="ann">F7 / §7.4 — Umbraco Forms candidate; submission event logged; no file upload in Phase 1</span></div>
+        <div class="ann-row"><span class="ann"><span class="ref">F7</span> <b>Enquiry box</b> — a short message that gets triaged by TS (F7). Deliberately <b>not</b> a document upload: file uploads are avoided in Phase 1 for compliance / risk reasons. Routed to a TS triage inbox; does not create a retainer or legal relationship.</span></div>
       </div>
     </div>
     <div class="p-footer"><div class="p-footer-l">Travers Smith LLP · Client Portal</div><div class="p-footer-r"><span>Privacy</span><span onclick="goTo('login')">Sign out</span></div></div>
@@ -899,7 +894,6 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
         </div>
         <div class="sb-sect">
           <div class="sb-label">Account</div>
-          <button class="sb-item"><div class="sb-icon"></div>My Profile</button>
           <button class="sb-item active"><div class="sb-icon"></div>Invite Colleague</button>
           <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
         </div>
@@ -924,54 +918,11 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
             <div class="wf-tr"><div style="display:grid;grid-template-columns:1fr 1fr 110px 90px;align-items:center;"><div class="wf-td" style="padding:9px 14px;font-weight:500;">Priya Sharma</div><div class="wf-td-sm" style="padding:9px 14px;">p.sharma@acmecapital.com</div><div style="padding:9px 14px;"><span class="badge" style="background:#e8f4e8;color:#1a5c1a;border-color:#b8ddb8;">Active</span></div><div class="wf-td-sm" style="padding:9px 14px;">15 Apr 2026</div></div></div>
           </div>
         </div>
-        <div class="ann-row"><span class="ann">§7.5 / S4 — Domain validation on submission; "require approval" configurable per client; pending users emailed on activation</span></div>
+        <div class="ann-row"><span class="ann"><span class="ref">U1</span><span class="ref">F9</span><span class="ref">NF3</span> <b>User management</b> — inviting a colleague creates a per-person account (F9, no shared logins). Roles (U1): <b>TS Admin</b> creates client areas, invites/approves users and assigns contacts; <b>TS Approver</b> gives final sign-off before activation; <b>General Client Member</b> has read access to their own client area only; <b>Sensitive Client Member</b> (Phase 2+) gets matter-level / financial access by manual assignment only. Cross-tenant isolation is enforced throughout (NF3).</span></div>
       </div>
     </div>
     <div class="p-footer"><div class="p-footer-l">Travers Smith LLP · Client Portal</div><div class="p-footer-r"><span>Privacy</span><span onclick="goTo('login')">Sign out</span></div></div>
   </div>
-
-  <!-- ════ ANALYTICS ════ -->
-  <div class="page" id="page-analytics">
-    <div style="background:var(--g7);padding:11px 24px;display:flex;align-items:center;gap:14px;border-bottom:2px solid var(--g5);">
-      <div class="p-logo" style="width:100px;height:16px;"></div>
-      <div style="width:1px;height:18px;background:var(--g5);"></div>
-      <div style="font-size:12px;color:rgba(255,255,255,.4);">Client Area · Analytics</div>
-      <div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,.3);cursor:pointer;">← Back to Umbraco</div>
-    </div>
-    <div style="padding:20px 24px;background:var(--g1);">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap;">
-        <div style="font-size:16px;font-weight:600;">Acme Capital LLP</div>
-        <div class="dd-wrap"><div class="dd-trigger" onclick="toggleDD('dd-ap')"><span class="dd-label">Q2 2026 (Apr–Jun)</span><span class="dd-arrow">▾</span></div><div class="dd-menu" id="dd-ap"><div class="dd-menu-item selected" onclick="selectSingle(this,'dd-ap')">Q2 2026 (Apr–Jun)</div><div class="dd-menu-item" onclick="selectSingle(this,'dd-ap')">Q1 2026 (Jan–Mar)</div><div class="dd-menu-item" onclick="selectSingle(this,'dd-ap')">Q4 2025 (Oct–Dec)</div></div></div>
-        <div class="dd-wrap"><div class="dd-trigger" onclick="toggleDD('dd-ag')"><span class="dd-label">All practice groups</span><span class="dd-arrow">▾</span></div><div class="dd-menu" id="dd-ag"><div class="dd-menu-item selected" onclick="selectSingle(this,'dd-ag')">All groups</div><div class="dd-menu-item" onclick="selectSingle(this,'dd-ag')">Employment</div><div class="dd-menu-item" onclick="selectSingle(this,'dd-ag')">Tax</div><div class="dd-menu-item" onclick="selectSingle(this,'dd-ag')">Corporate M&A</div></div></div>
-        <div style="margin-left:auto;font-size:12px;color:var(--g6);">Subscription fee: <strong>£10,000.00</strong></div>
-      </div>
-      <div class="g4">
-        <div class="stat-c"><div class="stat-lbl">Doc downloads</div><div class="stat-val">47</div><div class="stat-sub">↑ 12 vs Q1</div></div>
-        <div class="stat-c"><div class="stat-lbl">Video views</div><div class="stat-val">23</div><div class="stat-sub">↑ 5 vs Q1</div></div>
-        <div class="stat-c"><div class="stat-lbl">Active users</div><div class="stat-val">6</div><div class="stat-sub">of 8 invited</div></div>
-        <div class="stat-c"><div class="stat-lbl">Briefing reads</div><div class="stat-val">114</div><div class="stat-sub">↑ 28 vs Q1</div></div>
-      </div>
-      <div style="font-size:10px;font-weight:600;color:var(--g6);margin-bottom:8px;letter-spacing:.05em;text-transform:uppercase;">Practice group fee allocation — Q2 2026</div>
-      <div class="wf-table" style="margin-bottom:8px;">
-        <div class="wf-thead"><div style="display:grid;grid-template-columns:1fr 70px 80px 130px 90px;"><div class="wf-th">Practice group</div><div class="wf-th">Doc DLs</div><div class="wf-th">Videos</div><div class="wf-th">Usage share</div><div class="wf-th">Fee</div></div></div>
-        <div class="wf-tr"><div style="display:grid;grid-template-columns:1fr 70px 80px 130px 90px;align-items:center;"><div class="wf-td" style="padding:9px 14px;font-weight:500;">Employment</div><div class="wf-td-sm" style="padding:9px 14px;">22</div><div class="wf-td-sm" style="padding:9px 14px;">11</div><div style="padding:9px 14px;"><div style="font-size:11px;color:var(--g5);margin-bottom:3px;">47%</div><div class="a-bar-w"><div class="a-bar" style="width:47%;"></div></div></div><div class="wf-td" style="padding:9px 14px;font-weight:600;">£4,700</div></div></div>
-        <div class="wf-tr"><div style="display:grid;grid-template-columns:1fr 70px 80px 130px 90px;align-items:center;"><div class="wf-td" style="padding:9px 14px;font-weight:500;">Tax</div><div class="wf-td-sm" style="padding:9px 14px;">14</div><div class="wf-td-sm" style="padding:9px 14px;">8</div><div style="padding:9px 14px;"><div style="font-size:11px;color:var(--g5);margin-bottom:3px;">31%</div><div class="a-bar-w"><div class="a-bar" style="width:31%;"></div></div></div><div class="wf-td" style="padding:9px 14px;font-weight:600;">£3,100</div></div></div>
-        <div class="wf-tr"><div style="display:grid;grid-template-columns:1fr 70px 80px 130px 90px;align-items:center;"><div class="wf-td" style="padding:9px 14px;font-weight:500;">Corporate M&A</div><div class="wf-td-sm" style="padding:9px 14px;">8</div><div class="wf-td-sm" style="padding:9px 14px;">3</div><div style="padding:9px 14px;"><div style="font-size:11px;color:var(--g5);margin-bottom:3px;">16%</div><div class="a-bar-w"><div class="a-bar" style="width:16%;"></div></div></div><div class="wf-td" style="padding:9px 14px;font-weight:600;">£1,600</div></div></div>
-        <div class="wf-tr"><div style="display:grid;grid-template-columns:1fr 70px 80px 130px 90px;align-items:center;"><div class="wf-td" style="padding:9px 14px;font-weight:500;">Finance</div><div class="wf-td-sm" style="padding:9px 14px;">3</div><div class="wf-td-sm" style="padding:9px 14px;">1</div><div style="padding:9px 14px;"><div style="font-size:11px;color:var(--g5);margin-bottom:3px;">6%</div><div class="a-bar-w"><div class="a-bar" style="width:6%;"></div></div></div><div class="wf-td" style="padding:9px 14px;font-weight:600;">£600</div></div></div>
-        <div class="wf-tr" style="background:var(--g2);"><div style="display:grid;grid-template-columns:1fr 70px 80px 130px 90px;align-items:center;"><div class="wf-td" style="padding:9px 14px;font-weight:700;">Total</div><div class="wf-td-sm" style="padding:9px 14px;">47</div><div class="wf-td-sm" style="padding:9px 14px;">23</div><div style="padding:9px 14px;font-size:11px;color:var(--g5);">100%</div><div class="wf-td" style="padding:9px 14px;font-weight:700;">£10,000</div></div></div>
-      </div>
-      <div class="ann-row" style="margin-bottom:14px;"><span class="ann">F15 / §8.3 — Allocation rule configurable (Q13). Raw events replayable against new rule.</span></div>
-      <div style="font-size:10px;font-weight:600;color:var(--g6);margin-bottom:8px;letter-spacing:.05em;text-transform:uppercase;">Per-person activity — Q2 2026</div>
-      <div class="wf-table">
-        <div class="wf-thead"><div style="display:grid;grid-template-columns:1fr 1fr 60px 70px 80px 90px;"><div class="wf-th">Name</div><div class="wf-th">Email</div><div class="wf-th">Logins</div><div class="wf-th">Doc DLs</div><div class="wf-th">Videos</div><div class="wf-th">Last active</div></div></div>
-        <div class="wf-tr"><div style="display:grid;grid-template-columns:1fr 1fr 60px 70px 80px 90px;align-items:center;"><div class="wf-td" style="padding:9px 14px;font-weight:500;">James Harrison</div><div class="wf-td-sm" style="padding:9px 14px;">j.harrison@acmecapital.com</div><div class="wf-td-sm" style="padding:9px 14px;">18</div><div class="wf-td-sm" style="padding:9px 14px;">24</div><div class="wf-td-sm" style="padding:9px 14px;">14</div><div class="wf-td-sm" style="padding:9px 14px;">Today</div></div></div>
-        <div class="wf-tr"><div style="display:grid;grid-template-columns:1fr 1fr 60px 70px 80px 90px;align-items:center;"><div class="wf-td" style="padding:9px 14px;font-weight:500;">Priya Sharma</div><div class="wf-td-sm" style="padding:9px 14px;">p.sharma@acmecapital.com</div><div class="wf-td-sm" style="padding:9px 14px;">11</div><div class="wf-td-sm" style="padding:9px 14px;">14</div><div class="wf-td-sm" style="padding:9px 14px;">7</div><div class="wf-td-sm" style="padding:9px 14px;">4 Jun</div></div></div>
-        <div class="wf-tr"><div style="display:grid;grid-template-columns:1fr 1fr 60px 70px 80px 90px;align-items:center;"><div class="wf-td" style="padding:9px 14px;font-weight:500;">Tom O'Brien</div><div class="wf-td-sm" style="padding:9px 14px;">t.obrien@acmecapital.com</div><div class="wf-td-sm" style="padding:9px 14px;">7</div><div class="wf-td-sm" style="padding:9px 14px;">9</div><div class="wf-td-sm" style="padding:9px 14px;">2</div><div class="wf-td-sm" style="padding:9px 14px;">1 Jun</div></div></div>
-      </div>
-      <div class="ann-row"><span class="ann">F16 / §8.2 — Schema: (member_id, client_org_id, asset_id, practice_group, event_type, timestamp). Phase 2: CRM feed.</span></div>
-    </div>
-  </div>
-
 
   <!-- ════ BRIEFING DETAIL ════ -->
   <div class="page" id="page-briefing-detail">
@@ -998,7 +949,6 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
         </div>
         <div class="sb-sect">
           <div class="sb-label">Account</div>
-          <button class="sb-item"><div class="sb-icon"></div>My Profile</button>
           <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
           <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
         </div>
@@ -1058,6 +1008,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
           </div>
           <button class="btn btn-outline" onclick="goTo('enquiry')" style="font-size:11px;">Contact Sarah →</button>
         </div>
+        <div class="ann-row"><span class="ann"><span class="ref">F4</span><span class="ref">F6</span> <b>Briefing detail view</b> — a curated insight surfaced through the tailored feed (F4). Where a briefing is marked Premium it is authored normally but locked by member group, so only logged-in portal members can open it (F6). Author shown from the People document type.</span></div>
         <div style="text-align:right;margin-bottom:10px;"><button class="btn btn-outline" onclick="goTo('briefings')" style="font-size:11px;">← Back to briefings</button></div>
       </div>
     </div>
@@ -1089,7 +1040,6 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
         </div>
         <div class="sb-sect">
           <div class="sb-label">Account</div>
-          <button class="sb-item"><div class="sb-icon"></div>My Profile</button>
           <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
           <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
         </div>
@@ -1155,6 +1105,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
             </div>
           </div>
         </div>
+        <div class="ann-row"><span class="ann"><span class="ref">F8</span> <b>Event detail view</b> — an upcoming event surfaced by the events widget (F8). Registering interest is captured against the member for analytics; this addresses the missed-opportunity Eleanor flagged on the public site. <span class="q">Open: source system for events — portal-managed now, potentially the public website in future.</span></span></div>
         <div style="margin-top:14px;"><button class="btn btn-outline" onclick="goTo('events')" style="font-size:11px;">← Back to events</button></div>
       </div>
     </div>
@@ -1182,7 +1133,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
       <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
       <button class="btn" id="dis-btn" style="flex:1;justify-content:center;opacity:.4;pointer-events:none;" onclick="acceptDisclaimer()">✓ Accept and download</button>
     </div>
-    <div style="padding:0 20px 14px;"><span class="ann">Server: POST acceptance → record (member_id, asset_id, disclaimer_version, timestamp) → stream file.</span></div>
+    <div style="padding:0 20px 14px;"><span class="ann"><span class="ref">F12</span><span class="ref">F14</span> <b>Disclaimer + acceptance gate</b> — server-enforced; the file is never served without a recorded acceptance, and the disclaimer text is editor-managed (F12). Acceptance is captured per-event with the disclaimer version accepted: (member_id, client_org_id, asset_id, asset_type, practice_group, timestamp, disclaimer_version_accepted) (F14).</span></div>
   </div>
 </div>
 
@@ -1201,8 +1152,7 @@ const urlMap = {
   events: 'clients.traverssmith.com/events',
   'event-detail': 'clients.traverssmith.com/events/employment-law-update-summer-2026',
   enquiry: 'clients.traverssmith.com/enquiry',
-  invite: 'clients.traverssmith.com/invite',
-  analytics: 'umbraco/section/client-area/analytics'
+  invite: 'clients.traverssmith.com/invite'
 };
 
 function goTo(id) {
@@ -1212,9 +1162,8 @@ function goTo(id) {
     t.classList.add('active');
     document.querySelector('.browser-frame').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-  var isAdmin = id === 'analytics';
   var url = urlMap[id] || 'clients.traverssmith.com';
-  document.getElementById('url-bar').textContent = (isAdmin ? '' : '🔒 ') + url;
+  document.getElementById('url-bar').textContent = '🔒 ' + url;
   document.querySelectorAll('.chrome-btn').forEach(function(b) {
     b.classList.remove('active');
     var oc = b.getAttribute('onclick');
