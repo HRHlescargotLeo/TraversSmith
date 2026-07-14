@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Travers Smith – Client Area Wireframes v6</title>
+<title>Travers Smith – Client Area Wireframes · V1 (as presented)</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -21,6 +21,13 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
 .chrome-sep{width:1px;height:18px;background:rgba(255,255,255,.15);margin:0 2px;flex-shrink:0;}
 .chrome-btn{font-size:11px;color:rgba(255,255,255,.5);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:2px;white-space:nowrap;}
 .chrome-btn:hover,.chrome-btn.active{background:rgba(255,255,255,.12);color:#fff;}
+.chrome-ver{margin-left:auto;display:flex;align-items:center;gap:0;flex-shrink:0;padding-left:12px;}
+.chrome-ver-lbl{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-right:8px;white-space:nowrap;}
+.chrome-ver a{font-size:11px;text-decoration:none;color:rgba(255,255,255,.5);padding:4px 10px;white-space:nowrap;border:1px solid rgba(255,255,255,.18);}
+.chrome-ver a:first-of-type{border-radius:3px 0 0 3px;border-right:none;}
+.chrome-ver a:last-of-type{border-radius:0 3px 3px 0;}
+.chrome-ver a:hover{background:rgba(255,255,255,.1);color:#fff;}
+.chrome-ver a.cur{background:rgba(255,255,255,.9);color:#222;font-weight:600;border-color:rgba(255,255,255,.9);}
 
 /* browser frame */
 .frame-wrap{max-width:1220px;margin:10px auto;padding:0 12px 40px;}
@@ -242,7 +249,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
 
 <!-- outer nav -->
 <div class="outer-chrome">
-  <span class="chrome-brand">TS Client Area · v6</span>
+  <span class="chrome-brand">TS Client Area · V1 (as presented)</span>
   <div class="chrome-sep"></div>
   <button class="chrome-btn" onclick="goTo('cover')">Index</button>
   <button class="chrome-btn" onclick="goTo('login')">Login</button>
@@ -255,6 +262,11 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
   <button class="chrome-btn" onclick="goTo('invite')">Invite</button>
   <button class="chrome-btn" onclick="goTo('briefing-detail')">Briefing Detail</button>
   <button class="chrome-btn" onclick="goTo('event-detail')">Event Detail</button>
+  <div class="chrome-ver">
+    <span class="chrome-ver-lbl">Version</span>
+    <a href="index.html" class="cur" title="Version 1 — as presented to client">V1 · Presented</a>
+    <a href="version-two.html"  title="Version 2 — incorporating client feedback">V2 · Working</a>
+  </div>
 </div>
 
 <div class="frame-wrap">
@@ -267,7 +279,8 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
   <!-- ════ COVER ════ -->
   <div class="page active" id="page-cover">
     <div class="cover-page">
-      <div class="cover-eye">Lo-fi wireframes · Phase 1 · v6.0 · Interactive · End-user experience</div>
+      <div class="cover-eye">Lo-fi wireframes · Phase 1 · Version 1 — as presented</div>
+      <div style="display:inline-block;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:3px;padding:6px 12px;margin-bottom:14px;font-size:11px;color:rgba(255,255,255,.55);"><b>V1 · Preserved record.</b> This version is frozen as presented. <a href="version-two.html" style="color:rgba(255,255,255,.8);text-decoration:underline;">View V2 (with feedback) →</a></div>
       <div class="cover-title">Travers Smith – Client Area</div>
       <div class="cover-sub">Structural wireframes for the gated client portal, reflecting the end-user (client member) experience. Click any tile or use the bar above to navigate. All nav, dropdowns, filters, and the disclaimer modal are interactive. Yellow notes map each screen to the requirements (e.g. <span style="background:#f0e4b8;border:1px solid #d9c87e;border-radius:2px;padding:0 4px;color:#5a4600;font-weight:600;font-size:11px;">F10</span>) by their #Ref.</div>
       <div class="cover-grid">

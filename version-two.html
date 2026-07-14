@@ -1,0 +1,2567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travers Smith – Client Area Wireframes · V2 (working)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g0:#fff;--g1:#f5f5f5;--g2:#ebebeb;--g3:#d8d8d8;
+  --g4:#bfbfbf;--g5:#999;--g6:#666;--g7:#444;--g8:#222;
+  --bd:1.5px solid #bfbfbf;--r:3px;
+  font-family:'Inter',sans-serif;
+}
+body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
+
+/* outer chrome */
+.outer-chrome{background:var(--g8);padding:0 16px;height:40px;display:flex;align-items:center;gap:4px;position:sticky;top:0;z-index:9999;flex-wrap:nowrap;overflow-x:auto;}
+.chrome-brand{font-size:12px;font-weight:600;color:#fff;margin-right:10px;white-space:nowrap;}
+.chrome-sep{width:1px;height:18px;background:rgba(255,255,255,.15);margin:0 2px;flex-shrink:0;}
+.chrome-btn{font-size:11px;color:rgba(255,255,255,.5);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:2px;white-space:nowrap;}
+.chrome-btn:hover,.chrome-btn.active{background:rgba(255,255,255,.12);color:#fff;}
+.chrome-ver{margin-left:auto;display:flex;align-items:center;gap:0;flex-shrink:0;padding-left:12px;}
+.chrome-ver-lbl{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-right:8px;white-space:nowrap;}
+.chrome-ver a{font-size:11px;text-decoration:none;color:rgba(255,255,255,.5);padding:4px 10px;white-space:nowrap;border:1px solid rgba(255,255,255,.18);}
+.chrome-ver a:first-of-type{border-radius:3px 0 0 3px;border-right:none;}
+.chrome-ver a:last-of-type{border-radius:0 3px 3px 0;}
+.chrome-ver a:hover{background:rgba(255,255,255,.1);color:#fff;}
+.chrome-ver a.cur{background:rgba(255,255,255,.9);color:#222;font-weight:600;border-color:rgba(255,255,255,.9);}
+
+/* browser frame */
+.frame-wrap{max-width:1220px;margin:10px auto;padding:0 12px 40px;}
+.browser-frame{background:var(--g0);border:var(--bd);border-radius:6px;overflow:visible;box-shadow:0 2px 16px rgba(0,0,0,.12);}
+.browser-bar{background:var(--g2);border-bottom:var(--bd);padding:7px 12px;display:flex;align-items:center;gap:8px;border-radius:6px 6px 0 0;}
+.b-dots{display:flex;gap:4px;}
+.b-dots span{width:9px;height:9px;border-radius:50%;background:var(--g4);}
+.b-url{flex:1;max-width:480px;margin:0 auto;background:var(--g0);border:1px solid var(--g3);border-radius:2px;padding:3px 10px;font-size:11px;color:var(--g6);}
+
+/* page visibility */
+.page{display:none;}
+.page.active{display:block;}
+
+/* ── PORTAL SHELL ── */
+.p-nav{background:var(--g7);height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:3px solid var(--g5);}
+.p-logo{width:130px;height:20px;background:var(--g5);border-radius:2px;}
+.p-nav-links{display:flex;gap:2px;}
+.p-nav-link{font-size:11px;color:rgba(255,255,255,.5);padding:6px 12px;border-radius:2px;cursor:pointer;letter-spacing:.04em;background:none;border:none;}
+.p-nav-link:hover{background:rgba(255,255,255,.08);color:#fff;}
+.p-nav-link.active{color:#fff;border-bottom:2px solid rgba(255,255,255,.5);border-radius:0;}
+.p-nav-right{display:flex;align-items:center;gap:8px;}
+.p-avatar{width:28px;height:28px;border-radius:50%;background:var(--g5);}
+.p-username{font-size:11px;color:rgba(255,255,255,.4);}
+
+.p-banner{background:var(--g6);padding:10px 24px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--g4);}
+.p-banner-logo{width:52px;height:34px;background:var(--g4);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;color:var(--g6);flex-shrink:0;}
+.p-banner-name{font-size:14px;font-weight:500;color:rgba(255,255,255,.9);}
+.p-banner-sub{font-size:11px;color:rgba(255,255,255,.35);margin-top:1px;}
+.p-banner-tags{display:flex;gap:6px;margin-left:auto;}
+.p-tag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:2px;font-size:10px;color:rgba(255,255,255,.5);padding:3px 8px;}
+.p-banner-title{font-size:14px;font-weight:500;color:rgba(255,255,255,.85);}
+
+/* consistent two-column layout */
+.p-layout{display:grid;grid-template-columns:200px 1fr;min-height:620px;}
+
+/* ── SIDEBAR (consistent across all pages) ── */
+.p-sidebar{background:var(--g1);border-right:var(--bd);padding:18px 0;display:flex;flex-direction:column;}
+.sb-sect{padding:0 12px;margin-bottom:20px;}
+.sb-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--g5);margin-bottom:7px;padding:0 2px;}
+.sb-item{height:30px;border-radius:2px;margin-bottom:2px;display:flex;align-items:center;padding:0 10px;gap:8px;font-size:12px;color:var(--g6);cursor:pointer;background:none;border:none;width:100%;text-align:left;}
+.sb-item:hover{background:var(--g2);color:var(--g7);}
+.sb-item.active{background:var(--g7);color:#fff;}
+.sb-icon{width:13px;height:13px;background:currentColor;border-radius:2px;opacity:.4;flex-shrink:0;}
+.sb-item.active .sb-icon{opacity:.7;}
+.sb-dot{width:6px;height:6px;border-radius:50%;background:var(--g5);margin-left:auto;}
+.sb-count{margin-left:auto;font-size:10px;color:var(--g5);}
+.sb-team-box{padding:0 12px;margin-top:auto;padding-bottom:12px;}
+
+/* ── CONTENT AREA ── */
+.p-content{padding:20px 24px;background:var(--g1);overflow:hidden;}
+
+/* filter bar - sits at top of content, above results */
+.filter-bar{background:var(--g0);border:var(--bd);border-radius:var(--r);padding:12px 14px;margin-bottom:14px;}
+.filter-bar-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.filter-bar-row+.filter-bar-row{margin-top:8px;padding-top:8px;border-top:1px solid var(--g2);}
+.t-search{flex:1;min-width:160px;height:32px;background:var(--g1);border:var(--bd);border-radius:var(--r);padding:0 10px;font-size:12px;color:var(--g5);display:flex;align-items:center;gap:6px;}
+
+/* ── DROPDOWN (fixed, no overflow) ── */
+.dd-wrap{position:relative;flex-shrink:0;}
+.dd-trigger{height:32px;background:var(--g1);border:var(--bd);border-radius:var(--r);padding:0 10px;font-size:12px;color:var(--g6);display:flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap;user-select:none;}
+.dd-trigger:hover{background:var(--g2);}
+.dd-trigger .dd-label{max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.dd-trigger .dd-arrow{font-size:9px;color:var(--g5);flex-shrink:0;margin-left:2px;}
+.dd-menu{display:none;position:absolute;top:calc(100% + 3px);left:0;min-width:220px;max-width:280px;background:var(--g0);border:var(--bd);border-radius:var(--r);z-index:500;box-shadow:0 4px 14px rgba(0,0,0,.14);max-height:260px;overflow-y:auto;}
+.dd-menu.open{display:block;}
+.dd-menu-item{padding:7px 12px;font-size:12px;color:var(--g7);cursor:pointer;border-bottom:1px solid var(--g2);display:flex;align-items:center;gap:8px;white-space:normal;line-height:1.3;}
+.dd-menu-item:last-child{border-bottom:none;}
+.dd-menu-item:hover{background:var(--g1);}
+.dd-menu-item.selected{background:var(--g2);font-weight:500;}
+.dd-check{width:13px;height:13px;border:1.5px solid var(--g4);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;}
+.dd-check.on{background:var(--g7);border-color:var(--g7);color:#fff;}
+
+/* active filter chips */
+.filter-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.chip{background:var(--g7);color:#fff;border-radius:2px;font-size:10px;padding:3px 8px;display:inline-flex;align-items:center;gap:5px;}
+.chip-x{cursor:pointer;opacity:.6;}
+.chip-x:hover{opacity:1;}
+
+/* ── CARDS ── */
+.card{background:var(--g0);border:var(--bd);border-radius:var(--r);overflow:hidden;margin-bottom:14px;}
+.card-head{background:var(--g2);border-bottom:var(--bd);padding:8px 14px;display:flex;align-items:center;justify-content:space-between;}
+.card-head-title{font-size:11px;font-weight:600;color:var(--g7);letter-spacing:.05em;text-transform:uppercase;}
+.card-link{font-size:11px;color:var(--g5);cursor:pointer;background:none;border:none;}
+.card-link:hover{color:var(--g7);}
+.card-body{padding:14px;}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px;}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:14px;}
+.row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--g2);}
+.row:last-child{border-bottom:none;}
+.face{width:28px;height:28px;border-radius:50%;background:var(--g3);flex-shrink:0;}
+
+.badge{display:inline-block;background:var(--g2);border:1px solid var(--g3);border-radius:2px;font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--g6);padding:2px 6px;}
+.badge-dark{background:var(--g7);color:#fff;border-color:var(--g7);}
+
+.btn{display:inline-flex;align-items:center;gap:5px;background:var(--g7);color:#fff;border:none;border-radius:var(--r);font-size:11px;font-weight:500;padding:6px 14px;cursor:pointer;}
+.btn:hover{background:var(--g8);}
+.btn-outline{background:var(--g0);color:var(--g7);border:1.5px solid var(--g4);}
+.btn-outline:hover{background:var(--g2);}
+.btn-wide{width:100%;justify-content:center;height:38px;font-size:12px;font-weight:600;letter-spacing:.04em;}
+.btn-cta{background:var(--g5);color:var(--g8);}
+
+.f-row{margin-bottom:14px;}
+.f-lbl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--g5);margin-bottom:5px;}
+.f-input{width:100%;height:34px;background:var(--g0);border:var(--bd);border-radius:var(--r);padding:0 10px;font-size:12px;color:var(--g7);display:flex;align-items:center;}
+.f-input.ph{color:var(--g4);}
+.f-select{width:100%;height:34px;background:var(--g0);border:var(--bd);border-radius:var(--r);padding:0 10px;font-size:12px;color:var(--g5);display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+.f-textarea{width:100%;height:80px;background:var(--g0);border:var(--bd);border-radius:var(--r);padding:8px 10px;font-size:12px;color:var(--g4);}
+.f-hint{font-size:10px;color:var(--g5);margin-top:4px;}
+
+/* TS-style event rows */
+.ts-event-list{display:flex;flex-direction:column;}
+.ts-event-row{display:grid;grid-template-columns:80px 1fr;border-bottom:1px solid var(--g3);cursor:pointer;}
+.ts-event-row:last-child{border-bottom:none;}
+.ts-event-row:hover .ts-ev-content{background:var(--g2);}
+.ts-ev-date{background:var(--g2);border-right:1px solid var(--g3);padding:14px 8px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:1px;}
+.ts-ev-day{font-size:22px;font-weight:700;color:var(--g7);line-height:1;}
+.ts-ev-mon{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--g5);}
+.ts-ev-yr{font-size:9px;color:var(--g5);}
+.ts-ev-content{padding:13px 16px;}
+.ts-ev-type{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--g5);margin-bottom:3px;}
+.ts-ev-title{font-size:13px;font-weight:600;color:var(--g8);margin-bottom:3px;line-height:1.4;}
+.ts-ev-meta{font-size:11px;color:var(--g5);margin-bottom:5px;}
+.ts-ev-desc{font-size:11px;color:var(--g6);line-height:1.5;}
+
+/* briefing rows */
+.b-row{display:grid;grid-template-columns:72px 1fr;border-bottom:1px solid var(--g3);cursor:pointer;}
+.b-row:last-child{border-bottom:none;}
+.b-row:hover .b-content{background:var(--g2);}
+.b-date{background:var(--g2);border-right:1px solid var(--g3);padding:12px 8px;display:flex;align-items:flex-start;justify-content:center;}
+.b-date-txt{font-size:10px;color:var(--g5);text-align:center;line-height:1.5;}
+.b-content{padding:11px 14px;}
+.b-title{font-size:13px;font-weight:500;color:var(--g8);margin-bottom:4px;line-height:1.4;}
+.b-meta{font-size:11px;color:var(--g5);}
+
+/* video cards */
+.vid-card{background:var(--g0);border:var(--bd);border-radius:var(--r);overflow:hidden;}
+.vid-thumb{height:88px;background:var(--g3);display:flex;align-items:center;justify-content:center;position:relative;}
+.play-btn{width:30px;height:30px;border-radius:50%;background:var(--g6);display:flex;align-items:center;justify-content:center;}
+.play-tri{width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:9px solid #fff;margin-left:2px;}
+.v-dur{position:absolute;bottom:5px;right:7px;background:rgba(0,0,0,.5);color:#fff;font-size:9px;padding:1px 5px;border-radius:2px;}
+.vid-body{padding:10px 12px;}
+
+/* table */
+.wf-table{background:var(--g0);border:var(--bd);border-radius:var(--r);overflow:hidden;}
+.wf-thead{background:var(--g2);border-bottom:var(--bd);}
+.wf-tr{border-bottom:1px solid var(--g2);}
+.wf-tr:last-child{border-bottom:none;}
+.wf-tr:nth-child(even){background:var(--g1);}
+.wf-th,.wf-td{padding:9px 14px;font-size:11px;}
+.wf-th{font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--g5);}
+.wf-td{color:var(--g7);}
+.wf-td-sm{font-size:11px;color:var(--g5);}
+
+/* modal */
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10000;align-items:center;justify-content:center;}
+.modal-backdrop.open{display:flex;}
+.modal-box{background:var(--g0);border:var(--bd);border-radius:6px;width:500px;max-width:92vw;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.modal-head{background:var(--g7);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;}
+.modal-head-title{font-size:15px;font-weight:600;color:#fff;}
+.modal-x{font-size:14px;color:rgba(255,255,255,.4);cursor:pointer;background:none;border:none;}
+.modal-x:hover{color:#fff;}
+.modal-doc-strip{background:var(--g2);border-bottom:var(--bd);padding:12px 20px;display:flex;align-items:center;gap:12px;}
+.modal-file-icon{width:34px;height:42px;background:var(--g0);border:var(--bd);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:var(--g5);flex-shrink:0;}
+.modal-body{padding:18px 20px;}
+.disc-scroll{background:var(--g1);border:var(--bd);border-radius:var(--r);padding:12px 14px;font-size:11px;color:var(--g6);line-height:1.7;margin-bottom:14px;height:110px;overflow-y:auto;}
+.check-row{display:flex;align-items:flex-start;gap:10px;background:var(--g1);border:var(--bd);border-radius:var(--r);padding:10px 12px;margin-bottom:14px;}
+.checkbox{width:15px;height:15px;border:1.5px solid var(--g4);border-radius:2px;flex-shrink:0;margin-top:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.checkbox.checked{background:var(--g7);border-color:var(--g7);color:#fff;font-size:9px;}
+.modal-footer{padding:0 20px 16px;display:flex;gap:8px;}
+
+/* stat */
+.stat-c{background:var(--g0);border:var(--bd);border-radius:var(--r);padding:14px 16px;}
+.stat-lbl{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--g5);margin-bottom:6px;}
+.stat-val{font-size:26px;font-weight:600;color:var(--g8);margin-bottom:2px;}
+.stat-sub{font-size:11px;color:var(--g5);}
+.a-bar-w{height:5px;background:var(--g3);border-radius:3px;overflow:hidden;}
+.a-bar{height:100%;background:var(--g6);border-radius:3px;}
+
+/* ann */
+.ann{display:block;background:#fffbe6;border:1px dashed #ccaa00;border-radius:3px;font-size:10.5px;color:#6b5400;padding:7px 10px;font-style:normal;line-height:1.55;}
+.ann-row{margin-top:10px;}
+.ann b{color:#5a4600;font-weight:600;}
+.ann .ref{display:inline-block;background:#f0e4b8;border:1px solid #d9c87e;border-radius:2px;padding:0 5px;margin-right:2px;font-weight:600;color:#5a4600;font-size:9.5px;letter-spacing:.02em;}
+.ann .q{color:#8a7340;font-style:italic;}
+
+/* footer */
+.p-footer{background:var(--g7);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--g6);}
+.p-footer-l{font-size:10px;color:rgba(255,255,255,.3);}
+.p-footer-r{display:flex;gap:14px;}
+.p-footer-r span{font-size:10px;color:rgba(255,255,255,.25);cursor:pointer;}
+
+/* login */
+.login-split{display:grid;grid-template-columns:380px 1fr;min-height:440px;}
+.login-panel{background:var(--g7);padding:38px 34px;}
+.login-right{background:var(--g6);border-left:var(--bd);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:40px;}
+.ph-box{background:var(--g5);border:1.5px dashed var(--g4);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,.4);}
+
+/* cover */
+.cover-page{background:var(--g8);padding:40px 36px;}
+.cover-eye{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--g5);margin-bottom:8px;}
+.cover-title{font-size:26px;font-weight:700;color:#fff;margin-bottom:8px;}
+.cover-sub{font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;max-width:560px;margin-bottom:24px;}
+.cover-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:28px;}
+.cover-tile{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:3px;padding:14px 12px;cursor:pointer;text-align:center;}
+.cover-tile:hover{background:rgba(255,255,255,.1);}
+.cover-tile-num{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.08em;margin-bottom:5px;}
+.cover-tile-label{font-size:12px;font-weight:500;color:rgba(255,255,255,.7);line-height:1.4;}
+.cover-meta-row{display:flex;gap:28px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08);padding-top:20px;}
+.cover-meta-k{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:2px;}
+.cover-meta-v{font-size:12px;color:rgba(255,255,255,.6);}
+
+/* no-results */
+.no-results{padding:32px 20px;text-align:center;color:var(--g5);font-size:13px;}
+
+/* ══════ V2 ADDITIONS ══════ */
+
+/* --- Key contacts grid (dashboard: 6 contacts w/ phone + LinkedIn) --- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;}
+.contact-cell{padding:12px 14px;border-right:1px solid var(--g2);border-bottom:1px solid var(--g2);}
+.contact-cell:nth-child(3n){border-right:none;}
+.contact-cell:nth-child(n+4){border-bottom:none;}
+.contact-top{display:flex;align-items:center;gap:9px;margin-bottom:8px;}
+.contact-name{font-size:12px;font-weight:600;color:var(--g8);line-height:1.3;}
+.contact-role{font-size:10px;color:var(--g5);line-height:1.3;}
+.contact-lines{display:flex;flex-direction:column;gap:3px;}
+.contact-line{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--g6);}
+.contact-line .ic{width:13px;height:13px;border-radius:2px;background:var(--g3);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--g6);}
+.contact-li{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;color:var(--g6);text-decoration:none;cursor:pointer;}
+.contact-li:hover{color:var(--g8);text-decoration:underline;}
+.li-badge{width:14px;height:14px;border-radius:2px;background:var(--g6);color:#fff;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* --- Sidebar contacts (name + role only, matches dashboard) --- */
+.sb-contacts{background:var(--g6);border-radius:2px;padding:10px;}
+.sb-contacts-lbl{font-size:9px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.08em;margin-bottom:8px;}
+.sb-contact{display:flex;align-items:center;gap:7px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+.sb-contact:last-child{border-bottom:none;}
+.sb-contact-face{width:20px;height:20px;border-radius:50%;background:var(--g4);flex-shrink:0;}
+.sb-contact-nm{font-size:10.5px;color:rgba(255,255,255,.8);line-height:1.25;}
+.sb-contact-rl{font-size:9px;color:rgba(255,255,255,.35);line-height:1.25;}
+
+/* --- Urgent / crisis hotline CTA --- */
+.urgent-cta{background:var(--g8);border:1.5px solid var(--g6);border-radius:3px;padding:12px 14px;cursor:pointer;}
+.urgent-cta:hover{background:#000;}
+.urgent-title{font-size:11px;font-weight:700;color:#fff;letter-spacing:.03em;margin-bottom:3px;display:flex;align-items:center;gap:6px;}
+.urgent-dot{width:7px;height:7px;border-radius:50%;background:#fff;flex-shrink:0;}
+.urgent-sub{font-size:10px;color:rgba(255,255,255,.5);line-height:1.4;}
+.sb-urgent{margin:10px 12px 0;}
+
+/* --- Document library: practice tiles --- */
+.prac-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.prac-tile{background:var(--g0);border:var(--bd);border-radius:var(--r);padding:16px 14px;cursor:pointer;display:flex;flex-direction:column;gap:8px;transition:background .12s;}
+.prac-tile:hover{background:var(--g2);border-color:var(--g5);}
+.prac-icon{width:38px;height:38px;border-radius:3px;background:var(--g2);border:1px solid var(--g3);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.prac-name{font-size:13px;font-weight:600;color:var(--g8);}
+.prac-count{font-size:10.5px;color:var(--g5);}
+.prac-go{font-size:10.5px;color:var(--g6);margin-top:auto;}
+
+/* --- CTA panels (request doc / help with doc) --- */
+.cta-panel{background:var(--g0);border:1.5px dashed var(--g4);border-radius:var(--r);padding:14px 16px;display:flex;align-items:center;gap:14px;}
+.cta-icon{width:34px;height:34px;border-radius:3px;background:var(--g2);border:1px solid var(--g3);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.cta-body{flex:1;}
+.cta-title{font-size:12.5px;font-weight:600;color:var(--g8);margin-bottom:2px;}
+.cta-sub{font-size:11px;color:var(--g5);line-height:1.45;}
+
+/* --- LinkedIn feed widget --- */
+.li-feed{display:flex;flex-direction:column;}
+.li-post{padding:11px 14px;border-bottom:1px solid var(--g2);cursor:pointer;}
+.li-post:last-child{border-bottom:none;}
+.li-post:hover{background:var(--g1);}
+.li-post-top{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.li-avatar{width:26px;height:26px;border-radius:2px;background:var(--g6);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.li-org{font-size:11px;font-weight:600;color:var(--g7);line-height:1.2;}
+.li-meta{font-size:9.5px;color:var(--g5);line-height:1.2;}
+.li-text{font-size:11.5px;color:var(--g6);line-height:1.5;margin-bottom:7px;}
+.li-media{height:52px;background:var(--g2);border:1px dashed var(--g4);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9.5px;color:var(--g5);margin-bottom:7px;}
+.li-stats{display:flex;gap:12px;font-size:9.5px;color:var(--g5);}
+.li-foot{padding:9px 14px;text-align:center;border-top:1px solid var(--g2);background:var(--g1);}
+.li-foot a{font-size:11px;color:var(--g6);text-decoration:none;}
+.li-foot a:hover{color:var(--g8);text-decoration:underline;}
+
+/* --- Video share --- */
+.vid-actions{display:flex;gap:6px;}
+.btn-share{background:var(--g0);color:var(--g7);border:1.5px solid var(--g4);border-radius:var(--r);font-size:11px;font-weight:500;padding:6px 10px;cursor:pointer;flex-shrink:0;}
+.btn-share:hover{background:var(--g2);}
+.share-link-box{display:flex;gap:6px;align-items:stretch;margin-bottom:6px;}
+.share-link{flex:1;background:var(--g1);border:var(--bd);border-radius:var(--r);padding:8px 10px;font-size:11px;color:var(--g6);font-family:ui-monospace,Menlo,monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.share-note{background:var(--g1);border:1px solid var(--g3);border-radius:var(--r);padding:9px 11px;font-size:10.5px;color:var(--g6);line-height:1.55;}
+.share-tabs{display:flex;gap:0;border-bottom:var(--bd);margin-bottom:14px;}
+.share-tab{flex:1;padding:8px 10px;font-size:11.5px;color:var(--g5);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;}
+.share-tab.on{color:var(--g8);font-weight:600;border-bottom-color:var(--g7);}
+.share-pane{display:none;}
+.share-pane.on{display:block;}
+.copied-flash{font-size:10.5px;color:var(--g7);font-weight:600;margin-left:8px;opacity:0;transition:opacity .15s;}
+.copied-flash.on{opacity:1;}
+
+/* --- Hot Topics --- */
+.ht-badge{background:var(--g8);color:#fff;border-color:var(--g8);}
+.ht-hero{background:var(--g7);border-radius:3px;padding:16px 18px;margin-bottom:14px;display:flex;align-items:center;gap:14px;}
+.ht-hero-icon{width:40px;height:40px;border-radius:3px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.ht-hero-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:2px;}
+.ht-hero-sub{font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;}
+
+/* --- generic modal sizing helper --- */
+.modal-box.wide{width:560px;}
+.modal-list{display:flex;flex-direction:column;gap:8px;}
+.modal-contact{display:flex;align-items:center;gap:10px;padding:9px 11px;background:var(--g1);border:1px solid var(--g3);border-radius:var(--r);}
+.modal-phone{margin-left:auto;font-size:12px;font-weight:600;color:var(--g8);font-family:ui-monospace,Menlo,monospace;}
+</style>
+</head>
+<body>
+
+<div class="outer-chrome">
+  <span class="chrome-brand">TS Client Area · V2 (working)</span>
+  <div class="chrome-sep"></div>
+  <button class="chrome-btn" onclick="goTo('cover')">Index</button>
+  <button class="chrome-btn" onclick="goTo('login')">Login</button>
+  <button class="chrome-btn" onclick="goTo('dashboard')">Dashboard</button>
+  <button class="chrome-btn" onclick="goTo('documents')">Documents</button>
+  <button class="chrome-btn" onclick="goTo('doc-list')">Doc List</button>
+  <button class="chrome-btn" onclick="goTo('videos')">Videos</button>
+  <button class="chrome-btn" onclick="goTo('video-access')">Video Link</button>
+  <button class="chrome-btn" onclick="goTo('briefings')">Briefings</button>
+  <button class="chrome-btn" onclick="goTo('hot-topics')">Hot Topics</button>
+  <button class="chrome-btn" onclick="goTo('enquiry')">Enquiry</button>
+  <button class="chrome-btn" onclick="goTo('invite')">Invite</button>
+  <div class="chrome-ver">
+    <span class="chrome-ver-lbl">Version</span>
+    <a href="index.html" title="Version 1 — as presented to client">V1 · Presented</a>
+    <a href="version-two.html" class="cur" title="Version 2 — incorporating client feedback">V2 · Working</a>
+  </div>
+</div>
+
+<div class="frame-wrap">
+<div class="browser-frame">
+  <div class="browser-bar">
+    <div class="b-dots"><span></span><span></span><span></span></div>
+    <div class="b-url" id="url-bar">🔒 clients.traverssmith.com</div>
+  </div>
+
+  <!-- ════ COVER ════ -->
+  <div class="page active" id="page-cover">
+    <div class="cover-page">
+      <div class="cover-eye">Lo-fi wireframes · Phase 1 · <span style="color:#ffd75e;">Version 2 — incorporating client feedback</span></div>
+      <div class="cover-title">Travers Smith – Client Area</div>
+      <div style="display:inline-block;background:rgba(255,215,94,.12);border:1px solid rgba(255,215,94,.45);border-radius:3px;padding:6px 12px;margin-bottom:14px;font-size:11px;color:#ffd75e;"><b>V2 · Working draft.</b> Changes from client feedback are made here. <a href="index.html" style="color:#ffd75e;text-decoration:underline;">View V1 (as presented) →</a></div>
+      <div class="cover-sub">Structural wireframes for the gated client portal, reflecting the end-user (client member) experience. Yellow notes map each screen to the requirements by #Ref. <b style="color:rgba(255,255,255,.7);">Changes in V2:</b> six key contacts with phone &amp; LinkedIn · document library now browsed by practice · unique shareable video links · new Hot Topics area · events removed · urgent contact hotline · document request &amp; tailoring CTAs · TS LinkedIn feed.</div>
+      <div class="cover-grid">
+        <div class="cover-tile" onclick="goTo('login')"><div class="cover-tile-num">01</div><div class="cover-tile-label">Login</div></div>
+        <div class="cover-tile" onclick="goTo('dashboard')"><div class="cover-tile-num">02</div><div class="cover-tile-label">Dashboard</div></div>
+        <div class="cover-tile" onclick="goTo('documents')"><div class="cover-tile-num">03</div><div class="cover-tile-label">Documents<br>(by practice)</div></div>
+        <div class="cover-tile" onclick="goTo('doc-list')"><div class="cover-tile-num">04</div><div class="cover-tile-label">Document List</div></div>
+        <div class="cover-tile" onclick="goTo('videos')"><div class="cover-tile-num">05</div><div class="cover-tile-label">Training Videos<br>(+ share)</div></div>
+        <div class="cover-tile" onclick="goTo('video-access')"><div class="cover-tile-num">06</div><div class="cover-tile-label">Shared Video Link<br><span style="font-size:9px;opacity:.6;">NEW · recipient view</span></div></div>
+        <div class="cover-tile" onclick="goTo('briefings')"><div class="cover-tile-num">07</div><div class="cover-tile-label">Briefings</div></div>
+        <div class="cover-tile" onclick="goTo('hot-topics')"><div class="cover-tile-num">08</div><div class="cover-tile-label">Hot Topics<br><span style="font-size:9px;opacity:.6;">NEW · portal-only</span></div></div>
+        <div class="cover-tile" onclick="goTo('enquiry')"><div class="cover-tile-num">09</div><div class="cover-tile-label">Make an Enquiry</div></div>
+        <div class="cover-tile" onclick="goTo('invite')"><div class="cover-tile-num">10</div><div class="cover-tile-label">Invite a Colleague</div></div>
+        <div class="cover-tile" onclick="goTo('briefing-detail')"><div class="cover-tile-num">11</div><div class="cover-tile-label">Briefing Detail</div></div>
+        <div class="cover-tile" onclick="goTo('hot-topic-detail')"><div class="cover-tile-num">12</div><div class="cover-tile-label">Hot Topic Detail</div></div>
+        <div class="cover-tile" style="opacity:.4;cursor:default;"><div class="cover-tile-num">13</div><div class="cover-tile-label">Modals: disclaimer,<br>share, urgent</div></div>
+      </div>
+      <div class="cover-meta-row">
+        <div><div class="cover-meta-k">Preview</div><div class="cover-meta-v">Sep 2026</div></div>
+        <div><div class="cover-meta-k">Go-live</div><div class="cover-meta-v">Jan 2027</div></div>
+        <div><div class="cover-meta-k">Platform</div><div class="cover-meta-v">Umbraco 13→17</div></div>
+        <div><div class="cover-meta-k">URL</div><div class="cover-meta-v">clients.traverssmith.com</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ LOGIN ════ -->
+  <div class="page" id="page-login">
+    <div style="background:var(--g7);padding:12px 24px;border-bottom:1px solid var(--g6);"><div style="width:120px;height:18px;background:var(--g5);border-radius:2px;"></div></div>
+    <div class="login-split">
+      <div class="login-panel">
+        <div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:3px;">Client Portal</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.35);margin-bottom:26px;">Secure access · clients.traverssmith.com</div>
+        <div class="f-row"><div class="f-lbl" style="color:rgba(255,255,255,.4);">Email address</div><div class="f-input" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.8);">j.harrison@acmecapital.com</div></div>
+        <div class="f-row"><div class="f-lbl" style="color:rgba(255,255,255,.4);">Password</div><div class="f-input ph" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);">••••••••••</div></div>
+        <button class="btn btn-wide" style="background:var(--g5);color:var(--g8);" onclick="goTo('dashboard')">Sign in →</button>
+        <div style="text-align:center;margin-top:12px;font-size:11px;color:rgba(255,255,255,.25);cursor:pointer;" onclick="goTo('login-reset')">Forgot password?</div>
+        <div style="text-align:center;margin-top:20px;font-size:10px;color:rgba(255,255,255,.2);">🔒 2FA available · Session encrypted</div>
+      </div>
+      <div class="login-right">
+        <div class="ph-box" style="width:240px;height:54px;">Site logo / strapline</div>
+        <div class="ph-box" style="width:240px;height:70px;">Introductory copy block</div>
+        <div style="display:flex;gap:16px;margin-top:6px;">
+          <div class="ph-box" style="width:65px;height:48px;flex-direction:column;gap:3px;"><span style="font-size:13px;font-weight:700;">250+</span><span style="font-size:9px;">Docs</span></div>
+          <div class="ph-box" style="width:65px;height:48px;flex-direction:column;gap:3px;"><span style="font-size:13px;font-weight:700;">40+</span><span style="font-size:9px;">Videos</span></div>
+          <div class="ph-box" style="width:65px;height:48px;flex-direction:column;gap:3px;"><span style="font-size:13px;font-weight:700;">8</span><span style="font-size:9px;">Practices</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--g8);padding:8px 24px;border-top:1px solid var(--g7);"><div style="font-size:10px;color:rgba(255,255,255,.2);text-align:center;">Privacy · Terms · Contact your TS administrator for access</div></div>
+    <div style="padding:10px 14px;background:var(--g1);border-top:var(--bd);display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+      <span class="ann"><span class="ref">F9</span><span class="ref">NF1</span><span class="ref">NF3</span> <b>Per-person login</b> — no shared logins (F9). Security is paramount (NF1): URLs must not be scrapeable or enumerable. Cross-tenant isolation (NF3) guarantees a member of organisation A can never reach organisation B&rsquo;s content. <span class="q">Pen testing (NF2) and TS InfoSec sign-off (NF4) required before go-live.</span></span>
+      <button class="btn btn-outline" style="font-size:10px;" onclick="goTo('login-pending')">→ Pending state</button>
+      <button class="btn btn-outline" style="font-size:10px;" onclick="goTo('login-reset')">→ Reset password</button>
+    </div>
+  </div>
+
+  <div class="page" id="page-login-pending">
+    <div style="background:var(--g7);padding:12px 24px;border-bottom:1px solid var(--g6);"><div style="width:120px;height:18px;background:var(--g5);border-radius:2px;"></div></div>
+    <div style="background:var(--g7);min-height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:50px 40px;text-align:center;">
+      <div style="font-size:30px;">⏳</div>
+      <div style="font-size:15px;font-weight:600;color:#fff;">Account awaiting approval</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.4);max-width:280px;line-height:1.6;">Your request has been received. A TS administrator will activate your access shortly.</div>
+      <button class="btn btn-outline" style="margin-top:4px;" onclick="goTo('login')">← Return to login</button>
+    </div>
+    <div style="padding:10px 14px;background:var(--g1);border-top:var(--bd);"><span class="ann"><span class="ref">U1</span><span class="ref">F9</span> <b>TS Approver gate (Phase 1 safety net)</b> — every new member registration needs final sign-off before the account is activated.</span></div>
+  </div>
+
+  <div class="page" id="page-login-reset">
+    <div style="background:var(--g7);padding:12px 24px;border-bottom:1px solid var(--g6);"><div style="width:120px;height:18px;background:var(--g5);border-radius:2px;"></div></div>
+    <div style="background:var(--g7);padding:44px 40px;min-height:340px;max-width:420px;">
+      <div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:4px;">Reset your password</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.35);margin-bottom:22px;">Enter your registered email and we'll send reset instructions.</div>
+      <div class="f-row"><div class="f-lbl" style="color:rgba(255,255,255,.4);">Registered email</div><div class="f-input ph" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);">you@yourfirm.com</div></div>
+      <button class="btn btn-wide" style="background:var(--g5);color:var(--g8);">Send reset link</button>
+      <div style="text-align:center;margin-top:12px;font-size:11px;color:rgba(255,255,255,.3);cursor:pointer;" onclick="goTo('login')">← Return to sign in</div>
+    </div>
+    <div style="padding:10px 14px;background:var(--g1);border-top:var(--bd);"><span class="ann"><span class="ref">F9</span> Password reset / first-time activation for an individual member account.</span></div>
+  </div>
+  <!-- ════ DASHBOARD ════ -->
+  <div class="page" id="page-dashboard">
+    <div class="p-nav">
+      <div class="p-logo"></div>
+      <div class="p-nav-links">
+        <button class="p-nav-link active" onclick="goTo('dashboard')">My Area</button>
+        <button class="p-nav-link" onclick="goTo('documents')">Documents</button>
+        <button class="p-nav-link" onclick="goTo('videos')">Videos</button>
+        <button class="p-nav-link" onclick="goTo('briefings')">Briefings</button>
+        <button class="p-nav-link" onclick="goTo('hot-topics')">Hot Topics</button>
+      </div>
+      <div class="p-nav-right"><span class="p-username">James Harrison</span><div class="p-avatar"></div></div>
+    </div>
+    <div class="p-banner">
+      <div class="p-banner-logo">CLIENT<br>LOGO</div>
+      <div><div class="p-banner-name">Acme Capital LLP</div><div class="p-banner-sub">Welcome back, James · Last login: 5 Jun 2026</div></div>
+    </div>
+    <div class="p-layout">
+      <div class="p-sidebar">
+        <div class="sb-sect">
+          <div class="sb-label">Main</div>
+          <button class="sb-item active" onclick="goTo('dashboard')"><div class="sb-icon"></div>Dashboard</button>
+          <button class="sb-item" onclick="goTo('documents')"><div class="sb-icon"></div>Document Library</button>
+          <button class="sb-item" onclick="goTo('videos')"><div class="sb-icon"></div>Training Videos</button>
+          <button class="sb-item" onclick="goTo('briefings')"><div class="sb-icon"></div>Briefings</button>
+          <button class="sb-item" onclick="goTo('hot-topics')"><div class="sb-icon"></div>Hot Topics</button>
+        </div>
+        <div class="sb-sect">
+          <div class="sb-label">Account</div>
+          <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
+          <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
+        </div>
+        <div class="sb-team-box">
+          <div class="sb-contacts">
+            <div class="sb-contacts-lbl">YOUR TS TEAM</div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Sarah Mitchell</div><div class="sb-contact-rl">Partner · Employment</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Richard Jones</div><div class="sb-contact-rl">Senior Associate · Tax</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Eleanor Whittle</div><div class="sb-contact-rl">Partner · Corporate M&amp;A</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Tom Bradley</div><div class="sb-contact-rl">Partner · Finance</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Anna Lee</div><div class="sb-contact-rl">Senior Associate · Data Protection</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">James Park</div><div class="sb-contact-rl">Partner · Financial Services</div></div></div>
+          </div>
+        </div>
+        <div class="sb-urgent">
+          <div class="urgent-cta" onclick="openUrgent()">
+            <div class="urgent-title"><span class="urgent-dot"></span>Need help urgently?</div>
+            <div class="urgent-sub">Reach a partner right away &mdash; 24/7 line</div>
+          </div>
+        </div>
+      </div>
+      <div class="p-content">
+
+        <div class="card">
+          <div class="card-head"><span class="card-head-title">Your key contacts at Travers Smith</span></div>
+          <div class="contact-grid">
+            <div class="contact-cell">
+              <div class="contact-top">
+                <div class="face"></div>
+                <div><div class="contact-name">Sarah Mitchell</div><div class="contact-role">Partner · Employment</div></div>
+              </div>
+              <div class="contact-lines">
+                <div class="contact-line"><span class="ic">@</span>s.mitchell@traverssmith.com</div>
+                <div class="contact-line"><span class="ic">☎</span>+44 20 7295 3210</div>
+                <a class="contact-li" href="https://www.linkedin.com/company/travers-smith/" target="_blank"><span class="li-badge">in</span>View LinkedIn profile</a>
+              </div>
+            </div>
+            <div class="contact-cell">
+              <div class="contact-top">
+                <div class="face"></div>
+                <div><div class="contact-name">Richard Jones</div><div class="contact-role">Senior Associate · Tax</div></div>
+              </div>
+              <div class="contact-lines">
+                <div class="contact-line"><span class="ic">@</span>r.jones@traverssmith.com</div>
+                <div class="contact-line"><span class="ic">☎</span>+44 20 7295 3418</div>
+                <a class="contact-li" href="https://www.linkedin.com/company/travers-smith/" target="_blank"><span class="li-badge">in</span>View LinkedIn profile</a>
+              </div>
+            </div>
+            <div class="contact-cell">
+              <div class="contact-top">
+                <div class="face"></div>
+                <div><div class="contact-name">Eleanor Whittle</div><div class="contact-role">Partner · Corporate M&amp;A</div></div>
+              </div>
+              <div class="contact-lines">
+                <div class="contact-line"><span class="ic">@</span>e.whittle@traverssmith.com</div>
+                <div class="contact-line"><span class="ic">☎</span>+44 20 7295 3055</div>
+                <a class="contact-li" href="https://www.linkedin.com/company/travers-smith/" target="_blank"><span class="li-badge">in</span>View LinkedIn profile</a>
+              </div>
+            </div>
+            <div class="contact-cell">
+              <div class="contact-top">
+                <div class="face"></div>
+                <div><div class="contact-name">Tom Bradley</div><div class="contact-role">Partner · Finance</div></div>
+              </div>
+              <div class="contact-lines">
+                <div class="contact-line"><span class="ic">@</span>t.bradley@traverssmith.com</div>
+                <div class="contact-line"><span class="ic">☎</span>+44 20 7295 3762</div>
+                <a class="contact-li" href="https://www.linkedin.com/company/travers-smith/" target="_blank"><span class="li-badge">in</span>View LinkedIn profile</a>
+              </div>
+            </div>
+            <div class="contact-cell">
+              <div class="contact-top">
+                <div class="face"></div>
+                <div><div class="contact-name">Anna Lee</div><div class="contact-role">Senior Associate · Data Protection</div></div>
+              </div>
+              <div class="contact-lines">
+                <div class="contact-line"><span class="ic">@</span>a.lee@traverssmith.com</div>
+                <div class="contact-line"><span class="ic">☎</span>+44 20 7295 3199</div>
+                <a class="contact-li" href="https://www.linkedin.com/company/travers-smith/" target="_blank"><span class="li-badge">in</span>View LinkedIn profile</a>
+              </div>
+            </div>
+            <div class="contact-cell">
+              <div class="contact-top">
+                <div class="face"></div>
+                <div><div class="contact-name">James Park</div><div class="contact-role">Partner · Financial Services</div></div>
+              </div>
+              <div class="contact-lines">
+                <div class="contact-line"><span class="ic">@</span>j.park@traverssmith.com</div>
+                <div class="contact-line"><span class="ic">☎</span>+44 20 7295 3644</div>
+                <a class="contact-li" href="https://www.linkedin.com/company/travers-smith/" target="_blank"><span class="li-badge">in</span>View LinkedIn profile</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ann-row" style="margin-bottom:14px;"><span class="ann"><span class="ref">F1</span><span class="ref">F2</span><span class="ref">F3</span> <b>Personalised landing page</b> (F1) with client logo &amp; name and &ldquo;Welcome back, [Name]&rdquo; (F2). <b>Six key contacts</b> driven from the existing People document type via a person picker on the client config node (F3). Each contact now shows email, direct phone and a LinkedIn link. <span class="q">V2: contact count raised 3&rarr;6; &lsquo;View all&rsquo; removed; the same six are mirrored in the left-hand nav (without phone/LinkedIn).</span></span></div>
+
+        <div class="g2">
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-head"><span class="card-head-title">Latest briefings</span><button class="card-link" onclick="goTo('briefings')">View all →</button></div>
+            <div class="ts-event-list">
+              <div class="b-row" onclick="goTo('briefing-detail')" style="cursor:pointer;"><div class="b-date"><div class="b-date-txt">3 Jun<br>2026</div></div><div class="b-content"><div style="margin-bottom:3px;"><span class="badge">Employment</span></div><div class="b-title">Changes to the national living wage: what employers need to know</div><div class="b-meta">8 min read</div></div></div>
+              <div class="b-row" onclick="goTo('briefing-detail')" style="cursor:pointer;"><div class="b-date"><div class="b-date-txt">28 May<br>2026</div></div><div class="b-content"><div style="margin-bottom:3px;"><span class="badge">Tax</span></div><div class="b-title">HMRC consultation on carried interest: guide for fund managers</div><div class="b-meta">12 min read</div></div></div>
+              <div class="b-row" onclick="goTo('briefing-detail')" style="cursor:pointer;"><div class="b-date"><div class="b-date-txt">20 May<br>2026</div></div><div class="b-content"><div style="margin-bottom:3px;"><span class="badge">Corporate M&amp;A</span></div><div class="b-title">FCA reform proposals and their impact on deal structuring</div><div class="b-meta">6 min read</div></div></div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-head"><span class="card-head-title"><span class="li-badge" style="display:inline-flex;vertical-align:-2px;margin-right:5px;">in</span>Travers Smith on LinkedIn</span><span class="card-link">Follow</span></div>
+            <div class="li-feed">
+              <div class="li-post">
+                <div class="li-post-top"><div class="li-avatar">TS</div><div><div class="li-org">Travers Smith LLP</div><div class="li-meta">2d · 4,812 followers</div></div></div>
+                <div class="li-text">Our Employment team unpacks what the Employment Rights Bill means in practice for in-house counsel. Read the full briefing →</div>
+                <div class="li-media">Post image placeholder</div>
+                <div class="li-stats"><span>♡ 214</span><span>💬 18</span><span>↻ 32</span></div>
+              </div>
+              <div class="li-post">
+                <div class="li-post-top"><div class="li-avatar">TS</div><div><div class="li-org">Travers Smith LLP</div><div class="li-meta">5d · 4,812 followers</div></div></div>
+                <div class="li-text">We are delighted to have advised on a landmark cross-border transaction in the private capital space this quarter.</div>
+                <div class="li-stats"><span>♡ 387</span><span>💬 24</span><span>↻ 41</span></div>
+              </div>
+            </div>
+            <div class="li-foot"><a href="https://www.linkedin.com/company/travers-smith/posts/" target="_blank">View all posts on LinkedIn →</a></div>
+          </div>
+        </div>
+        <div class="ann-row" style="margin-bottom:14px;"><span class="ann"><span class="ref">F4</span> <b>Tailored content feed</b> driven by service-area tags, configurable per client (F4). <b>V2:</b> the events widget has been removed and the TS LinkedIn feed added, drawing from linkedin.com/company/travers-smith/posts. <span class="q">Included pending confirmation from the technical lead &mdash; LinkedIn restricts API access to company post feeds, so this may resolve to an embedded widget or a curated feed. Straightforward to remove if it cannot be delivered.</span></span></div>
+
+        <div class="g2" style="margin-bottom:14px;">
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-body" style="display:flex;align-items:center;gap:12px;">
+              <div style="width:36px;height:36px;background:var(--g3);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">📄</div>
+              <div style="flex:1;"><div style="font-size:12px;font-weight:600;margin-bottom:1px;">Document library</div><div style="font-size:10px;color:var(--g5);">Browse boilerplate documents by practice</div></div>
+              <button class="card-link" onclick="goTo('documents')">Browse →</button>
+            </div>
+          </div>
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-body" style="display:flex;align-items:center;gap:12px;">
+              <div style="width:36px;height:36px;background:var(--g3);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🎥</div>
+              <div style="flex:1;"><div style="font-size:12px;font-weight:600;margin-bottom:1px;">Training videos</div><div style="font-size:10px;color:var(--g5);">12 videos · shareable with colleagues</div></div>
+              <button class="card-link" onclick="goTo('videos')">Browse →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="urgent-cta" onclick="openUrgent()" style="display:flex;align-items:center;gap:14px;">
+          <div style="width:38px;height:38px;border-radius:3px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;">☎</div>
+          <div style="flex:1;">
+            <div class="urgent-title" style="font-size:12.5px;"><span class="urgent-dot"></span>Urgent matter? Speak to a partner now</div>
+            <div class="urgent-sub">24/7 crisis line for time-critical issues — regulatory raids, data breaches, injunctions, press enquiries.</div>
+          </div>
+          <button class="btn" style="background:#fff;color:var(--g8);flex-shrink:0;">Open crisis line →</button>
+        </div>
+        <div class="ann-row"><span class="ann"><span class="ref">F3</span><span class="ref">F7</span> <b>NEW &mdash; Urgent contact / crisis hotline.</b> Surfaced on the dashboard and persistently in the left-hand nav so it is reachable from every screen. Opens a modal with the 24/7 number plus direct dials for the client&rsquo;s key contacts. <span class="q">Open: is there an existing TS out-of-hours number, or does this route to a duty partner rota? Should calls be logged against the member for analytics (F14)?</span></span></div>
+
+      </div>
+    </div>
+    <div class="p-footer">
+      <div class="p-footer-l">Travers Smith LLP · Client Portal</div>
+      <div class="p-footer-r"><span>Privacy</span><span>Accessibility</span><span onclick="goTo('login')">Sign out</span></div>
+    </div>
+  </div>
+
+  <!-- ════ DOCUMENTS ════ -->
+  <div class="page" id="page-documents">
+    <div class="p-nav">
+      <div class="p-logo"></div>
+      <div class="p-nav-links">
+        <button class="p-nav-link" onclick="goTo('dashboard')">My Area</button>
+        <button class="p-nav-link active" onclick="goTo('documents')">Documents</button>
+        <button class="p-nav-link" onclick="goTo('videos')">Videos</button>
+        <button class="p-nav-link" onclick="goTo('briefings')">Briefings</button>
+        <button class="p-nav-link" onclick="goTo('hot-topics')">Hot Topics</button>
+      </div>
+      <div class="p-nav-right"><span class="p-username">James Harrison</span><div class="p-avatar"></div></div>
+    </div>
+    <div class="p-banner"><div class="p-banner-title">Boilerplate Document Library</div><div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,.35);">Acme Capital LLP · 24 documents</div></div>
+    <div class="p-layout">
+      <div class="p-sidebar">
+        <div class="sb-sect">
+          <div class="sb-label">Main</div>
+          <button class="sb-item" onclick="goTo('dashboard')"><div class="sb-icon"></div>Dashboard</button>
+          <button class="sb-item active" onclick="goTo('documents')"><div class="sb-icon"></div>Document Library</button>
+          <button class="sb-item" onclick="goTo('videos')"><div class="sb-icon"></div>Training Videos</button>
+          <button class="sb-item" onclick="goTo('briefings')"><div class="sb-icon"></div>Briefings</button>
+          <button class="sb-item" onclick="goTo('hot-topics')"><div class="sb-icon"></div>Hot Topics</button>
+        </div>
+        <div class="sb-sect">
+          <div class="sb-label">Account</div>
+          <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
+          <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
+        </div>
+        <div class="sb-team-box">
+          <div class="sb-contacts">
+            <div class="sb-contacts-lbl">YOUR TS TEAM</div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Sarah Mitchell</div><div class="sb-contact-rl">Partner · Employment</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Richard Jones</div><div class="sb-contact-rl">Senior Associate · Tax</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Eleanor Whittle</div><div class="sb-contact-rl">Partner · Corporate M&amp;A</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Tom Bradley</div><div class="sb-contact-rl">Partner · Finance</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Anna Lee</div><div class="sb-contact-rl">Senior Associate · Data Protection</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">James Park</div><div class="sb-contact-rl">Partner · Financial Services</div></div></div>
+          </div>
+        </div>
+        <div class="sb-urgent">
+          <div class="urgent-cta" onclick="openUrgent()">
+            <div class="urgent-title"><span class="urgent-dot"></span>Need help urgently?</div>
+            <div class="urgent-sub">Reach a partner right away &mdash; 24/7 line</div>
+          </div>
+        </div>
+      </div>
+      <div class="p-content">
+        <div class="filter-bar">
+          <div class="filter-bar-row">
+            <div class="t-search">🔍 Search all documents…</div>
+            <div class="dd-wrap">
+              <div class="dd-trigger" onclick="toggleDD('dd-land-svc')"><span class="dd-label" id="land-svc-label">Services</span><span class="dd-arrow">▾</span></div>
+              <div class="dd-menu" id="dd-land-svc">
+                <div class="dd-menu-item selected" data-val="" onclick="selectLandSvc(this)">All services</div>
+                <div class="dd-menu-item" data-val="Global Mobility" onclick="selectLandSvc(this)">Global Mobility</div>
+                <div class="dd-menu-item" data-val="Executive Remuneration" onclick="selectLandSvc(this)">Executive Remuneration</div>
+                <div class="dd-menu-item" data-val="Share Plans" onclick="selectLandSvc(this)">Share Plans</div>
+                <div class="dd-menu-item" data-val="Transactional Tax" onclick="selectLandSvc(this)">Transactional Tax</div>
+                <div class="dd-menu-item" data-val="Private Equity" onclick="selectLandSvc(this)">Private Equity &amp; Financial Sponsors</div>
+                <div class="dd-menu-item" data-val="Leveraged Finance" onclick="selectLandSvc(this)">Leveraged &amp; Acquisition Finance</div>
+                <div class="dd-menu-item" data-val="Fund Finance" onclick="selectLandSvc(this)">Fund Finance</div>
+                <div class="dd-menu-item" data-val="Cyber Security" onclick="selectLandSvc(this)">Cyber Security &amp; Data Breaches</div>
+              </div>
+            </div>
+            <div style="margin-left:auto;font-size:11px;color:var(--g5);">Choose a practice to begin</div>
+          </div>
+        </div>
+
+        <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--g5);margin-bottom:9px;">Browse by practice</div>
+        <div class="prac-grid" style="margin-bottom:14px;">
+            <div class="prac-tile" data-practice="Employment" onclick="openPractice(this)">
+              <div class="prac-icon">👥</div>
+              <div><div class="prac-name">Employment</div><div class="prac-count">5 documents</div></div>
+              <div class="prac-go">Browse Employment →</div>
+            </div>
+            <div class="prac-tile" data-practice="Tax" onclick="openPractice(this)">
+              <div class="prac-icon">£</div>
+              <div><div class="prac-name">Tax</div><div class="prac-count">3 documents</div></div>
+              <div class="prac-go">Browse Tax →</div>
+            </div>
+            <div class="prac-tile" data-practice="Corporate M&A" onclick="openPractice(this)">
+              <div class="prac-icon">🤝</div>
+              <div><div class="prac-name">Corporate M&amp;A</div><div class="prac-count">4 documents</div></div>
+              <div class="prac-go">Browse Corporate M&amp;A →</div>
+            </div>
+            <div class="prac-tile" data-practice="Finance" onclick="openPractice(this)">
+              <div class="prac-icon">🏦</div>
+              <div><div class="prac-name">Finance</div><div class="prac-count">4 documents</div></div>
+              <div class="prac-go">Browse Finance →</div>
+            </div>
+            <div class="prac-tile" data-practice="Funds" onclick="openPractice(this)">
+              <div class="prac-icon">📊</div>
+              <div><div class="prac-name">Funds</div><div class="prac-count">2 documents</div></div>
+              <div class="prac-go">Browse Funds →</div>
+            </div>
+            <div class="prac-tile" data-practice="Pensions" onclick="openPractice(this)">
+              <div class="prac-icon">🛡</div>
+              <div><div class="prac-name">Pensions</div><div class="prac-count">2 documents</div></div>
+              <div class="prac-go">Browse Pensions →</div>
+            </div>
+            <div class="prac-tile" data-practice="Real estate" onclick="openPractice(this)">
+              <div class="prac-icon">🏢</div>
+              <div><div class="prac-name">Real estate</div><div class="prac-count">1 documents</div></div>
+              <div class="prac-go">Browse Real estate →</div>
+            </div>
+            <div class="prac-tile" data-practice="Data Protection" onclick="openPractice(this)">
+              <div class="prac-icon">🔐</div>
+              <div><div class="prac-name">Data Protection</div><div class="prac-count">1 documents</div></div>
+              <div class="prac-go">Browse Data Protection →</div>
+            </div>
+            <div class="prac-tile" data-practice="IP & Technology" onclick="openPractice(this)">
+              <div class="prac-icon">💡</div>
+              <div><div class="prac-name">IP &amp; Technology</div><div class="prac-count">2 documents</div></div>
+              <div class="prac-go">Browse IP &amp; Technology →</div>
+            </div>
+        </div>
+
+        <div class="cta-panel" style="margin-bottom:12px;">
+          <div class="cta-icon">🔎</div>
+          <div class="cta-body">
+            <div class="cta-title">Can&rsquo;t find what you&rsquo;re looking for?</div>
+            <div class="cta-sub">Tell us what you need and we&rsquo;ll look into adding it to the library, or point you to the right precedent.</div>
+          </div>
+          <button class="btn" onclick="goTo('enquiry')">Request a document →</button>
+        </div>
+        <div class="cta-panel">
+          <div class="cta-icon">✎</div>
+          <div class="cta-body">
+            <div class="cta-title">Downloaded a document and need it tailored?</div>
+            <div class="cta-sub">These are boilerplate templates. Ask a partner to adapt one to your specific circumstances.</div>
+          </div>
+          <button class="btn btn-outline" onclick="goTo('enquiry')">Get help from a partner →</button>
+        </div>
+
+        <div class="ann-row"><span class="ann"><span class="ref">F10</span><span class="ref">F5</span><span class="ref">F12</span> <b>V2 &mdash; library is now entered by practice.</b> The landing page presents an icon + link per practice; selecting one deep-links to a document list pre-filtered to that practice, <b>carrying the Services filter through</b> (F5, deep-link to filtered views). Content remains a single shared library governed by member group (F10). <span class="q">Open (Leo): confirms the metadata model &mdash; practice as the primary axis, service area as secondary. Still to confirm: topic and jurisdiction, and whether service should be multi-select.</span></span></div>
+        <div class="ann-row"><span class="ann"><span class="ref">F7</span> <b>NEW &mdash; two calls to action.</b> &ldquo;Can&rsquo;t find what you&rsquo;re looking for?&rdquo; lets a member request a document that isn&rsquo;t in the library; the tailoring CTA lets them ask a partner to adapt a downloaded template. Both route into the triaged enquiry flow (F7). <span class="q">Open: should these be distinct enquiry types so TS can report on unmet demand?</span></span></div>
+      </div>
+    </div>
+    <div class="p-footer">
+      <div class="p-footer-l">Travers Smith LLP · Client Portal</div>
+      <div class="p-footer-r"><span>Privacy</span><span>Accessibility</span><span onclick="goTo('login')">Sign out</span></div>
+    </div>
+  </div>
+
+  <!-- ════ DOC-LIST ════ -->
+  <div class="page" id="page-doc-list">
+    <div class="p-nav">
+      <div class="p-logo"></div>
+      <div class="p-nav-links">
+        <button class="p-nav-link" onclick="goTo('dashboard')">My Area</button>
+        <button class="p-nav-link active" onclick="goTo('documents')">Documents</button>
+        <button class="p-nav-link" onclick="goTo('videos')">Videos</button>
+        <button class="p-nav-link" onclick="goTo('briefings')">Briefings</button>
+        <button class="p-nav-link" onclick="goTo('hot-topics')">Hot Topics</button>
+      </div>
+      <div class="p-nav-right"><span class="p-username">James Harrison</span><div class="p-avatar"></div></div>
+    </div>
+    <div class="p-banner"><div class="p-banner-title">Document Library</div><div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,.35);">Acme Capital LLP</div></div>
+    <div class="p-layout">
+      <div class="p-sidebar">
+        <div class="sb-sect">
+          <div class="sb-label">Main</div>
+          <button class="sb-item" onclick="goTo('dashboard')"><div class="sb-icon"></div>Dashboard</button>
+          <button class="sb-item active" onclick="goTo('documents')"><div class="sb-icon"></div>Document Library</button>
+          <button class="sb-item" onclick="goTo('videos')"><div class="sb-icon"></div>Training Videos</button>
+          <button class="sb-item" onclick="goTo('briefings')"><div class="sb-icon"></div>Briefings</button>
+          <button class="sb-item" onclick="goTo('hot-topics')"><div class="sb-icon"></div>Hot Topics</button>
+        </div>
+        <div class="sb-sect">
+          <div class="sb-label">Account</div>
+          <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
+          <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
+        </div>
+        <div class="sb-team-box">
+          <div class="sb-contacts">
+            <div class="sb-contacts-lbl">YOUR TS TEAM</div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Sarah Mitchell</div><div class="sb-contact-rl">Partner · Employment</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Richard Jones</div><div class="sb-contact-rl">Senior Associate · Tax</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Eleanor Whittle</div><div class="sb-contact-rl">Partner · Corporate M&amp;A</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Tom Bradley</div><div class="sb-contact-rl">Partner · Finance</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Anna Lee</div><div class="sb-contact-rl">Senior Associate · Data Protection</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">James Park</div><div class="sb-contact-rl">Partner · Financial Services</div></div></div>
+          </div>
+        </div>
+        <div class="sb-urgent">
+          <div class="urgent-cta" onclick="openUrgent()">
+            <div class="urgent-title"><span class="urgent-dot"></span>Need help urgently?</div>
+            <div class="urgent-sub">Reach a partner right away &mdash; 24/7 line</div>
+          </div>
+        </div>
+      </div>
+      <div class="p-content">
+        <div style="font-size:11px;color:var(--g5);margin-bottom:12px;">
+          <button class="btn btn-outline" style="font-size:10.5px;padding:4px 9px;" onclick="goTo('documents')">← All practices</button>
+          <span style="margin-left:8px;">Document library / <b id="crumb-prac" style="color:var(--g7);">All practices</b></span>
+        </div>
+
+        <div class="filter-bar">
+          <div class="filter-bar-row">
+            <div class="t-search">🔍 Search documents…</div>
+            <div class="dd-wrap">
+              <div class="dd-trigger" onclick="toggleDD('dd-doc-prac')"><span class="dd-label" id="doc-prac-label">All practices</span><span class="dd-arrow">▾</span></div>
+              <div class="dd-menu" id="dd-doc-prac">
+                <div class="dd-menu-item selected" data-val="" onclick="selectDocPrac(this)">All practices</div>
+                <div class="dd-menu-item" data-val="Employment" onclick="selectDocPrac(this)">Employment</div>
+                <div class="dd-menu-item" data-val="Tax" onclick="selectDocPrac(this)">Tax</div>
+                <div class="dd-menu-item" data-val="Corporate M&A" onclick="selectDocPrac(this)">Corporate M&amp;A</div>
+                <div class="dd-menu-item" data-val="Finance" onclick="selectDocPrac(this)">Finance</div>
+                <div class="dd-menu-item" data-val="Funds" onclick="selectDocPrac(this)">Funds</div>
+                <div class="dd-menu-item" data-val="Pensions" onclick="selectDocPrac(this)">Pensions</div>
+                <div class="dd-menu-item" data-val="Real estate" onclick="selectDocPrac(this)">Real estate</div>
+                <div class="dd-menu-item" data-val="Data Protection" onclick="selectDocPrac(this)">Data Protection</div>
+                <div class="dd-menu-item" data-val="IP & Technology" onclick="selectDocPrac(this)">IP &amp; Technology</div>
+              </div>
+            </div>
+            <div class="dd-wrap">
+              <div class="dd-trigger" onclick="toggleDD('dd-doc-svc')"><span class="dd-label" id="doc-svc-label">All services</span><span class="dd-arrow">▾</span></div>
+              <div class="dd-menu" id="dd-doc-svc">
+                <div class="dd-menu-item selected" data-val="" onclick="selectDocSvc(this)">All services</div>
+                <div class="dd-menu-item" data-val="Global Mobility" onclick="selectDocSvc(this)">Global Mobility</div>
+                <div class="dd-menu-item" data-val="Executive Remuneration" onclick="selectDocSvc(this)">Executive Remuneration</div>
+                <div class="dd-menu-item" data-val="Share Plans" onclick="selectDocSvc(this)">Share Plans</div>
+                <div class="dd-menu-item" data-val="Transactional Tax" onclick="selectDocSvc(this)">Transactional Tax</div>
+                <div class="dd-menu-item" data-val="Private Equity" onclick="selectDocSvc(this)">Private Equity</div>
+                <div class="dd-menu-item" data-val="Leveraged Finance" onclick="selectDocSvc(this)">Leveraged Finance</div>
+                <div class="dd-menu-item" data-val="Fund Finance" onclick="selectDocSvc(this)">Fund Finance</div>
+                <div class="dd-menu-item" data-val="Cyber Security" onclick="selectDocSvc(this)">Cyber Security</div>
+              </div>
+            </div>
+            <div style="margin-left:auto;font-size:11px;color:var(--g5);" id="doc-count">24 documents</div>
+          </div>
+          <div id="doc-chip-row" class="filter-chips" style="display:none;"></div>
+        </div>
+
+        <div class="wf-table" style="margin-bottom:12px;">
+          <div class="wf-thead"><div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;"><div class="wf-th">Document</div><div class="wf-th">Practice</div><div class="wf-th">Service</div><div class="wf-th">Version / Date</div><div class="wf-th">Action</div></div></div>
+          <div id="doc-tbody">
+            <div class="doc-row wf-tr" data-practice="Employment" data-service="Global Mobility">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Standard employment contract (permanent)</div><div class="wf-td-sm">Full-time salaried · UK governed</div></div>
+                <div class="wf-td"><span class="badge">Employment</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Global Mobility</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v3.1 · May 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Employment" data-service="Executive Remuneration">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Senior executive service agreement</div><div class="wf-td-sm">Board-level appointments</div></div>
+                <div class="wf-td"><span class="badge">Employment</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Executive Remuneration</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v2.4 · Apr 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Employment" data-service="Executive Remuneration">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">TUPE notification letter template</div><div class="wf-td-sm">Employee liability information</div></div>
+                <div class="wf-td"><span class="badge">Employment</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Executive Remuneration</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v1.3 · Jan 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Employment" data-service="Share Plans">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Settlement agreement (employee)</div><div class="wf-td-sm">Full &amp; final settlement · UK</div></div>
+                <div class="wf-td"><span class="badge">Employment</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Share Plans</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v2.1 · Mar 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Employment" data-service="Global Mobility">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Secondment agreement (inbound)</div><div class="wf-td-sm">Cross-border secondment · UK host</div></div>
+                <div class="wf-td"><span class="badge">Employment</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Global Mobility</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v1.5 · Feb 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Tax" data-service="Transactional Tax">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">HMRC employment status questionnaire</div><div class="wf-td-sm">IR35 / off-payroll determination</div></div>
+                <div class="wf-td"><span class="badge">Tax</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Transactional Tax</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v2.0 · Jun 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Tax" data-service="Transactional Tax">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">QAHC tax election notice template</div><div class="wf-td-sm">Qualifying Asset Holding Company</div></div>
+                <div class="wf-td"><span class="badge">Tax</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Transactional Tax</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v1.2 · Apr 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Tax" data-service="Transactional Tax">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Tax deed of covenant (boilerplate)</div><div class="wf-td-sm">Share sale · UK target company</div></div>
+                <div class="wf-td"><span class="badge">Tax</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Transactional Tax</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v3.0 · Mar 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Corporate M&A" data-service="Private Equity">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Share purchase agreement (boilerplate)</div><div class="wf-td-sm">Private M&amp;A · English law</div></div>
+                <div class="wf-td"><span class="badge">Corporate M&A</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Private Equity</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v1.8 · Mar 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Corporate M&A" data-service="Private Equity">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Management equity incentive plan (MEP)</div><div class="wf-td-sm">PE portfolio companies</div></div>
+                <div class="wf-td"><span class="badge">Corporate M&A</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Private Equity</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v2.2 · May 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Corporate M&A" data-service="Private Equity">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Confidentiality agreement (M&amp;A)</div><div class="wf-td-sm">Bilateral NDA · deal process</div></div>
+                <div class="wf-td"><span class="badge">Corporate M&A</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Private Equity</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v4.1 · Jan 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Corporate M&A" data-service="Private Equity">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Shareholders&rsquo; agreement (JV)</div><div class="wf-td-sm">50/50 joint venture · English law</div></div>
+                <div class="wf-td"><span class="badge">Corporate M&A</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Private Equity</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v2.5 · Jun 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Finance" data-service="Leveraged Finance">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Facility agreement (leveraged finance)</div><div class="wf-td-sm">LMA-based · senior secured</div></div>
+                <div class="wf-td"><span class="badge">Finance</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Leveraged Finance</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v4.2 · Feb 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Finance" data-service="Fund Finance">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Subscription facility agreement</div><div class="wf-td-sm">Capital call facility</div></div>
+                <div class="wf-td"><span class="badge">Finance</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Fund Finance</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v2.0 · Apr 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Finance" data-service="Leveraged Finance">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Real estate finance term sheet</div><div class="wf-td-sm">Senior secured · commercial property</div></div>
+                <div class="wf-td"><span class="badge">Finance</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Leveraged Finance</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v1.4 · Jan 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Finance" data-service="Leveraged Finance">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Security deed (all-assets debenture)</div><div class="wf-td-sm">Fixed and floating charge</div></div>
+                <div class="wf-td"><span class="badge">Finance</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Leveraged Finance</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v3.5 · May 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Funds" data-service="Fund Finance">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Limited partnership agreement (PE fund)</div><div class="wf-td-sm">Closed-ended · Cayman Islands</div></div>
+                <div class="wf-td"><span class="badge">Funds</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Fund Finance</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v3.3 · May 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Funds" data-service="Fund Finance">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Investment management agreement</div><div class="wf-td-sm">Discretionary IMA · AIFMD</div></div>
+                <div class="wf-td"><span class="badge">Funds</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Fund Finance</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v2.1 · Mar 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Pensions" data-service="Executive Remuneration">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Trustee appointment deed</div><div class="wf-td-sm">Occupational pension scheme · UK</div></div>
+                <div class="wf-td"><span class="badge">Pensions</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Executive Remuneration</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v1.6 · Feb 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Pensions" data-service="Executive Remuneration">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Rule amendment deed (pension scheme)</div><div class="wf-td-sm">DB scheme · power of amendment</div></div>
+                <div class="wf-td"><span class="badge">Pensions</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Executive Remuneration</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v2.0 · Jan 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Real estate" data-service="Leveraged Finance">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Commercial property sale contract</div><div class="wf-td-sm">Standard conditions of sale</div></div>
+                <div class="wf-td"><span class="badge">Real estate</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Leveraged Finance</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v2.3 · Apr 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="Data Protection" data-service="Cyber Security">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Data processing agreement (DPA)</div><div class="wf-td-sm">Controller-processor · UK GDPR art.28</div></div>
+                <div class="wf-td"><span class="badge">Data Protection</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Cyber Security</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v3.0 · Jun 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="IP & Technology" data-service="Cyber Security">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">Software development agreement</div><div class="wf-td-sm">Bespoke development · IP assignment</div></div>
+                <div class="wf-td"><span class="badge">IP & Technology</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Cyber Security</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v2.2 · Mar 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+            <div class="doc-row wf-tr" data-practice="IP & Technology" data-service="Cyber Security">
+              <div style="display:grid;grid-template-columns:1fr 130px 150px 110px 92px;align-items:center;">
+                <div class="wf-td"><div style="font-weight:500;">IP licence agreement (outbound)</div><div class="wf-td-sm">Non-exclusive · royalty-bearing</div></div>
+                <div class="wf-td"><span class="badge">IP & Technology</span></div>
+                <div class="wf-td-sm" style="padding:9px 14px;">Cyber Security</div>
+                <div class="wf-td-sm" style="padding:9px 14px;">v1.7 · Jan 2026</div>
+                <div style="padding:9px 14px;"><button class="btn" onclick="openModal()">↓ Download</button></div>
+              </div>
+            </div>
+          </div>
+          <div id="doc-no-results" style="display:none;"><div class="no-results">No documents match the current filters. <button class="btn btn-outline" style="font-size:11px;margin-left:10px;" onclick="clearDocFilters()">Clear filters</button></div></div>
+        </div>
+        <div id="doc-pagination" style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-bottom:14px;"></div>
+
+        <div class="cta-panel" style="margin-bottom:12px;">
+          <div class="cta-icon">🔎</div>
+          <div class="cta-body">
+            <div class="cta-title">Can&rsquo;t find what you&rsquo;re looking for?</div>
+            <div class="cta-sub">Tell us what you need and we&rsquo;ll look into adding it to the library, or point you to the right precedent.</div>
+          </div>
+          <button class="btn" onclick="goTo('enquiry')">Request a document →</button>
+        </div>
+        <div class="cta-panel">
+          <div class="cta-icon">✎</div>
+          <div class="cta-body">
+            <div class="cta-title">Downloaded a document and need it tailored?</div>
+            <div class="cta-sub">These are boilerplate templates. Ask a partner to adapt one to your specific circumstances.</div>
+          </div>
+          <button class="btn btn-outline" onclick="goTo('enquiry')">Get help from a partner →</button>
+        </div>
+
+        <div class="ann-row"><span class="ann"><span class="ref">F10</span><span class="ref">F12</span><span class="ref">F14</span> Arriving from a practice tile pre-sets the Practice filter while <b>retaining any Services selection</b> made on the landing page. Download is gated by a server-enforced disclaimer; the file is never served without a recorded acceptance (F12), and every download is tracked as (member_id, client_org_id, asset_id, asset_type, practice_group, timestamp, disclaimer_version_accepted) (F14), feeding fee allocation (F15) and per-person analytics (F16).</span></div>
+      </div>
+    </div>
+    <div class="p-footer">
+      <div class="p-footer-l">Travers Smith LLP · Client Portal</div>
+      <div class="p-footer-r"><span>Privacy</span><span>Accessibility</span><span onclick="goTo('login')">Sign out</span></div>
+    </div>
+  </div>
+
+  <!-- ════ VIDEOS ════ -->
+  <div class="page" id="page-videos">
+    <div class="p-nav">
+      <div class="p-logo"></div>
+      <div class="p-nav-links">
+        <button class="p-nav-link" onclick="goTo('dashboard')">My Area</button>
+        <button class="p-nav-link" onclick="goTo('documents')">Documents</button>
+        <button class="p-nav-link active" onclick="goTo('videos')">Videos</button>
+        <button class="p-nav-link" onclick="goTo('briefings')">Briefings</button>
+        <button class="p-nav-link" onclick="goTo('hot-topics')">Hot Topics</button>
+      </div>
+      <div class="p-nav-right"><span class="p-username">James Harrison</span><div class="p-avatar"></div></div>
+    </div>
+    <div class="p-banner"><div class="p-banner-title">Training Video Library</div><div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,.35);">12 videos · 4 practice areas</div></div>
+    <div class="p-layout">
+      <div class="p-sidebar">
+        <div class="sb-sect">
+          <div class="sb-label">Main</div>
+          <button class="sb-item" onclick="goTo('dashboard')"><div class="sb-icon"></div>Dashboard</button>
+          <button class="sb-item" onclick="goTo('documents')"><div class="sb-icon"></div>Document Library</button>
+          <button class="sb-item active" onclick="goTo('videos')"><div class="sb-icon"></div>Training Videos</button>
+          <button class="sb-item" onclick="goTo('briefings')"><div class="sb-icon"></div>Briefings</button>
+          <button class="sb-item" onclick="goTo('hot-topics')"><div class="sb-icon"></div>Hot Topics</button>
+        </div>
+        <div class="sb-sect">
+          <div class="sb-label">Account</div>
+          <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
+          <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
+        </div>
+        <div class="sb-team-box">
+          <div class="sb-contacts">
+            <div class="sb-contacts-lbl">YOUR TS TEAM</div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Sarah Mitchell</div><div class="sb-contact-rl">Partner · Employment</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Richard Jones</div><div class="sb-contact-rl">Senior Associate · Tax</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Eleanor Whittle</div><div class="sb-contact-rl">Partner · Corporate M&amp;A</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Tom Bradley</div><div class="sb-contact-rl">Partner · Finance</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Anna Lee</div><div class="sb-contact-rl">Senior Associate · Data Protection</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">James Park</div><div class="sb-contact-rl">Partner · Financial Services</div></div></div>
+          </div>
+        </div>
+        <div class="sb-urgent">
+          <div class="urgent-cta" onclick="openUrgent()">
+            <div class="urgent-title"><span class="urgent-dot"></span>Need help urgently?</div>
+            <div class="urgent-sub">Reach a partner right away &mdash; 24/7 line</div>
+          </div>
+        </div>
+      </div>
+      <div class="p-content">
+        <div class="filter-bar">
+          <div class="filter-bar-row">
+            <div class="t-search">🔍 Search videos…</div>
+            <div class="dd-wrap">
+              <div class="dd-trigger" onclick="toggleDD('dd-vid-prac')"><span class="dd-label">All practices</span><span class="dd-arrow">▾</span></div>
+              <div class="dd-menu" id="dd-vid-prac">
+                <div class="dd-menu-item selected" onclick="selectSingle(this,'dd-vid-prac')">All practices</div>
+                <div class="dd-menu-item" onclick="selectSingle(this,'dd-vid-prac')">Employment</div>
+                <div class="dd-menu-item" onclick="selectSingle(this,'dd-vid-prac')">Tax</div>
+                <div class="dd-menu-item" onclick="selectSingle(this,'dd-vid-prac')">Corporate M&amp;A</div>
+                <div class="dd-menu-item" onclick="selectSingle(this,'dd-vid-prac')">Finance</div>
+              </div>
+            </div>
+            <div style="margin-left:auto;font-size:11px;color:var(--g5);">12 videos</div>
+          </div>
+        </div>
+        <div class="g3">
+          <div class="vid-card">
+            <div class="vid-thumb"><div class="play-btn"><div class="play-tri"></div></div><div class="v-dur">18:32</div></div>
+            <div class="vid-body">
+              <span class="badge" style="margin-bottom:6px;display:inline-block;">Employment</span>
+              <div style="font-size:12px;font-weight:500;margin-bottom:3px;line-height:1.4;">Introduction to employment contracts: key clauses explained</div>
+              <div style="font-size:10px;color:var(--g5);margin-bottom:8px;">Sarah Mitchell · Jun 2026</div>
+              <div class="vid-actions">
+                <button class="btn" style="flex:1;justify-content:center;">▶ Watch</button>
+                <button class="btn-share" data-slug="emp-contracts-intro" data-token="7f2a-91c4-6db8" data-title="Introduction to employment contracts: key clauses explained" onclick="openShare(this)">↗ Share</button>
+              </div>
+            </div>
+          </div>
+          <div class="vid-card">
+            <div class="vid-thumb"><div class="play-btn"><div class="play-tri"></div></div><div class="v-dur">24:05</div></div>
+            <div class="vid-body">
+              <span class="badge" style="margin-bottom:6px;display:inline-block;">Tax</span>
+              <div style="font-size:12px;font-weight:500;margin-bottom:3px;line-height:1.4;">IR35 &amp; off-payroll working: practical compliance walkthrough</div>
+              <div style="font-size:10px;color:var(--g5);margin-bottom:8px;">Richard Jones · May 2026</div>
+              <div class="vid-actions">
+                <button class="btn" style="flex:1;justify-content:center;">▶ Watch</button>
+                <button class="btn-share" data-slug="ir35-walkthrough" data-token="3e9b-40af-c215" data-title="IR35 &amp; off-payroll working: practical compliance walkthrough" onclick="openShare(this)">↗ Share</button>
+              </div>
+            </div>
+          </div>
+          <div class="vid-card">
+            <div class="vid-thumb"><div class="play-btn"><div class="play-tri"></div></div><div class="v-dur">31:47</div></div>
+            <div class="vid-body">
+              <span class="badge" style="margin-bottom:6px;display:inline-block;">Corporate M&amp;A</span>
+              <div style="font-size:12px;font-weight:500;margin-bottom:3px;line-height:1.4;">M&amp;A deal structuring: overview for in-house counsel</div>
+              <div style="font-size:10px;color:var(--g5);margin-bottom:8px;">Eleanor Whittle · Apr 2026</div>
+              <div class="vid-actions">
+                <button class="btn" style="flex:1;justify-content:center;">▶ Watch</button>
+                <button class="btn-share" data-slug="ma-deal-structuring" data-token="b81d-77e0-1a63" data-title="M&amp;A deal structuring: overview for in-house counsel" onclick="openShare(this)">↗ Share</button>
+              </div>
+            </div>
+          </div>
+          <div class="vid-card">
+            <div class="vid-thumb"><div class="play-btn"><div class="play-tri"></div></div><div class="v-dur">14:20</div></div>
+            <div class="vid-body">
+              <span class="badge" style="margin-bottom:6px;display:inline-block;">Employment</span>
+              <div style="font-size:12px;font-weight:500;margin-bottom:3px;line-height:1.4;">TUPE: triggers, obligations &amp; common pitfalls</div>
+              <div style="font-size:10px;color:var(--g5);margin-bottom:8px;">Sarah Mitchell · Mar 2026</div>
+              <div class="vid-actions">
+                <button class="btn" style="flex:1;justify-content:center;">▶ Watch</button>
+                <button class="btn-share" data-slug="tupe-essentials" data-token="5c04-2fd9-e37a" data-title="TUPE: triggers, obligations &amp; common pitfalls" onclick="openShare(this)">↗ Share</button>
+              </div>
+            </div>
+          </div>
+          <div class="vid-card">
+            <div class="vid-thumb"><div class="play-btn"><div class="play-tri"></div></div><div class="v-dur">28:15</div></div>
+            <div class="vid-body">
+              <span class="badge" style="margin-bottom:6px;display:inline-block;">Tax</span>
+              <div style="font-size:12px;font-weight:500;margin-bottom:3px;line-height:1.4;">Carried interest reform: implications for PE managers</div>
+              <div style="font-size:10px;color:var(--g5);margin-bottom:8px;">Richard Jones · Feb 2026</div>
+              <div class="vid-actions">
+                <button class="btn" style="flex:1;justify-content:center;">▶ Watch</button>
+                <button class="btn-share" data-slug="carried-interest-reform" data-token="a6f3-88b1-90ce" data-title="Carried interest reform: implications for PE managers" onclick="openShare(this)">↗ Share</button>
+              </div>
+            </div>
+          </div>
+          <div class="vid-card">
+            <div class="vid-thumb"><div class="play-btn"><div class="play-tri"></div></div><div class="v-dur">22:48</div></div>
+            <div class="vid-body">
+              <span class="badge" style="margin-bottom:6px;display:inline-block;">Finance</span>
+              <div style="font-size:12px;font-weight:500;margin-bottom:3px;line-height:1.4;">Facility agreement deep-dive: negotiating key terms</div>
+              <div style="font-size:10px;color:var(--g5);margin-bottom:8px;">Tom Bradley · Jan 2026</div>
+              <div class="vid-actions">
+                <button class="btn" style="flex:1;justify-content:center;">▶ Watch</button>
+                <button class="btn-share" data-slug="facility-agreement-deepdive" data-token="d24e-1b57-4fa8" data-title="Facility agreement deep-dive: negotiating key terms" onclick="openShare(this)">↗ Share</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ann-row"><span class="ann"><span class="ref">F11</span><span class="ref">F13</span><span class="ref">F14</span> <b>Shared training-video library</b>, hosted outside Vimeo for security (&sect;6.9) (F11). An access/disclaimer gate may precede playback (F13). Each view is tracked per-event (F14).</span></div>
+        <div class="ann-row"><span class="ann"><span class="ref">F9</span><span class="ref">F11</span><span class="ref">NF1</span><span class="ref">NF3</span><span class="ref">F14</span> <b>NEW &mdash; share a video via a unique link.</b> &ldquo;Share&rdquo; generates a <b>unique, per-video link</b> the member can pass to anyone in their organisation. The link does not play the video: it opens a gate that asks for a work email address. The domain must match the client&rsquo;s allow-listed domain (@acmecapital.com) &mdash; if it does, a secure watch link is emailed to that address; if it does not, access is refused. This keeps the asset non-scrapeable (NF1) and enforces cross-tenant isolation (NF3) without requiring the recipient to be pre-provisioned. Shares, email requests and resulting views are all tracked per person (F14). <b>Click &ldquo;Preview recipient view&rdquo;</b> in the share dialog to walk the receiving journey.</span></div>
+      </div>
+    </div>
+    <div class="p-footer">
+      <div class="p-footer-l">Travers Smith LLP · Client Portal</div>
+      <div class="p-footer-r"><span>Privacy</span><span>Accessibility</span><span onclick="goTo('login')">Sign out</span></div>
+    </div>
+  </div>
+
+  <!-- ════ BRIEFINGS ════ -->
+  <div class="page" id="page-briefings">
+    <div class="p-nav">
+      <div class="p-logo"></div>
+      <div class="p-nav-links">
+        <button class="p-nav-link" onclick="goTo('dashboard')">My Area</button>
+        <button class="p-nav-link" onclick="goTo('documents')">Documents</button>
+        <button class="p-nav-link" onclick="goTo('videos')">Videos</button>
+        <button class="p-nav-link active" onclick="goTo('briefings')">Briefings</button>
+        <button class="p-nav-link" onclick="goTo('hot-topics')">Hot Topics</button>
+      </div>
+      <div class="p-nav-right"><span class="p-username">James Harrison</span><div class="p-avatar"></div></div>
+    </div>
+    <div class="p-banner"><div class="p-banner-title">Knowledge &amp; Briefings</div><div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,.35);">Fed from traverssmith.com · tailored to your practice areas</div></div>
+    <div class="p-layout">
+      <div class="p-sidebar">
+        <div class="sb-sect">
+          <div class="sb-label">Main</div>
+          <button class="sb-item" onclick="goTo('dashboard')"><div class="sb-icon"></div>Dashboard</button>
+          <button class="sb-item" onclick="goTo('documents')"><div class="sb-icon"></div>Document Library</button>
+          <button class="sb-item" onclick="goTo('videos')"><div class="sb-icon"></div>Training Videos</button>
+          <button class="sb-item active" onclick="goTo('briefings')"><div class="sb-icon"></div>Briefings</button>
+          <button class="sb-item" onclick="goTo('hot-topics')"><div class="sb-icon"></div>Hot Topics</button>
+        </div>
+        <div class="sb-sect">
+          <div class="sb-label">Account</div>
+          <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
+          <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
+        </div>
+        <div class="sb-team-box">
+          <div class="sb-contacts">
+            <div class="sb-contacts-lbl">YOUR TS TEAM</div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Sarah Mitchell</div><div class="sb-contact-rl">Partner · Employment</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Richard Jones</div><div class="sb-contact-rl">Senior Associate · Tax</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Eleanor Whittle</div><div class="sb-contact-rl">Partner · Corporate M&amp;A</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Tom Bradley</div><div class="sb-contact-rl">Partner · Finance</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Anna Lee</div><div class="sb-contact-rl">Senior Associate · Data Protection</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">James Park</div><div class="sb-contact-rl">Partner · Financial Services</div></div></div>
+          </div>
+        </div>
+        <div class="sb-urgent">
+          <div class="urgent-cta" onclick="openUrgent()">
+            <div class="urgent-title"><span class="urgent-dot"></span>Need help urgently?</div>
+            <div class="urgent-sub">Reach a partner right away &mdash; 24/7 line</div>
+          </div>
+        </div>
+      </div>
+      <div class="p-content">
+        <div class="filter-bar">
+          <div class="filter-bar-row">
+            <div class="t-search">🔍 Search briefings…</div>
+            <div class="dd-wrap">
+              <div class="dd-trigger" onclick="toggleDD('dd-topics')"><span class="dd-label" id="topics-label">Topics</span><span class="dd-arrow">▾</span></div>
+              <div class="dd-menu" id="dd-topics">
+                <div class="dd-menu-item" data-val="AI" onclick="toggleMulti(this)"><div class="dd-check"></div>Artificial Intelligence (AI)</div>
+                <div class="dd-menu-item" data-val="ESG" onclick="toggleMulti(this)"><div class="dd-check"></div>ESG</div>
+                <div class="dd-menu-item" data-val="Regulatory reform" onclick="toggleMulti(this)"><div class="dd-check"></div>Regulatory reform</div>
+                <div class="dd-menu-item" data-val="Sanctions" onclick="toggleMulti(this)"><div class="dd-check"></div>Sanctions Updates</div>
+                <div class="dd-menu-item" data-val="Crypto" onclick="toggleMulti(this)"><div class="dd-check"></div>Crypto disputes</div>
+                <div class="dd-menu-item" data-val="Brexit" onclick="toggleMulti(this)"><div class="dd-check"></div>Beyond Brexit</div>
+                <div class="dd-menu-item" data-val="Secondaries" onclick="toggleMulti(this)"><div class="dd-check"></div>Talking Secondaries</div>
+                <div class="dd-menu-item" data-val="Real estate" onclick="toggleMulti(this)"><div class="dd-check"></div>Real Estate Asset Management</div>
+                <div class="dd-menu-item" data-val="QAHCs" onclick="toggleMulti(this)"><div class="dd-check"></div>QAHCs</div>
+              </div>
+            </div>
+            <div class="dd-wrap">
+              <div class="dd-trigger" onclick="toggleDD('dd-prac')"><span class="dd-label" id="prac-label">Practices</span><span class="dd-arrow">▾</span></div>
+              <div class="dd-menu" id="dd-prac">
+                <div class="dd-menu-item selected" data-val="" onclick="selectBrPrac(this)">All</div>
+                <div class="dd-menu-item" data-val="Employment" onclick="selectBrPrac(this)">Employment</div>
+                <div class="dd-menu-item" data-val="Tax" onclick="selectBrPrac(this)">Tax</div>
+                <div class="dd-menu-item" data-val="Corporate M&A" onclick="selectBrPrac(this)">Corporate M&amp;A</div>
+                <div class="dd-menu-item" data-val="Finance" onclick="selectBrPrac(this)">Finance</div>
+                <div class="dd-menu-item" data-val="Funds" onclick="selectBrPrac(this)">Funds</div>
+                <div class="dd-menu-item" data-val="Pensions" onclick="selectBrPrac(this)">Pensions</div>
+                <div class="dd-menu-item" data-val="Real estate" onclick="selectBrPrac(this)">Real estate</div>
+                <div class="dd-menu-item" data-val="Data Protection" onclick="selectBrPrac(this)">Data Protection</div>
+                <div class="dd-menu-item" data-val="Financial Services" onclick="selectBrPrac(this)">Financial Services</div>
+                <div class="dd-menu-item" data-val="IP" onclick="selectBrPrac(this)">IP</div>
+                <div class="dd-menu-item" data-val="Competition" onclick="selectBrPrac(this)">Competition</div>
+              </div>
+            </div>
+            <div class="dd-wrap">
+              <div class="dd-trigger" onclick="toggleDD('dd-svc')"><span class="dd-label" id="svc-label">Services</span><span class="dd-arrow">▾</span></div>
+              <div class="dd-menu" id="dd-svc">
+                <div class="dd-menu-item selected" data-val="" onclick="selectBrSvc(this)">All</div>
+                <div class="dd-menu-item" data-val="Global Mobility" onclick="selectBrSvc(this)">Global Mobility</div>
+                <div class="dd-menu-item" data-val="Immigration" onclick="selectBrSvc(this)">Immigration</div>
+                <div class="dd-menu-item" data-val="Executive Remuneration" onclick="selectBrSvc(this)">Executive Remuneration</div>
+                <div class="dd-menu-item" data-val="Share Plans" onclick="selectBrSvc(this)">Share Plans</div>
+                <div class="dd-menu-item" data-val="Transactional Tax" onclick="selectBrSvc(this)">Transactional Tax</div>
+                <div class="dd-menu-item" data-val="Tax for Asset Managers" onclick="selectBrSvc(this)">Tax for Asset Managers</div>
+                <div class="dd-menu-item" data-val="Private Equity" onclick="selectBrSvc(this)">Private Equity</div>
+                <div class="dd-menu-item" data-val="Equity Capital Markets" onclick="selectBrSvc(this)">Equity Capital Markets</div>
+                <div class="dd-menu-item" data-val="Fund Finance" onclick="selectBrSvc(this)">Fund Finance</div>
+                <div class="dd-menu-item" data-val="Leveraged Finance" onclick="selectBrSvc(this)">Leveraged Finance</div>
+                <div class="dd-menu-item" data-val="Fintech" onclick="selectBrSvc(this)">Fintech</div>
+                <div class="dd-menu-item" data-val="Cyber Security" onclick="selectBrSvc(this)">Cyber Security</div>
+                <div class="dd-menu-item" data-val="Whistleblowing" onclick="selectBrSvc(this)">Whistleblowing</div>
+                <div class="dd-menu-item" data-val="Real Estate Finance" onclick="selectBrSvc(this)">Real Estate Finance</div>
+              </div>
+            </div>
+          </div>
+          <div id="b-chip-row" class="filter-chips" style="display:none;"></div>
+        </div>
+        <div class="card" id="briefings-list">
+          <div class="ts-event-list">
+              <div class="b-row" data-practice="Employment" data-service="Global Mobility" onclick="goTo('briefing-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">3 Jun<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Employment</span></div>
+                  <div class="b-title">Changes to the national living wage: what employers need to know</div>
+                  <div class="b-meta">Sarah Mitchell · 8 min read</div>
+                </div>
+              </div>
+              <div class="b-row" data-practice="Tax" data-service="Tax for Asset Managers" onclick="goTo('briefing-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">28 May<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Tax</span></div>
+                  <div class="b-title">HMRC consultation on carried interest: a practical guide for fund managers</div>
+                  <div class="b-meta">Richard Jones · 12 min read</div>
+                </div>
+              </div>
+              <div class="b-row" data-practice="Corporate M&A" data-service="Equity Capital Markets" onclick="goTo('briefing-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">20 May<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Corporate M&amp;A</span></div>
+                  <div class="b-title">FCA reform proposals and their impact on deal structuring</div>
+                  <div class="b-meta">Eleanor Whittle · 6 min read</div>
+                </div>
+              </div>
+              <div class="b-row" data-practice="Employment" data-service="Whistleblowing" onclick="goTo('briefing-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">14 May<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Employment</span></div>
+                  <div class="b-title">Worker status reform: what the Employment Rights Bill means in practice</div>
+                  <div class="b-meta">Sarah Mitchell · 10 min read</div>
+                </div>
+              </div>
+              <div class="b-row" data-practice="Tax" data-service="Transactional Tax" onclick="goTo('briefing-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">2 May<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Tax</span></div>
+                  <div class="b-title">Spring Budget 2026: key tax implications for financial services firms</div>
+                  <div class="b-meta">Richard Jones · Publication</div>
+                </div>
+              </div>
+              <div class="b-row" data-practice="Finance" data-service="Leveraged Finance" onclick="goTo('briefing-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">18 Apr<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Finance</span></div>
+                  <div class="b-title">LMA market update: key developments in leveraged finance documentation</div>
+                  <div class="b-meta">Tom Bradley · 7 min read</div>
+                </div>
+              </div>
+              <div class="b-row" data-practice="Corporate M&A" data-service="Private Equity" onclick="goTo('briefing-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">10 Apr<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Corporate M&amp;A</span></div>
+                  <div class="b-title">Private equity deal flow: market conditions and structuring trends in Q1 2026</div>
+                  <div class="b-meta">Eleanor Whittle · 9 min read</div>
+                </div>
+              </div>
+              <div class="b-row" data-practice="Data Protection" data-service="Cyber Security" onclick="goTo('briefing-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">3 Apr<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Data Protection</span></div>
+                  <div class="b-title">Cyber incident reporting obligations: what is changing under NIS2</div>
+                  <div class="b-meta">Anna Lee · 8 min read</div>
+                </div>
+              </div>
+              <div class="b-row" data-practice="Employment" data-service="Executive Remuneration" onclick="goTo('briefing-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">25 Mar<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Employment</span></div>
+                  <div class="b-title">Remuneration committee guidance: executive pay and shareholder expectations</div>
+                  <div class="b-meta">Sarah Mitchell · 11 min read</div>
+                </div>
+              </div>
+              <div class="b-row" data-practice="Financial Services" data-service="Fintech" onclick="goTo('briefing-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">18 Mar<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Financial Services</span></div>
+                  <div class="b-title">FCA Consumer Duty one year on: what firms still need to address</div>
+                  <div class="b-meta">James Park · 7 min read</div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div id="b-no-results" class="card" style="display:none;"><div class="no-results">No briefings match the current filters. <button class="btn btn-outline" style="font-size:11px;margin-left:10px;" onclick="clearBriefingFilters()">Clear filters</button></div></div>
+        <div class="ann-row"><span class="ann"><span class="ref">F4</span><span class="ref">F5</span> <b>Curated content feed</b> &mdash; briefings &amp; insights syndicated from the public Travers Smith website, filtered by service-area tags and configurable per client (F4). Topics are multi-select; Practices and Services single-select, mirroring traverssmith.com/knowledge. <span class="q">V2: portal-exclusive content now lives in the separate Hot Topics area rather than being mixed in here.</span></span></div>
+      </div>
+    </div>
+    <div class="p-footer">
+      <div class="p-footer-l">Travers Smith LLP · Client Portal</div>
+      <div class="p-footer-r"><span>Privacy</span><span>Accessibility</span><span onclick="goTo('login')">Sign out</span></div>
+    </div>
+  </div>
+
+  <!-- ════ HOT-TOPICS ════ -->
+  <div class="page" id="page-hot-topics">
+    <div class="p-nav">
+      <div class="p-logo"></div>
+      <div class="p-nav-links">
+        <button class="p-nav-link" onclick="goTo('dashboard')">My Area</button>
+        <button class="p-nav-link" onclick="goTo('documents')">Documents</button>
+        <button class="p-nav-link" onclick="goTo('videos')">Videos</button>
+        <button class="p-nav-link" onclick="goTo('briefings')">Briefings</button>
+        <button class="p-nav-link active" onclick="goTo('hot-topics')">Hot Topics</button>
+      </div>
+      <div class="p-nav-right"><span class="p-username">James Harrison</span><div class="p-avatar"></div></div>
+    </div>
+    <div class="p-banner"><div class="p-banner-title">Hot Topics</div><div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,.35);">Exclusive to the client portal</div></div>
+    <div class="p-layout">
+      <div class="p-sidebar">
+        <div class="sb-sect">
+          <div class="sb-label">Main</div>
+          <button class="sb-item" onclick="goTo('dashboard')"><div class="sb-icon"></div>Dashboard</button>
+          <button class="sb-item" onclick="goTo('documents')"><div class="sb-icon"></div>Document Library</button>
+          <button class="sb-item" onclick="goTo('videos')"><div class="sb-icon"></div>Training Videos</button>
+          <button class="sb-item" onclick="goTo('briefings')"><div class="sb-icon"></div>Briefings</button>
+          <button class="sb-item active" onclick="goTo('hot-topics')"><div class="sb-icon"></div>Hot Topics</button>
+        </div>
+        <div class="sb-sect">
+          <div class="sb-label">Account</div>
+          <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
+          <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
+        </div>
+        <div class="sb-team-box">
+          <div class="sb-contacts">
+            <div class="sb-contacts-lbl">YOUR TS TEAM</div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Sarah Mitchell</div><div class="sb-contact-rl">Partner · Employment</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Richard Jones</div><div class="sb-contact-rl">Senior Associate · Tax</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Eleanor Whittle</div><div class="sb-contact-rl">Partner · Corporate M&amp;A</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Tom Bradley</div><div class="sb-contact-rl">Partner · Finance</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Anna Lee</div><div class="sb-contact-rl">Senior Associate · Data Protection</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">James Park</div><div class="sb-contact-rl">Partner · Financial Services</div></div></div>
+          </div>
+        </div>
+        <div class="sb-urgent">
+          <div class="urgent-cta" onclick="openUrgent()">
+            <div class="urgent-title"><span class="urgent-dot"></span>Need help urgently?</div>
+            <div class="urgent-sub">Reach a partner right away &mdash; 24/7 line</div>
+          </div>
+        </div>
+      </div>
+      <div class="p-content">
+        <div class="ht-hero">
+          <div class="ht-hero-icon">🔥</div>
+          <div>
+            <div class="ht-hero-title">Hot Topics — written for you, not for the website</div>
+            <div class="ht-hero-sub">Practical playbooks, benchmarking and analysis produced by our lawyers exclusively for portal members. You will not find this content on traverssmith.com.</div>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="filter-bar-row">
+            <div class="t-search">🔍 Search hot topics…</div>
+            <div class="dd-wrap">
+              <div class="dd-trigger" onclick="toggleDD('dd-ht-prac')"><span class="dd-label" id="ht-prac-label">All practices</span><span class="dd-arrow">▾</span></div>
+              <div class="dd-menu" id="dd-ht-prac">
+                <div class="dd-menu-item selected" data-val="" onclick="selectHtPrac(this)">All practices</div>
+                <div class="dd-menu-item" data-val="Employment" onclick="selectHtPrac(this)">Employment</div>
+                <div class="dd-menu-item" data-val="Tax" onclick="selectHtPrac(this)">Tax</div>
+                <div class="dd-menu-item" data-val="Corporate M&A" onclick="selectHtPrac(this)">Corporate M&amp;A</div>
+                <div class="dd-menu-item" data-val="Finance" onclick="selectHtPrac(this)">Finance</div>
+                <div class="dd-menu-item" data-val="Data Protection" onclick="selectHtPrac(this)">Data Protection</div>
+                <div class="dd-menu-item" data-val="Financial Services" onclick="selectHtPrac(this)">Financial Services</div>
+              </div>
+            </div>
+            <div style="margin-left:auto;font-size:11px;color:var(--g5);" id="ht-count">6 hot topics</div>
+          </div>
+          <div id="ht-chip-row" class="filter-chips" style="display:none;"></div>
+        </div>
+
+        <div class="card" id="ht-list">
+          <div class="ts-event-list">
+              <div class="b-row" data-practice="Employment" onclick="goTo('hot-topic-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">11 Jun<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Employment</span> <span class="badge">Playbook</span> <span class="badge ht-badge">Portal exclusive</span></div>
+                  <div class="b-title">Restructuring your workforce in 2026: a step-by-step playbook for in-house teams</div>
+                  <div class="b-meta">Sarah Mitchell · Practical guide · 14 min</div>
+                </div>
+              </div>
+              <div class="b-row" data-practice="Tax" onclick="goTo('hot-topic-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">5 Jun<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Tax</span> <span class="badge">Analysis</span> <span class="badge ht-badge">Portal exclusive</span></div>
+                  <div class="b-title">Carried interest: what the consultation response means for your fund — client-only analysis</div>
+                  <div class="b-meta">Richard Jones · Analysis · 11 min</div>
+                </div>
+              </div>
+              <div class="b-row" data-practice="Corporate M&A" onclick="goTo('hot-topic-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">29 May<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Corporate M&amp;A</span> <span class="badge">Benchmark</span> <span class="badge ht-badge">Portal exclusive</span></div>
+                  <div class="b-title">Deal terms benchmarking: what we are seeing across our 2026 mid-market deals</div>
+                  <div class="b-meta">Eleanor Whittle · Benchmarking · 9 min</div>
+                </div>
+              </div>
+              <div class="b-row" data-practice="Data Protection" onclick="goTo('hot-topic-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">21 May<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Data Protection</span> <span class="badge">Checklist</span> <span class="badge ht-badge">Portal exclusive</span></div>
+                  <div class="b-title">Preparing for a data breach: the first 72 hours, with our incident response checklist</div>
+                  <div class="b-meta">Anna Lee · Checklist · 7 min</div>
+                </div>
+              </div>
+              <div class="b-row" data-practice="Finance" onclick="goTo('hot-topic-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">14 May<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Finance</span> <span class="badge">Analysis</span> <span class="badge ht-badge">Portal exclusive</span></div>
+                  <div class="b-title">Fund finance in a higher-rate environment: negotiating levers that are actually moving</div>
+                  <div class="b-meta">Tom Bradley · Analysis · 10 min</div>
+                </div>
+              </div>
+              <div class="b-row" data-practice="Financial Services" onclick="goTo('hot-topic-detail')" style="cursor:pointer;">
+                <div class="b-date"><div class="b-date-txt">6 May<br>2026</div></div>
+                <div class="b-content">
+                  <div style="margin-bottom:3px;"><span class="badge">Financial Services</span> <span class="badge">Playbook</span> <span class="badge ht-badge">Portal exclusive</span></div>
+                  <div class="b-title">Consumer Duty: the supervisory questions the FCA is actually asking our clients</div>
+                  <div class="b-meta">James Park · Practical guide · 8 min</div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div id="ht-no-results" class="card" style="display:none;"><div class="no-results">No hot topics match the current filter. <button class="btn btn-outline" style="font-size:11px;margin-left:10px;" onclick="clearHtFilter()">Clear filter</button></div></div>
+
+        <div class="ann-row"><span class="ann"><span class="ref">F6</span><span class="ref">F4</span> <b>NEW &mdash; Hot Topics.</b> This is the home for F6: content authored like a normal briefing but <b>locked by member group and visible only to logged-in portal members</b>. Unlike Briefings (which syndicates from the public website), Hot Topics is authored directly in the portal and never published to traverssmith.com &mdash; it is the tangible &ldquo;why subscribe&rdquo; benefit. Authoring model, cadence and whether visibility is universal or tiered are being confirmed directly with the client.</span></div>
+      </div>
+    </div>
+    <div class="p-footer">
+      <div class="p-footer-l">Travers Smith LLP · Client Portal</div>
+      <div class="p-footer-r"><span>Privacy</span><span>Accessibility</span><span onclick="goTo('login')">Sign out</span></div>
+    </div>
+  </div>
+
+  <!-- ════ BRIEFING-DETAIL ════ -->
+  <div class="page" id="page-briefing-detail">
+    <div class="p-nav">
+      <div class="p-logo"></div>
+      <div class="p-nav-links">
+        <button class="p-nav-link" onclick="goTo('dashboard')">My Area</button>
+        <button class="p-nav-link" onclick="goTo('documents')">Documents</button>
+        <button class="p-nav-link" onclick="goTo('videos')">Videos</button>
+        <button class="p-nav-link active" onclick="goTo('briefings')">Briefings</button>
+        <button class="p-nav-link" onclick="goTo('hot-topics')">Hot Topics</button>
+      </div>
+      <div class="p-nav-right"><span class="p-username">James Harrison</span><div class="p-avatar"></div></div>
+    </div>
+    <div class="p-layout">
+      <div class="p-sidebar">
+        <div class="sb-sect">
+          <div class="sb-label">Main</div>
+          <button class="sb-item" onclick="goTo('dashboard')"><div class="sb-icon"></div>Dashboard</button>
+          <button class="sb-item" onclick="goTo('documents')"><div class="sb-icon"></div>Document Library</button>
+          <button class="sb-item" onclick="goTo('videos')"><div class="sb-icon"></div>Training Videos</button>
+          <button class="sb-item active" onclick="goTo('briefings')"><div class="sb-icon"></div>Briefings</button>
+          <button class="sb-item" onclick="goTo('hot-topics')"><div class="sb-icon"></div>Hot Topics</button>
+        </div>
+        <div class="sb-sect">
+          <div class="sb-label">Account</div>
+          <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
+          <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
+        </div>
+        <div class="sb-team-box">
+          <div class="sb-contacts">
+            <div class="sb-contacts-lbl">YOUR TS TEAM</div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Sarah Mitchell</div><div class="sb-contact-rl">Partner · Employment</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Richard Jones</div><div class="sb-contact-rl">Senior Associate · Tax</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Eleanor Whittle</div><div class="sb-contact-rl">Partner · Corporate M&amp;A</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Tom Bradley</div><div class="sb-contact-rl">Partner · Finance</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Anna Lee</div><div class="sb-contact-rl">Senior Associate · Data Protection</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">James Park</div><div class="sb-contact-rl">Partner · Financial Services</div></div></div>
+          </div>
+        </div>
+        <div class="sb-urgent">
+          <div class="urgent-cta" onclick="openUrgent()">
+            <div class="urgent-title"><span class="urgent-dot"></span>Need help urgently?</div>
+            <div class="urgent-sub">Reach a partner right away &mdash; 24/7 line</div>
+          </div>
+        </div>
+      </div>
+      <div class="p-content" style="max-width:820px;">
+        <div style="font-size:11px;color:var(--g5);margin-bottom:16px;"><button class="btn btn-outline" style="font-size:10.5px;padding:4px 9px;" onclick="goTo('briefings')">← Briefings</button> <span style="margin-left:8px;">Briefings / Worker status reform</span></div>
+        <div style="background:var(--g7);border-radius:3px;padding:28px 32px;margin-bottom:20px;">
+          <div style="display:flex;gap:8px;margin-bottom:12px;"><span class="badge" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.7);border-color:transparent;">Employment</span><span class="badge" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.5);border-color:transparent;">Legal briefing</span></div>
+          <h1 style="font-size:22px;font-weight:600;color:#fff;line-height:1.35;margin-bottom:14px;">Worker status reform: what the Employment Rights Bill means in practice</h1>
+          <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:8px;"><div class="face" style="width:28px;height:28px;background:var(--g5);"></div><div style="font-size:12px;color:rgba(255,255,255,.65);">Sarah Mitchell · Partner, Employment</div></div>
+            <div style="font-size:11px;color:rgba(255,255,255,.35);">14 May 2026 · 10 min read</div>
+          </div>
+        </div>
+        <div style="background:var(--g0);border:var(--bd);border-radius:var(--r);padding:28px 32px;margin-bottom:16px;">
+          <p style="font-size:13px;color:var(--g6);line-height:1.75;margin-bottom:16px;font-weight:500;border-left:3px solid var(--g4);padding-left:14px;">The Employment Rights Bill received Royal Assent in April 2026, introducing the most significant reforms to employment law in a generation. This briefing sets out the key changes and what they mean for employers.</p>
+          <h2 style="font-size:15px;font-weight:600;color:var(--g8);margin:20px 0 10px;">Background</h2>
+          <p style="font-size:13px;color:var(--g7);line-height:1.75;margin-bottom:14px;">The Bill consolidates and extends worker protections across several dimensions: the elimination of the three-tier worker status framework, enhanced unfair dismissal protections from day one of employment, and significant changes to zero-hours contract regulation.</p>
+          <h2 style="font-size:15px;font-weight:600;color:var(--g8);margin:20px 0 10px;">Key changes</h2>
+          <div style="margin-bottom:14px;">
+            <div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--g2);"><div style="width:6px;height:6px;border-radius:50%;background:var(--g5);flex-shrink:0;margin-top:6px;"></div><div style="font-size:13px;color:var(--g7);line-height:1.6;"><b>Two-tier status:</b> the distinction between &ldquo;worker&rdquo; and &ldquo;employee&rdquo; is abolished for most purposes.</div></div>
+            <div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--g2);"><div style="width:6px;height:6px;border-radius:50%;background:var(--g5);flex-shrink:0;margin-top:6px;"></div><div style="font-size:13px;color:var(--g7);line-height:1.6;"><b>Day-one unfair dismissal:</b> the two-year qualifying period is removed.</div></div>
+            <div style="display:flex;gap:12px;padding:10px 0;"><div style="width:6px;height:6px;border-radius:50%;background:var(--g5);flex-shrink:0;margin-top:6px;"></div><div style="font-size:13px;color:var(--g7);line-height:1.6;"><b>Zero-hours contracts:</b> a right to guaranteed hours after 12 weeks of regular work.</div></div>
+          </div>
+          <div style="background:var(--g1);border:var(--bd);border-radius:var(--r);padding:14px 18px;margin-top:20px;">
+            <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--g5);margin-bottom:6px;">Related resources</div>
+            <div style="font-size:12px;color:var(--g7);margin-bottom:4px;cursor:pointer;" onclick="goTo('doc-list')">→ Standard employment contract (permanent) <span style="color:var(--g5);">· Document library</span></div>
+            <div style="font-size:12px;color:var(--g7);cursor:pointer;" onclick="goTo('videos')">→ Introduction to employment contracts (video) <span style="color:var(--g5);">· 18 min</span></div>
+          </div>
+        </div>
+        <div style="background:var(--g0);border:var(--bd);border-radius:var(--r);padding:16px 20px;display:flex;align-items:center;gap:16px;margin-bottom:14px;">
+          <div class="face" style="width:44px;height:44px;flex-shrink:0;background:var(--g4);"></div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:600;">Sarah Mitchell</div>
+            <div style="font-size:11px;color:var(--g5);">Partner · Employment · s.mitchell@traverssmith.com · +44 20 7295 3210</div>
+          </div>
+          <button class="btn btn-outline" onclick="goTo('enquiry')" style="font-size:11px;">Contact Sarah →</button>
+        </div>
+        <div class="ann-row"><span class="ann"><span class="ref">F4</span><span class="ref">F5</span> Briefing detail, syndicated from the public website (F4), cross-linked to the relevant boilerplate document and training video (F5). Read events are tracked per person (F16).</span></div>
+      </div>
+    </div>
+    <div class="p-footer">
+      <div class="p-footer-l">Travers Smith LLP · Client Portal</div>
+      <div class="p-footer-r"><span>Privacy</span><span>Accessibility</span><span onclick="goTo('login')">Sign out</span></div>
+    </div>
+  </div>
+
+  <!-- ════ HOT-TOPIC-DETAIL ════ -->
+  <div class="page" id="page-hot-topic-detail">
+    <div class="p-nav">
+      <div class="p-logo"></div>
+      <div class="p-nav-links">
+        <button class="p-nav-link" onclick="goTo('dashboard')">My Area</button>
+        <button class="p-nav-link" onclick="goTo('documents')">Documents</button>
+        <button class="p-nav-link" onclick="goTo('videos')">Videos</button>
+        <button class="p-nav-link" onclick="goTo('briefings')">Briefings</button>
+        <button class="p-nav-link active" onclick="goTo('hot-topics')">Hot Topics</button>
+      </div>
+      <div class="p-nav-right"><span class="p-username">James Harrison</span><div class="p-avatar"></div></div>
+    </div>
+    <div class="p-layout">
+      <div class="p-sidebar">
+        <div class="sb-sect">
+          <div class="sb-label">Main</div>
+          <button class="sb-item" onclick="goTo('dashboard')"><div class="sb-icon"></div>Dashboard</button>
+          <button class="sb-item" onclick="goTo('documents')"><div class="sb-icon"></div>Document Library</button>
+          <button class="sb-item" onclick="goTo('videos')"><div class="sb-icon"></div>Training Videos</button>
+          <button class="sb-item" onclick="goTo('briefings')"><div class="sb-icon"></div>Briefings</button>
+          <button class="sb-item active" onclick="goTo('hot-topics')"><div class="sb-icon"></div>Hot Topics</button>
+        </div>
+        <div class="sb-sect">
+          <div class="sb-label">Account</div>
+          <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
+          <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
+        </div>
+        <div class="sb-team-box">
+          <div class="sb-contacts">
+            <div class="sb-contacts-lbl">YOUR TS TEAM</div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Sarah Mitchell</div><div class="sb-contact-rl">Partner · Employment</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Richard Jones</div><div class="sb-contact-rl">Senior Associate · Tax</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Eleanor Whittle</div><div class="sb-contact-rl">Partner · Corporate M&amp;A</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Tom Bradley</div><div class="sb-contact-rl">Partner · Finance</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Anna Lee</div><div class="sb-contact-rl">Senior Associate · Data Protection</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">James Park</div><div class="sb-contact-rl">Partner · Financial Services</div></div></div>
+          </div>
+        </div>
+        <div class="sb-urgent">
+          <div class="urgent-cta" onclick="openUrgent()">
+            <div class="urgent-title"><span class="urgent-dot"></span>Need help urgently?</div>
+            <div class="urgent-sub">Reach a partner right away &mdash; 24/7 line</div>
+          </div>
+        </div>
+      </div>
+      <div class="p-content" style="max-width:820px;">
+        <div style="font-size:11px;color:var(--g5);margin-bottom:16px;"><button class="btn btn-outline" style="font-size:10.5px;padding:4px 9px;" onclick="goTo('hot-topics')">← Hot Topics</button> <span style="margin-left:8px;">Hot Topics / Restructuring your workforce</span></div>
+        <div style="background:var(--g8);border-radius:3px;padding:28px 32px;margin-bottom:20px;">
+          <div style="display:flex;gap:8px;margin-bottom:12px;">
+            <span class="badge" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.75);border-color:transparent;">Employment</span>
+            <span class="badge" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.5);border-color:transparent;">Playbook</span>
+            <span class="badge" style="background:#fff;color:var(--g8);border-color:#fff;">🔒 Portal exclusive</span>
+          </div>
+          <h1 style="font-size:22px;font-weight:600;color:#fff;line-height:1.35;margin-bottom:10px;">Restructuring your workforce in 2026: a step-by-step playbook for in-house teams</h1>
+          <div style="font-size:11.5px;color:rgba(255,255,255,.45);line-height:1.6;margin-bottom:14px;">Written for portal members only. Not published on traverssmith.com.</div>
+          <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:8px;"><div class="face" style="width:28px;height:28px;background:var(--g6);"></div><div style="font-size:12px;color:rgba(255,255,255,.65);">Sarah Mitchell · Partner, Employment</div></div>
+            <div style="font-size:11px;color:rgba(255,255,255,.35);">11 Jun 2026 · 14 min read</div>
+          </div>
+        </div>
+        <div style="background:var(--g0);border:var(--bd);border-radius:var(--r);padding:28px 32px;margin-bottom:16px;">
+          <p style="font-size:13px;color:var(--g6);line-height:1.75;margin-bottom:16px;font-weight:500;border-left:3px solid var(--g4);padding-left:14px;">A practical, sequenced playbook for running a workforce restructuring under the new Employment Rights Bill regime — including the consultation triggers most in-house teams miss.</p>
+          <h2 style="font-size:15px;font-weight:600;color:var(--g8);margin:20px 0 10px;">The five stages</h2>
+          <div style="margin-bottom:16px;">
+            <div style="display:grid;grid-template-columns:26px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--g2);"><div style="width:22px;height:22px;border-radius:50%;background:var(--g7);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">1</div><div style="font-size:13px;color:var(--g7);line-height:1.6;"><b>Scope and headcount modelling</b> — establishing the &ldquo;establishment&rdquo; for collective consultation thresholds, now assessed at group level.</div></div>
+            <div style="display:grid;grid-template-columns:26px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--g2);"><div style="width:22px;height:22px;border-radius:50%;background:var(--g7);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</div><div style="font-size:13px;color:var(--g7);line-height:1.6;"><b>Consultation strategy</b> — electing representatives, the 30/45-day clocks, and documenting genuine consideration.</div></div>
+            <div style="display:grid;grid-template-columns:26px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--g2);"><div style="width:22px;height:22px;border-radius:50%;background:var(--g7);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">3</div><div style="font-size:13px;color:var(--g7);line-height:1.6;"><b>Selection criteria</b> — objectivity, scoring, and the day-one unfair dismissal exposure.</div></div>
+            <div style="display:grid;grid-template-columns:26px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--g2);"><div style="width:22px;height:22px;border-radius:50%;background:var(--g7);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">4</div><div style="font-size:13px;color:var(--g7);line-height:1.6;"><b>Settlement and exit</b> — where a protected conversation is safe, and where it is not.</div></div>
+            <div style="display:grid;grid-template-columns:26px 1fr;gap:12px;padding:10px 0;"><div style="width:22px;height:22px;border-radius:50%;background:var(--g7);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">5</div><div style="font-size:13px;color:var(--g7);line-height:1.6;"><b>Communications and press</b> — coordinating with the crisis line if the restructuring is likely to attract attention.</div></div>
+          </div>
+          <div style="background:var(--g1);border:var(--bd);border-radius:var(--r);padding:14px 18px;">
+            <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--g5);margin-bottom:6px;">Use with</div>
+            <div style="font-size:12px;color:var(--g7);margin-bottom:4px;cursor:pointer;" onclick="goTo('doc-list')">→ Settlement agreement (employee) <span style="color:var(--g5);">· Document library</span></div>
+            <div style="font-size:12px;color:var(--g7);cursor:pointer;" onclick="goTo('doc-list')">→ TUPE notification letter template <span style="color:var(--g5);">· Document library</span></div>
+          </div>
+        </div>
+        <div class="cta-panel" style="margin-bottom:14px;">
+          <div class="cta-icon">✎</div>
+          <div class="cta-body">
+            <div class="cta-title">Applying this to your situation?</div>
+            <div class="cta-sub">Ask Sarah or a member of the Employment team to walk through your specific restructuring.</div>
+          </div>
+          <button class="btn" onclick="goTo('enquiry')">Get help from a partner →</button>
+        </div>
+        <div class="ann-row"><span class="ann"><span class="ref">F6</span><span class="ref">F16</span> Portal-exclusive content, locked by member group (F6). Reads are attributed per person (F16) and roll up to the practice group for fee allocation (F15) &mdash; making the value of exclusive content measurable.</span></div>
+      </div>
+    </div>
+    <div class="p-footer">
+      <div class="p-footer-l">Travers Smith LLP · Client Portal</div>
+      <div class="p-footer-r"><span>Privacy</span><span>Accessibility</span><span onclick="goTo('login')">Sign out</span></div>
+    </div>
+  </div>
+
+  <!-- ════ ENQUIRY ════ -->
+  <div class="page" id="page-enquiry">
+    <div class="p-nav">
+      <div class="p-logo"></div>
+      <div class="p-nav-links">
+        <button class="p-nav-link active" onclick="goTo('dashboard')">My Area</button>
+        <button class="p-nav-link" onclick="goTo('documents')">Documents</button>
+        <button class="p-nav-link" onclick="goTo('videos')">Videos</button>
+        <button class="p-nav-link" onclick="goTo('briefings')">Briefings</button>
+        <button class="p-nav-link" onclick="goTo('hot-topics')">Hot Topics</button>
+      </div>
+      <div class="p-nav-right"><span class="p-username">James Harrison</span><div class="p-avatar"></div></div>
+    </div>
+    <div class="p-layout">
+      <div class="p-sidebar">
+        <div class="sb-sect">
+          <div class="sb-label">Main</div>
+          <button class="sb-item" onclick="goTo('dashboard')"><div class="sb-icon"></div>Dashboard</button>
+          <button class="sb-item" onclick="goTo('documents')"><div class="sb-icon"></div>Document Library</button>
+          <button class="sb-item" onclick="goTo('videos')"><div class="sb-icon"></div>Training Videos</button>
+          <button class="sb-item" onclick="goTo('briefings')"><div class="sb-icon"></div>Briefings</button>
+          <button class="sb-item" onclick="goTo('hot-topics')"><div class="sb-icon"></div>Hot Topics</button>
+        </div>
+        <div class="sb-sect">
+          <div class="sb-label">Account</div>
+          <button class="sb-item" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
+          <button class="sb-item active" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
+        </div>
+        <div class="sb-team-box">
+          <div class="sb-contacts">
+            <div class="sb-contacts-lbl">YOUR TS TEAM</div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Sarah Mitchell</div><div class="sb-contact-rl">Partner · Employment</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Richard Jones</div><div class="sb-contact-rl">Senior Associate · Tax</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Eleanor Whittle</div><div class="sb-contact-rl">Partner · Corporate M&amp;A</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Tom Bradley</div><div class="sb-contact-rl">Partner · Finance</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Anna Lee</div><div class="sb-contact-rl">Senior Associate · Data Protection</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">James Park</div><div class="sb-contact-rl">Partner · Financial Services</div></div></div>
+          </div>
+        </div>
+        <div class="sb-urgent">
+          <div class="urgent-cta" onclick="openUrgent()">
+            <div class="urgent-title"><span class="urgent-dot"></span>Need help urgently?</div>
+            <div class="urgent-sub">Reach a partner right away &mdash; 24/7 line</div>
+          </div>
+        </div>
+      </div>
+      <div class="p-content" style="max-width:700px;">
+        <div style="font-size:16px;font-weight:600;margin-bottom:3px;">Make an enquiry</div>
+        <div style="font-size:12px;color:var(--g5);margin-bottom:16px;">Your message goes to the TS triage inbox and is routed to your key contact. We aim to respond within one business day.</div>
+
+        <div style="background:var(--g1);border:var(--bd);border-radius:var(--r);padding:10px 13px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
+          <div class="face" style="width:30px;height:30px;"></div>
+          <div style="font-size:11.5px;color:var(--g6);line-height:1.45;">Sending as <b style="color:var(--g8);">James Harrison</b>, Acme Capital LLP<br><span style="color:var(--g5);">j.harrison@acmecapital.com</span></div>
+          <span class="badge" style="margin-left:auto;">Signed in</span>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="f-row">
+              <div class="f-lbl">What is this about?</div>
+              <div class="dd-wrap" style="width:100%;">
+                <div class="dd-trigger f-select" onclick="toggleDD('dd-enq-topic')"><span class="dd-label" id="enq-topic-lbl">Select a topic…</span><span class="dd-arrow">▾</span></div>
+                <div class="dd-menu" id="dd-enq-topic" style="min-width:100%;">
+                  <div class="dd-menu-item" onclick="selectEnqTopic(this)">General legal question</div>
+                  <div class="dd-menu-item" onclick="selectEnqTopic(this)">Request a document we don&rsquo;t have</div>
+                  <div class="dd-menu-item" onclick="selectEnqTopic(this)">Help tailoring a downloaded document</div>
+                  <div class="dd-menu-item" onclick="selectEnqTopic(this)">Question about a briefing or hot topic</div>
+                  <div class="dd-menu-item" onclick="selectEnqTopic(this)">Portal access / technical issue</div>
+                  <div class="dd-menu-item" onclick="selectEnqTopic(this)">Other</div>
+                </div>
+              </div>
+            </div>
+            <div class="f-row">
+              <div class="f-lbl">Preferred contact</div>
+              <div class="dd-wrap" style="width:100%;">
+                <div class="dd-trigger f-select" onclick="toggleDD('dd-enq-contact')"><span class="dd-label" id="enq-contact-lbl">No preference — route via triage</span><span class="dd-arrow">▾</span></div>
+                <div class="dd-menu" id="dd-enq-contact" style="min-width:100%;">
+                  <div class="dd-menu-item" onclick="selectEnqContact(this)">No preference — route via triage</div>
+                  <div class="dd-menu-item" onclick="selectEnqContact(this)">Sarah Mitchell · Employment</div>
+                  <div class="dd-menu-item" onclick="selectEnqContact(this)">Richard Jones · Tax</div>
+                  <div class="dd-menu-item" onclick="selectEnqContact(this)">Eleanor Whittle · Corporate M&amp;A</div>
+                  <div class="dd-menu-item" onclick="selectEnqContact(this)">Tom Bradley · Finance</div>
+                  <div class="dd-menu-item" onclick="selectEnqContact(this)">Anna Lee · Data Protection</div>
+                  <div class="dd-menu-item" onclick="selectEnqContact(this)">James Park · Financial Services</div>
+                </div>
+              </div>
+            </div>
+            <div class="f-row">
+              <div class="f-lbl">Message</div>
+              <div class="f-textarea">Describe your question or request…</div>
+              <div class="f-hint">Max 2,000 characters · No file attachments in Phase 1</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <button class="btn">Send enquiry →</button>
+              <div style="font-size:11px;color:var(--g5);">This form does not create a retainer or legal relationship.</div>
+            </div>
+          </div>
+        </div>
+        <div class="ann-row"><span class="ann"><span class="ref">F7</span><span class="ref">F9</span> <b>Enquiry box</b> &mdash; a short message triaged by TS (F7). Deliberately <b>not</b> a document upload: uploads are avoided in Phase 1 for compliance/risk reasons. <span class="q">V2: Name and email fields removed &mdash; the member is authenticated (F9), so identity is taken from the session and shown back to them for confirmation. Topic list now includes the two new document CTAs so unmet demand is reportable.</span></span></div>
+      </div>
+    </div>
+    <div class="p-footer">
+      <div class="p-footer-l">Travers Smith LLP · Client Portal</div>
+      <div class="p-footer-r"><span>Privacy</span><span>Accessibility</span><span onclick="goTo('login')">Sign out</span></div>
+    </div>
+  </div>
+
+  <!-- ════ INVITE ════ -->
+  <div class="page" id="page-invite">
+    <div class="p-nav">
+      <div class="p-logo"></div>
+      <div class="p-nav-links">
+        <button class="p-nav-link active" onclick="goTo('dashboard')">My Area</button>
+        <button class="p-nav-link" onclick="goTo('documents')">Documents</button>
+        <button class="p-nav-link" onclick="goTo('videos')">Videos</button>
+        <button class="p-nav-link" onclick="goTo('briefings')">Briefings</button>
+        <button class="p-nav-link" onclick="goTo('hot-topics')">Hot Topics</button>
+      </div>
+      <div class="p-nav-right"><span class="p-username">James Harrison</span><div class="p-avatar"></div></div>
+    </div>
+    <div class="p-layout">
+      <div class="p-sidebar">
+        <div class="sb-sect">
+          <div class="sb-label">Main</div>
+          <button class="sb-item" onclick="goTo('dashboard')"><div class="sb-icon"></div>Dashboard</button>
+          <button class="sb-item" onclick="goTo('documents')"><div class="sb-icon"></div>Document Library</button>
+          <button class="sb-item" onclick="goTo('videos')"><div class="sb-icon"></div>Training Videos</button>
+          <button class="sb-item" onclick="goTo('briefings')"><div class="sb-icon"></div>Briefings</button>
+          <button class="sb-item" onclick="goTo('hot-topics')"><div class="sb-icon"></div>Hot Topics</button>
+        </div>
+        <div class="sb-sect">
+          <div class="sb-label">Account</div>
+          <button class="sb-item active" onclick="goTo('invite')"><div class="sb-icon"></div>Invite Colleague</button>
+          <button class="sb-item" onclick="goTo('enquiry')"><div class="sb-icon"></div>Make Enquiry</button>
+        </div>
+        <div class="sb-team-box">
+          <div class="sb-contacts">
+            <div class="sb-contacts-lbl">YOUR TS TEAM</div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Sarah Mitchell</div><div class="sb-contact-rl">Partner · Employment</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Richard Jones</div><div class="sb-contact-rl">Senior Associate · Tax</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Eleanor Whittle</div><div class="sb-contact-rl">Partner · Corporate M&amp;A</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Tom Bradley</div><div class="sb-contact-rl">Partner · Finance</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">Anna Lee</div><div class="sb-contact-rl">Senior Associate · Data Protection</div></div></div>
+            <div class="sb-contact"><div class="sb-contact-face"></div><div><div class="sb-contact-nm">James Park</div><div class="sb-contact-rl">Partner · Financial Services</div></div></div>
+          </div>
+        </div>
+        <div class="sb-urgent">
+          <div class="urgent-cta" onclick="openUrgent()">
+            <div class="urgent-title"><span class="urgent-dot"></span>Need help urgently?</div>
+            <div class="urgent-sub">Reach a partner right away &mdash; 24/7 line</div>
+          </div>
+        </div>
+      </div>
+      <div class="p-content" style="max-width:700px;">
+        <div style="font-size:16px;font-weight:600;margin-bottom:3px;">Invite a colleague</div>
+        <div style="font-size:12px;color:var(--g5);margin-bottom:18px;">Request portal access for another member of your team. Travers Smith will review and approve the request before the account is activated.</div>
+        <div class="card">
+          <div class="card-body">
+            <div class="f-row"><div class="f-lbl">Colleague&rsquo;s full name</div><div class="f-input ph">Full name</div></div>
+            <div class="f-row">
+              <div class="f-lbl">Work email address</div>
+              <div class="f-input ph">colleague@acmecapital.com</div>
+              <div class="f-hint">Must match your organisation&rsquo;s allow-listed domain(s). Currently: @acmecapital.com</div>
+            </div>
+            <div class="f-row">
+              <div class="f-lbl">Job title <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--g5);">(optional)</span></div>
+              <div class="f-input ph">e.g. Head of Legal</div>
+            </div>
+            <button class="btn">Send request →</button>
+            <div style="font-size:11px;color:var(--g5);margin-top:9px;">Your colleague will not receive access until a Travers Smith administrator approves the request.</div>
+          </div>
+        </div>
+        <div class="ann-row"><span class="ann"><span class="ref">U1</span><span class="ref">F9</span><span class="ref">NF3</span> <b>User management</b> &mdash; each invite creates a per-person account (F9, no shared logins). Roles (U1): <b>TS Admin</b> creates client areas and assigns contacts; <b>TS Approver</b> gives final sign-off before activation; <b>General Client Member</b> reads their own client area only; <b>Sensitive Client Member</b> (Phase 2+) is manually assigned. Domain allow-listing plus cross-tenant isolation (NF3) prevent access leaking between organisations. <span class="q">V2: job title marked optional; &lsquo;Send invitation&rsquo; relabelled &lsquo;Send request&rsquo; to make clear the client is requesting, not granting, access; the pending/active invitations table has been removed &mdash; open question: do members need <i>any</i> visibility of the status of requests they have raised?</span></span></div>
+      </div>
+    </div>
+    <div class="p-footer">
+      <div class="p-footer-l">Travers Smith LLP · Client Portal</div>
+      <div class="p-footer-r"><span>Privacy</span><span>Accessibility</span><span onclick="goTo('login')">Sign out</span></div>
+    </div>
+  </div>
+
+  <!-- ════ VIDEO-ACCESS ════ -->
+  <div class="page" id="page-video-access">
+    <div style="background:var(--g7);padding:12px 24px;border-bottom:1px solid var(--g6);"><div style="width:120px;height:18px;background:var(--g5);border-radius:2px;"></div></div>
+    <div style="background:var(--g7);padding:40px;min-height:430px;display:flex;justify-content:center;">
+      <div style="width:100%;max-width:460px;">
+
+        <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:3px;padding:12px 14px;margin-bottom:22px;">
+          <div style="width:64px;height:40px;background:var(--g6);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div class="play-btn" style="width:20px;height:20px;"><div class="play-tri" style="border-width:4px 0 4px 7px;"></div></div></div>
+          <div>
+            <div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:2px;">Training video</div>
+            <div style="font-size:12px;font-weight:500;color:#fff;line-height:1.35;">Introduction to employment contracts: key clauses explained</div>
+          </div>
+        </div>
+
+        <!-- STATE 1: enter email -->
+        <div id="va-form">
+          <div style="font-size:16px;font-weight:600;color:#fff;margin-bottom:5px;">James Harrison shared this video with you</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.6;margin-bottom:22px;">This video is available to colleagues at <b style="color:rgba(255,255,255,.7);">Acme Capital LLP</b>. Enter your work email address and we will send you a secure link to watch it.</div>
+
+          <div class="f-row">
+            <div class="f-lbl" style="color:rgba(255,255,255,.4);">Your work email address</div>
+            <input id="va-email" type="email" placeholder="you@acmecapital.com" style="width:100%;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:var(--r);padding:9px 11px;font-size:12.5px;color:#fff;font-family:'Inter',sans-serif;outline:none;">
+            <div class="f-hint" style="color:rgba(255,255,255,.3);">Must be an @acmecapital.com address</div>
+          </div>
+
+          <div id="va-error" style="display:none;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);border-left:3px solid #fff;border-radius:3px;padding:10px 12px;margin-bottom:14px;font-size:11.5px;color:rgba(255,255,255,.75);line-height:1.55;"></div>
+
+          <button class="btn btn-wide" style="background:var(--g5);color:var(--g8);" onclick="requestVideoLink()">Email me the link →</button>
+          <div style="text-align:center;margin-top:14px;font-size:10.5px;color:rgba(255,255,255,.25);line-height:1.6;">🔒 We do not show the video on this page. Access is only ever sent to a verified work address.</div>
+        </div>
+
+        <!-- STATE 2: link sent -->
+        <div id="va-sent" style="display:none;text-align:center;padding:10px 0;">
+          <div style="font-size:30px;margin-bottom:12px;">📧</div>
+          <div style="font-size:16px;font-weight:600;color:#fff;margin-bottom:6px;">Check your inbox</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:18px;">We have emailed a secure link to<br><b id="va-sent-email" style="color:#fff;font-family:ui-monospace,Menlo,monospace;font-size:12px;">you@acmecapital.com</b></div>
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:3px;padding:12px 14px;font-size:11px;color:rgba(255,255,255,.45);line-height:1.65;text-align:left;">The link is unique to you and expires in <b style="color:rgba(255,255,255,.7);">7 days</b>. It cannot be forwarded outside Acme Capital LLP. Watching the video will register you as a portal viewer so Travers Smith can see which content is landing.</div>
+          <button class="btn btn-outline" style="margin-top:16px;border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.5);" onclick="resetVideoAccess()">↺ Reset demo</button>
+        </div>
+
+      </div>
+    </div>
+    <div style="padding:10px 14px;background:var(--g1);border-top:var(--bd);"><span class="ann"><span class="ref">F9</span><span class="ref">F11</span><span class="ref">NF1</span><span class="ref">NF3</span><span class="ref">F14</span> <b>Recipient view of a shared video link.</b> The unique link never exposes the asset directly (NF1) &mdash; it gates on a work email whose domain must match the client&rsquo;s allow-list, enforcing cross-tenant isolation (NF3). A verified address receives a time-limited watch link; anything else is refused. This lets a member share internally without TS pre-provisioning every colleague, while still attributing the view to a named individual (F14, F16). <b>Try it:</b> enter an address ending @acmecapital.com to succeed, or any other domain to see the refusal.</span></div>
+  </div>
+
+</div><!-- /browser-frame -->
+</div><!-- /frame-wrap -->
+
+<!-- ══ DISCLAIMER MODAL ══ -->
+<div class="modal-backdrop" id="disclaimer-modal">
+  <div class="modal-box">
+    <div class="modal-head"><span class="modal-head-title">Before you download</span><button class="modal-x" onclick="closeModal('disclaimer-modal')">✕</button></div>
+    <div class="modal-doc-strip">
+      <div class="modal-file-icon">DOC</div>
+      <div><div style="font-size:13px;font-weight:500;">Standard employment contract (permanent)</div><div style="font-size:11px;color:var(--g5);margin-top:1px;">Employment · v3.1 · May 2026</div></div>
+    </div>
+    <div class="modal-body">
+      <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--g5);margin-bottom:6px;">Disclaimer</div>
+      <div class="disc-scroll">This document is a boilerplate template prepared for general guidance purposes only. It does not constitute legal advice and should not be relied upon as such. The document has not been drafted with the specific circumstances of your organisation in mind. You should seek independent legal advice before using or adapting this template. Travers Smith LLP accepts no liability for any loss or damage arising from use or misuse of this template. By downloading you acknowledge this is a starting point only and that legal counsel should review any final version before execution.</div>
+      <div class="check-row">
+        <div class="checkbox" id="dis-check" onclick="toggleCheck()"></div>
+        <div style="font-size:12px;color:var(--g6);line-height:1.5;">I have read and understood the disclaimer. I accept that this is a boilerplate template only and take responsibility for any use or modifications.</div>
+      </div>
+      <div style="font-size:10px;color:var(--g4);text-align:center;margin-bottom:6px;">Version: DIS-2026-03 · Your acceptance will be recorded against your account.</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('disclaimer-modal')">Cancel</button>
+      <button class="btn" id="dis-btn" style="flex:1;justify-content:center;opacity:.4;pointer-events:none;" onclick="acceptDisclaimer()">✓ Accept and download</button>
+    </div>
+    <div style="padding:0 20px 14px;"><span class="ann"><span class="ref">F12</span><span class="ref">F14</span> Server-enforced: the file is never served without a recorded acceptance; disclaimer text is editor-managed (F12). Acceptance captured as (member_id, client_org_id, asset_id, asset_type, practice_group, timestamp, disclaimer_version_accepted) (F14).</span></div>
+  </div>
+</div>
+
+<!-- ══ POST-DOWNLOAD: TAILORING CTA ══ -->
+<div class="modal-backdrop" id="tailor-modal">
+  <div class="modal-box">
+    <div class="modal-head"><span class="modal-head-title">Download started</span><button class="modal-x" onclick="closeModal('tailor-modal')">✕</button></div>
+    <div class="modal-body">
+      <div style="font-size:13px;color:var(--g7);line-height:1.6;margin-bottom:16px;">Your document is downloading. Remember this is a <b>boilerplate template</b> — it has not been drafted for your specific circumstances.</div>
+      <div class="cta-panel">
+        <div class="cta-icon">✎</div>
+        <div class="cta-body">
+          <div class="cta-title">Need this tailored to your situation?</div>
+          <div class="cta-sub">Ask a partner to adapt this template to your matter — we already know which document you downloaded.</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('tailor-modal')">No thanks</button>
+      <button class="btn" style="flex:1;justify-content:center;" onclick="closeModal('tailor-modal');goTo('enquiry')">Get help from a partner →</button>
+    </div>
+    <div style="padding:0 20px 14px;"><span class="ann"><span class="ref">F7</span> <b>NEW</b> — the tailoring CTA is surfaced at the moment of highest intent (immediately post-download) as well as on the library pages. Routes into the triaged enquiry flow with the asset already known.</span></div>
+  </div>
+</div>
+
+<!-- ══ SHARE VIDEO MODAL ══ -->
+<div class="modal-backdrop" id="share-modal">
+  <div class="modal-box">
+    <div class="modal-head"><span class="modal-head-title">Share this video</span><button class="modal-x" onclick="closeModal('share-modal')">✕</button></div>
+    <div class="modal-doc-strip">
+      <div class="modal-file-icon">▶</div>
+      <div><div style="font-size:13px;font-weight:500;" id="share-title">Video title</div><div style="font-size:11px;color:var(--g5);margin-top:1px;">Training video · Travers Smith Client Portal</div></div>
+    </div>
+    <div class="modal-body">
+      <div class="f-lbl">Unique link for this video</div>
+      <div class="share-link-box">
+        <div class="share-link" id="share-url">https://clients.traverssmith.com/v/…</div>
+        <button class="btn" onclick="copyShareLink()">Copy</button>
+      </div>
+      <div style="height:16px;"><span class="copied-flash" id="copied-flash">✓ Link copied to clipboard</span></div>
+
+      <div class="share-note" style="margin-bottom:12px;">
+        <b>Share this with anyone at Acme Capital LLP.</b><br>
+        Opening the link does not play the video. Your colleague is asked for their work email address — the domain must be <b>@acmecapital.com</b>. If it matches, a secure watch link is emailed to them. If it does not, access is refused.
+      </div>
+
+      <div style="display:flex;align-items:center;gap:10px;background:var(--g1);border:1px solid var(--g3);border-radius:var(--r);padding:10px 12px;">
+        <div style="font-size:15px;">👁</div>
+        <div style="flex:1;font-size:11px;color:var(--g6);line-height:1.5;">Want to see what your colleague sees when they open the link?</div>
+        <button class="btn btn-outline" style="font-size:11px;flex-shrink:0;" onclick="closeModal('share-modal');goTo('video-access')">Preview recipient view →</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" style="flex:1;justify-content:center;" onclick="closeModal('share-modal')">Done</button>
+    </div>
+    <div style="padding:0 20px 14px;"><span class="ann"><span class="ref">NF1</span><span class="ref">NF3</span><span class="ref">F14</span> The link is a <b>unique, unguessable token per video</b> — it is not a scrapeable or enumerable URL (NF1) and it does not itself grant access. Access is only granted after a domain-matched work email is verified, preserving cross-tenant isolation (NF3). Share events, email requests and views are all tracked (F14).</span></div>
+  </div>
+</div>
+
+<!-- ══ URGENT / CRISIS MODAL ══ -->
+<div class="modal-backdrop" id="urgent-modal">
+  <div class="modal-box wide">
+    <div class="modal-head" style="background:var(--g8);"><span class="modal-head-title">Urgent — speak to us now</span><button class="modal-x" onclick="closeModal('urgent-modal')">✕</button></div>
+    <div class="modal-body">
+      <div style="background:var(--g8);border-radius:var(--r);padding:16px 18px;margin-bottom:16px;display:flex;align-items:center;gap:14px;">
+        <div style="width:40px;height:40px;border-radius:3px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">☎</div>
+        <div style="flex:1;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:3px;">24/7 crisis line</div>
+          <div style="font-size:19px;font-weight:700;color:#fff;font-family:ui-monospace,Menlo,monospace;">+44 20 7295 3000</div>
+          <div style="font-size:10.5px;color:rgba(255,255,255,.45);margin-top:2px;">Answered at any hour by the duty partner</div>
+        </div>
+      </div>
+
+      <div style="font-size:11px;color:var(--g6);line-height:1.6;margin-bottom:14px;">Use this line for time-critical matters — a dawn raid or regulatory inspection, a live data breach, an injunction or urgent court deadline, or an imminent press enquiry. For anything less urgent, please <span style="color:var(--g8);text-decoration:underline;cursor:pointer;" onclick="closeModal('urgent-modal');goTo('enquiry')">make an enquiry</span>.</div>
+
+      <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--g5);margin-bottom:8px;">Or call your key contact directly</div>
+      <div class="modal-list">
+        <div class="modal-contact"><div class="face" style="width:26px;height:26px;"></div><div><div style="font-size:12px;font-weight:600;">Sarah Mitchell</div><div style="font-size:10px;color:var(--g5);">Partner · Employment</div></div><div class="modal-phone">+44 20 7295 3210</div></div>
+        <div class="modal-contact"><div class="face" style="width:26px;height:26px;"></div><div><div style="font-size:12px;font-weight:600;">Eleanor Whittle</div><div style="font-size:10px;color:var(--g5);">Partner · Corporate M&amp;A</div></div><div class="modal-phone">+44 20 7295 3055</div></div>
+        <div class="modal-contact"><div class="face" style="width:26px;height:26px;"></div><div><div style="font-size:12px;font-weight:600;">Anna Lee</div><div style="font-size:10px;color:var(--g5);">Senior Associate · Data Protection</div></div><div class="modal-phone">+44 20 7295 3199</div></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" style="flex:1;justify-content:center;" onclick="closeModal('urgent-modal')">Close</button>
+    </div>
+    <div style="padding:0 20px 14px;"><span class="ann"><span class="ref">F3</span><span class="ref">F7</span> <b>NEW — urgent contact route.</b> Reachable from the dashboard and persistently from the left-hand nav on every screen. Direct dials are pulled from the same People records that drive key contacts (F3). <span class="q">Open: is there an existing out-of-hours number, or does this need a duty-partner rota? Should calls be logged for analytics, and should the line be restricted to certain client tiers?</span></span></div>
+  </div>
+</div>
+
+<script>
+/* ─── navigation ─── */
+var urlMap = {
+  cover: 'clients.traverssmith.com',
+  login: 'clients.traverssmith.com/login',
+  'login-pending': 'clients.traverssmith.com/login/pending',
+  'login-reset': 'clients.traverssmith.com/login/reset',
+  dashboard: 'clients.traverssmith.com/dashboard',
+  documents: 'clients.traverssmith.com/documents',
+  'doc-list': 'clients.traverssmith.com/documents/browse',
+  videos: 'clients.traverssmith.com/videos',
+  briefings: 'clients.traverssmith.com/briefings',
+  'briefing-detail': 'clients.traverssmith.com/briefings/worker-status-reform',
+  'hot-topics': 'clients.traverssmith.com/hot-topics',
+  'hot-topic-detail': 'clients.traverssmith.com/hot-topics/workforce-restructuring-playbook',
+  enquiry: 'clients.traverssmith.com/enquiry',
+  invite: 'clients.traverssmith.com/invite',
+  'video-access': 'clients.traverssmith.com/v/7f2a-91c4-6db8'
+};
+
+function goTo(id) {
+  document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('active'); });
+  var t = document.getElementById('page-' + id);
+  if (t) {
+    t.classList.add('active');
+    document.querySelector('.browser-frame').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  if (id === 'video-access' && typeof resetVideoAccess === 'function') resetVideoAccess();
+  document.getElementById('url-bar').textContent = '🔒 ' + (urlMap[id] || 'clients.traverssmith.com');
+  document.querySelectorAll('.chrome-btn').forEach(function (b) {
+    b.classList.remove('active');
+    var oc = b.getAttribute('onclick');
+    if (oc && oc.indexOf("'" + id + "'") !== -1) b.classList.add('active');
+  });
+  closeAllDD();
+}
+
+/* ─── dropdowns ─── */
+function toggleDD(id) {
+  var el = document.getElementById(id);
+  var open = el.classList.contains('open');
+  closeAllDD();
+  if (!open) el.classList.add('open');
+}
+function closeAllDD() {
+  document.querySelectorAll('.dd-menu').forEach(function (d) { d.classList.remove('open'); });
+}
+document.addEventListener('click', function (e) {
+  if (!e.target.closest('.dd-wrap')) closeAllDD();
+});
+function setLabel(menuId, text) {
+  var menu = document.getElementById(menuId);
+  if (!menu) return;
+  var lbl = menu.previousElementSibling.querySelector('.dd-label');
+  if (lbl) lbl.textContent = text;
+}
+function markSelected(el, menuId) {
+  document.querySelectorAll('#' + menuId + ' .dd-menu-item').forEach(function (i) { i.classList.remove('selected'); });
+  el.classList.add('selected');
+}
+function selectSingle(el, menuId) {
+  markSelected(el, menuId);
+  setLabel(menuId, el.textContent.trim());
+  closeAllDD();
+}
+
+/* ═══ DOCUMENTS: landing service filter carries through to the list ═══ */
+var docPrac = '';
+var docSvc  = '';
+
+function selectLandSvc(el) {
+  markSelected(el, 'dd-land-svc');
+  docSvc = el.dataset.val || '';
+  setLabel('dd-land-svc', el.textContent.trim());
+  closeAllDD();
+}
+
+/* clicking a practice tile: set practice, KEEP the service filter, go to list */
+function openPractice(tile) {
+  docPrac = tile.dataset.practice || '';
+  syncDocMenus();
+  goTo('doc-list');
+  applyDocFilters();
+}
+
+function syncDocMenus() {
+  var pm = document.getElementById('dd-doc-prac');
+  if (pm) {
+    pm.querySelectorAll('.dd-menu-item').forEach(function (i) {
+      var on = (i.dataset.val || '') === docPrac;
+      i.classList.toggle('selected', on);
+      if (on) setLabel('dd-doc-prac', i.textContent.trim());
+    });
+    if (!docPrac) setLabel('dd-doc-prac', 'All practices');
+  }
+  var sm = document.getElementById('dd-doc-svc');
+  if (sm) {
+    sm.querySelectorAll('.dd-menu-item').forEach(function (i) {
+      var on = (i.dataset.val || '') === docSvc;
+      i.classList.toggle('selected', on);
+      if (on) setLabel('dd-doc-svc', i.textContent.trim());
+    });
+    if (!docSvc) setLabel('dd-doc-svc', 'All services');
+  }
+}
+
+function selectDocPrac(el) {
+  markSelected(el, 'dd-doc-prac');
+  docPrac = el.dataset.val || '';
+  setLabel('dd-doc-prac', el.textContent.trim());
+  closeAllDD();
+  applyDocFilters();
+}
+function selectDocSvc(el) {
+  markSelected(el, 'dd-doc-svc');
+  docSvc = el.dataset.val || '';
+  setLabel('dd-doc-svc', el.textContent.trim());
+  closeAllDD();
+  applyDocFilters();
+}
+function clearDocPrac() { docPrac = ''; syncDocMenus(); applyDocFilters(); }
+function clearDocSvc()  { docSvc  = ''; syncDocMenus(); applyDocFilters(); }
+function clearDocFilters() { docPrac = ''; docSvc = ''; syncDocMenus(); applyDocFilters(); }
+
+var DOCS_PER_PAGE = 8;
+var docPage = 1;
+
+function visibleDocs() {
+  return Array.from(document.querySelectorAll('#doc-tbody .doc-row')).filter(function (r) {
+    var rp = r.dataset.practice || '';
+    var rs = r.dataset.service || '';
+    return (!docPrac || rp === docPrac) && (!docSvc || rs === docSvc);
+  });
+}
+
+function applyDocFilters() {
+  docPage = 1;
+  renderDocs();
+  renderDocChips();
+  var crumb = document.getElementById('crumb-prac');
+  if (crumb) crumb.textContent = docPrac || 'All practices';
+}
+
+function renderDocs() {
+  var all = Array.from(document.querySelectorAll('#doc-tbody .doc-row'));
+  var vis = visibleDocs();
+  all.forEach(function (r) { r.style.display = 'none'; });
+  var start = (docPage - 1) * DOCS_PER_PAGE;
+  vis.slice(start, start + DOCS_PER_PAGE).forEach(function (r) { r.style.display = ''; });
+
+  var noRes = document.getElementById('doc-no-results');
+  if (noRes) noRes.style.display = vis.length ? 'none' : '';
+  var cnt = document.getElementById('doc-count');
+  if (cnt) cnt.textContent = vis.length + (vis.length === 1 ? ' document' : ' documents');
+
+  var pag = document.getElementById('doc-pagination');
+  if (!pag) return;
+  var total = Math.ceil(vis.length / DOCS_PER_PAGE) || 1;
+  var shown = vis.length ? (start + 1) + '–' + Math.min(start + DOCS_PER_PAGE, vis.length) + ' of ' + vis.length : '0';
+  var html = '<span style="font-size:11px;color:var(--g5);margin-right:8px;">Showing ' + shown + '</span>';
+  if (total > 1) {
+    html += '<button class="btn btn-outline" style="font-size:11px;padding:4px 10px;" onclick="docPageChange(-1)">← Prev</button>';
+    for (var i = 1; i <= total; i++) {
+      html += '<button class="btn ' + (i === docPage ? '' : 'btn-outline') + '" style="font-size:11px;padding:4px 10px;min-width:30px;margin:0 2px;" onclick="docGoPage(' + i + ')">' + i + '</button>';
+    }
+    html += '<button class="btn btn-outline" style="font-size:11px;padding:4px 10px;" onclick="docPageChange(1)">Next →</button>';
+  }
+  pag.innerHTML = html;
+}
+function docPageChange(d) {
+  var total = Math.ceil(visibleDocs().length / DOCS_PER_PAGE) || 1;
+  docPage = Math.max(1, Math.min(total, docPage + d));
+  renderDocs();
+}
+function docGoPage(p) { docPage = p; renderDocs(); }
+
+function renderDocChips() {
+  var cr = document.getElementById('doc-chip-row');
+  if (!cr) return;
+  var html = '';
+  if (docPrac) html += '<span class="chip">' + docPrac + ' <span class="chip-x" data-clear="prac">×</span></span>';
+  if (docSvc)  html += '<span class="chip">' + docSvc  + ' <span class="chip-x" data-clear="svc">×</span></span>';
+  cr.style.display = (docPrac || docSvc) ? 'flex' : 'none';
+  cr.innerHTML = html;
+  cr.querySelectorAll('.chip-x').forEach(function (x) {
+    x.addEventListener('click', function () {
+      if (x.dataset.clear === 'prac') clearDocPrac(); else clearDocSvc();
+    });
+  });
+}
+
+/* ═══ BRIEFINGS filters ═══ */
+var brTopics = [];
+var brPrac = '';
+var brSvc = '';
+
+function toggleMulti(el) {
+  var val = el.dataset.val;
+  var chk = el.querySelector('.dd-check');
+  if (el.classList.contains('selected')) {
+    el.classList.remove('selected');
+    chk.classList.remove('on');
+    chk.textContent = '';
+    brTopics = brTopics.filter(function (v) { return v !== val; });
+  } else {
+    el.classList.add('selected');
+    chk.classList.add('on');
+    chk.textContent = '✓';
+    brTopics.push(val);
+  }
+  var lbl = document.getElementById('topics-label');
+  if (brTopics.length === 0) lbl.textContent = 'Topics';
+  else if (brTopics.length === 1) lbl.textContent = brTopics[0];
+  else lbl.textContent = 'Topics (' + brTopics.length + ')';
+  applyBriefingFilters();
+}
+function selectBrPrac(el) {
+  markSelected(el, 'dd-prac');
+  brPrac = el.dataset.val || '';
+  setLabel('dd-prac', brPrac ? el.textContent.trim() : 'Practices');
+  closeAllDD();
+  applyBriefingFilters();
+}
+function selectBrSvc(el) {
+  markSelected(el, 'dd-svc');
+  brSvc = el.dataset.val || '';
+  setLabel('dd-svc', brSvc ? el.textContent.trim() : 'Services');
+  closeAllDD();
+  applyBriefingFilters();
+}
+function applyBriefingFilters() {
+  var rows = document.querySelectorAll('#briefings-list .b-row');
+  var vis = 0;
+  rows.forEach(function (r) {
+    var rp = r.dataset.practice || '';
+    var rs = r.dataset.service || '';
+    var ok = (!brPrac || rp === brPrac) && (!brSvc || rs === brSvc);
+    r.style.display = ok ? '' : 'none';
+    if (ok) vis++;
+  });
+  var list = document.getElementById('briefings-list');
+  var none = document.getElementById('b-no-results');
+  if (list) list.style.display = vis ? '' : 'none';
+  if (none) none.style.display = vis ? 'none' : '';
+
+  var cr = document.getElementById('b-chip-row');
+  if (!cr) return;
+  var html = '';
+  if (brPrac) html += '<span class="chip">' + brPrac + ' <span class="chip-x" data-kind="prac">×</span></span>';
+  if (brSvc)  html += '<span class="chip">' + brSvc  + ' <span class="chip-x" data-kind="svc">×</span></span>';
+  brTopics.forEach(function (t) {
+    html += '<span class="chip">' + t + ' <span class="chip-x" data-kind="topic" data-topic="' + t + '">×</span></span>';
+  });
+  cr.style.display = (brPrac || brSvc || brTopics.length) ? 'flex' : 'none';
+  cr.innerHTML = html;
+  cr.querySelectorAll('.chip-x').forEach(function (x) {
+    x.addEventListener('click', function () {
+      var k = x.dataset.kind;
+      if (k === 'prac') { brPrac = ''; resetMenu('dd-prac', 'Practices'); applyBriefingFilters(); }
+      else if (k === 'svc') { brSvc = ''; resetMenu('dd-svc', 'Services'); applyBriefingFilters(); }
+      else {
+        var el = document.querySelector('#dd-topics [data-val="' + x.dataset.topic + '"]');
+        if (el) toggleMulti(el);
+      }
+    });
+  });
+}
+function resetMenu(menuId, label) {
+  var m = document.getElementById(menuId);
+  if (!m) return;
+  m.querySelectorAll('.dd-menu-item').forEach(function (i) {
+    i.classList.toggle('selected', (i.dataset.val || '') === '');
+  });
+  setLabel(menuId, label);
+}
+function clearBriefingFilters() {
+  brPrac = ''; brSvc = '';
+  resetMenu('dd-prac', 'Practices');
+  resetMenu('dd-svc', 'Services');
+  brTopics.slice().forEach(function (t) {
+    var el = document.querySelector('#dd-topics [data-val="' + t + '"]');
+    if (el) toggleMulti(el);
+  });
+  applyBriefingFilters();
+}
+
+/* ═══ HOT TOPICS filter ═══ */
+var htPrac = '';
+function selectHtPrac(el) {
+  markSelected(el, 'dd-ht-prac');
+  htPrac = el.dataset.val || '';
+  setLabel('dd-ht-prac', htPrac ? el.textContent.trim() : 'All practices');
+  closeAllDD();
+  applyHtFilter();
+}
+function clearHtFilter() {
+  htPrac = '';
+  resetMenu('dd-ht-prac', 'All practices');
+  applyHtFilter();
+}
+function applyHtFilter() {
+  var rows = document.querySelectorAll('#ht-list .b-row');
+  var vis = 0;
+  rows.forEach(function (r) {
+    var ok = !htPrac || (r.dataset.practice || '') === htPrac;
+    r.style.display = ok ? '' : 'none';
+    if (ok) vis++;
+  });
+  var list = document.getElementById('ht-list');
+  var none = document.getElementById('ht-no-results');
+  if (list) list.style.display = vis ? '' : 'none';
+  if (none) none.style.display = vis ? 'none' : '';
+  var cnt = document.getElementById('ht-count');
+  if (cnt) cnt.textContent = vis + (vis === 1 ? ' hot topic' : ' hot topics');
+
+  var cr = document.getElementById('ht-chip-row');
+  if (!cr) return;
+  if (htPrac) {
+    cr.style.display = 'flex';
+    cr.innerHTML = '<span class="chip">' + htPrac + ' <span class="chip-x" id="ht-chip-x">×</span></span>';
+    document.getElementById('ht-chip-x').addEventListener('click', clearHtFilter);
+  } else {
+    cr.style.display = 'none';
+    cr.innerHTML = '';
+  }
+}
+
+/* ═══ ENQUIRY ═══ */
+function selectEnqTopic(el)  { document.getElementById('enq-topic-lbl').textContent = el.textContent.trim(); closeAllDD(); }
+function selectEnqContact(el){ document.getElementById('enq-contact-lbl').textContent = el.textContent.trim(); closeAllDD(); }
+
+/* ═══ MODALS ═══ */
+function openM(id)  { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+function openModal() {
+  var cb = document.getElementById('dis-check');
+  var btn = document.getElementById('dis-btn');
+  cb.classList.remove('checked');
+  cb.textContent = '';
+  btn.style.opacity = '0.4';
+  btn.style.pointerEvents = 'none';
+  openM('disclaimer-modal');
+}
+function toggleCheck() {
+  var cb = document.getElementById('dis-check');
+  var btn = document.getElementById('dis-btn');
+  var on = cb.classList.toggle('checked');
+  cb.textContent = on ? '✓' : '';
+  btn.style.opacity = on ? '1' : '0.4';
+  btn.style.pointerEvents = on ? 'auto' : 'none';
+}
+function acceptDisclaimer() {
+  closeModal('disclaimer-modal');
+  openM('tailor-modal');
+}
+
+/* ─── video share: unique link ─── */
+function openShare(btn) {
+  document.getElementById('share-title').textContent = btn.dataset.title;
+  document.getElementById('share-url').textContent =
+    'https://clients.traverssmith.com/v/' + btn.dataset.token;
+  document.getElementById('copied-flash').classList.remove('on');
+  openM('share-modal');
+}
+function copyShareLink() {
+  var flash = document.getElementById('copied-flash');
+  var txt = document.getElementById('share-url').textContent;
+  if (navigator.clipboard) { navigator.clipboard.writeText(txt).catch(function () {}); }
+  flash.classList.add('on');
+  setTimeout(function () { flash.classList.remove('on'); }, 1800);
+}
+
+/* ─── recipient gate: domain-matched email ─── */
+var ALLOWED_DOMAIN = '@acmecapital.com';
+
+function requestVideoLink() {
+  var input = document.getElementById('va-email');
+  var err = document.getElementById('va-error');
+  var val = (input.value || '').trim().toLowerCase();
+
+  if (!val) {
+    err.style.display = 'block';
+    err.innerHTML = 'Please enter your work email address.';
+    return;
+  }
+  if (val.indexOf('@') === -1 || val.indexOf('.') === -1) {
+    err.style.display = 'block';
+    err.innerHTML = 'That does not look like a valid email address.';
+    return;
+  }
+  if (val.slice(-ALLOWED_DOMAIN.length) !== ALLOWED_DOMAIN) {
+    err.style.display = 'block';
+    err.innerHTML = '<b>Access refused.</b> This video is only available to colleagues at Acme Capital LLP. Please use your <b>' +
+      ALLOWED_DOMAIN + '</b> address. If you believe you should have access, contact your Travers Smith administrator.';
+    return;
+  }
+  err.style.display = 'none';
+  document.getElementById('va-sent-email').textContent = val;
+  document.getElementById('va-form').style.display = 'none';
+  document.getElementById('va-sent').style.display = 'block';
+}
+
+function resetVideoAccess() {
+  var input = document.getElementById('va-email');
+  if (input) input.value = '';
+  document.getElementById('va-error').style.display = 'none';
+  document.getElementById('va-form').style.display = 'block';
+  document.getElementById('va-sent').style.display = 'none';
+}
+
+/* urgent */
+function openUrgent() { openM('urgent-modal'); }
+
+/* close modal on backdrop click */
+document.querySelectorAll('.modal-backdrop').forEach(function (b) {
+  b.addEventListener('click', function (e) { if (e.target === b) b.classList.remove('open'); });
+});
+
+/* init */
+window.addEventListener('DOMContentLoaded', function () {
+  applyDocFilters();
+  applyHtFilter();
+});
+</script>
+</body>
+</html>
