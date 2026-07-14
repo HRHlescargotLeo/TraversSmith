@@ -579,6 +579,40 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
         </div>
         <div class="ann-row" style="margin-bottom:14px;"><span class="ann"><span class="ref">F1</span><span class="ref">F2</span><span class="ref">F3</span> <b>Personalised landing page</b> (F1) with client logo &amp; name and &ldquo;Welcome back, [Name]&rdquo; (F2). <b>Six key contacts</b> driven from the existing People document type via a person picker on the client config node (F3). Each contact now shows email, direct phone and a LinkedIn link. <span class="q">V2: contact count raised 3&rarr;6; &lsquo;View all&rsquo; removed; the same six are mirrored in the left-hand nav (without phone/LinkedIn).</span></span></div>
 
+        <div class="card">
+          <div class="card-head">
+            <span class="card-head-title">🔥 Hot Topics <span class="badge ht-badge" style="margin-left:4px;vertical-align:1px;">Portal exclusive</span></span>
+            <button class="card-link" onclick="goTo('hot-topics')">View all →</button>
+          </div>
+          <div class="ts-event-list">
+            <div class="b-row" onclick="goTo('hot-topic-detail')" style="cursor:pointer;">
+              <div class="b-date"><div class="b-date-txt">11 Jun<br>2026</div></div>
+              <div class="b-content">
+                <div style="margin-bottom:3px;"><span class="badge">Employment</span> <span class="badge">Playbook</span></div>
+                <div class="b-title">Restructuring your workforce in 2026: a step-by-step playbook for in-house teams</div>
+                <div class="b-meta">Sarah Mitchell · 14 min read</div>
+              </div>
+            </div>
+            <div class="b-row" onclick="goTo('hot-topic-detail')" style="cursor:pointer;">
+              <div class="b-date"><div class="b-date-txt">5 Jun<br>2026</div></div>
+              <div class="b-content">
+                <div style="margin-bottom:3px;"><span class="badge">Tax</span> <span class="badge">Analysis</span></div>
+                <div class="b-title">Carried interest: what the consultation response means for your fund — client-only analysis</div>
+                <div class="b-meta">Richard Jones · 11 min read</div>
+              </div>
+            </div>
+            <div class="b-row" onclick="goTo('hot-topic-detail')" style="cursor:pointer;">
+              <div class="b-date"><div class="b-date-txt">21 May<br>2026</div></div>
+              <div class="b-content">
+                <div style="margin-bottom:3px;"><span class="badge">Data Protection</span> <span class="badge">Checklist</span></div>
+                <div class="b-title">Preparing for a data breach: the first 72 hours, with our incident response checklist</div>
+                <div class="b-meta">Anna Lee · 7 min read</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ann-row" style="margin-bottom:14px;"><span class="ann"><span class="ref">F6</span><span class="ref">F1</span> <b>Hot Topics surfaced on the dashboard.</b> Placed above the syndicated briefings feed deliberately: this is the portal-exclusive content members cannot get from traverssmith.com, so it is the strongest argument for logging in. Locked by member group (F6) and personalised to the client&rsquo;s practice areas (F1).</span></div>
+
         <div class="g2">
           <div class="card" style="margin-bottom:0;">
             <div class="card-head"><span class="card-head-title">Latest briefings</span><button class="card-link" onclick="goTo('briefings')">View all →</button></div>
@@ -1963,14 +1997,14 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
               <div class="f-hint">Must match your organisation&rsquo;s allow-listed domain(s). Currently: @acmecapital.com</div>
             </div>
             <div class="f-row">
-              <div class="f-lbl">Job title <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--g5);">(optional)</span></div>
+              <div class="f-lbl">Job title</div>
               <div class="f-input ph">e.g. Head of Legal</div>
             </div>
             <button class="btn">Send request →</button>
             <div style="font-size:11px;color:var(--g5);margin-top:9px;">Your colleague will not receive access until a Travers Smith administrator approves the request.</div>
           </div>
         </div>
-        <div class="ann-row"><span class="ann"><span class="ref">U1</span><span class="ref">F9</span><span class="ref">NF3</span> <b>User management</b> &mdash; each invite creates a per-person account (F9, no shared logins). Roles (U1): <b>TS Admin</b> creates client areas and assigns contacts; <b>TS Approver</b> gives final sign-off before activation; <b>General Client Member</b> reads their own client area only; <b>Sensitive Client Member</b> (Phase 2+) is manually assigned. Domain allow-listing plus cross-tenant isolation (NF3) prevent access leaking between organisations. <span class="q">V2: job title marked optional; &lsquo;Send invitation&rsquo; relabelled &lsquo;Send request&rsquo; to make clear the client is requesting, not granting, access; the pending/active invitations table has been removed &mdash; open question: do members need <i>any</i> visibility of the status of requests they have raised?</span></span></div>
+        <div class="ann-row"><span class="ann"><span class="ref">U1</span><span class="ref">F9</span><span class="ref">NF3</span> <b>User management</b> &mdash; each invite creates a per-person account (F9, no shared logins). Roles (U1): <b>TS Admin</b> creates client areas and assigns contacts; <b>TS Approver</b> gives final sign-off before activation; <b>General Client Member</b> reads their own client area only; <b>Sensitive Client Member</b> (Phase 2+) is manually assigned. Domain allow-listing plus cross-tenant isolation (NF3) prevent access leaking between organisations. <span class="q">V2: job title is a required field; &lsquo;Send invitation&rsquo; relabelled &lsquo;Send request&rsquo; to make clear the client is requesting, not granting, access; the pending/active invitations table has been removed &mdash; open question: do members need <i>any</i> visibility of the status of requests they have raised?</span></span></div>
       </div>
     </div>
     <div class="p-footer">
