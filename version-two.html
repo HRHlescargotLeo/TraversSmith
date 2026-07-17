@@ -802,7 +802,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
             <div class="cta-title">Can&rsquo;t find what you&rsquo;re looking for?</div>
             <div class="cta-sub">Tell us what you need and we&rsquo;ll look into adding it to the library, or point you to the right precedent.</div>
           </div>
-          <button class="btn" onclick="goTo('enquiry')">Request a document →</button>
+          <button class="btn" onclick="goToEnquiry('request-doc')">Request a document →</button>
         </div>
         <div class="cta-panel">
           <div class="cta-icon">✎</div>
@@ -810,7 +810,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
             <div class="cta-title">Downloaded a document and need it tailored?</div>
             <div class="cta-sub">These are boilerplate templates. Ask a partner to adapt one to your specific circumstances.</div>
           </div>
-          <button class="btn btn-outline" onclick="goTo('enquiry')">Get help from a partner →</button>
+          <button class="btn btn-outline" onclick="goToEnquiry('tailor-doc')">Get help from a partner →</button>
         </div>
 
         <div class="ann-row"><span class="ann"><span class="ref">F10</span><span class="ref">F5</span><span class="ref">F12</span> <b>V2 &mdash; library is now entered by practice.</b> The landing page presents an icon + link per practice; selecting one deep-links to a document list pre-filtered to that practice, <b>carrying the Services filter through</b> (F5, deep-link to filtered views). Content remains a single shared library governed by member group (F10). <span class="q">Open (Leo): confirms the metadata model &mdash; practice as the primary axis, service area as secondary. Still to confirm: topic and jurisdiction, and whether service should be multi-select.</span></span></div>
@@ -1143,7 +1143,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
             <div class="cta-title">Can&rsquo;t find what you&rsquo;re looking for?</div>
             <div class="cta-sub">Tell us what you need and we&rsquo;ll look into adding it to the library, or point you to the right precedent.</div>
           </div>
-          <button class="btn" onclick="goTo('enquiry')">Request a document →</button>
+          <button class="btn" onclick="goToEnquiry('request-doc')">Request a document →</button>
         </div>
         <div class="cta-panel">
           <div class="cta-icon">✎</div>
@@ -1151,7 +1151,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
             <div class="cta-title">Downloaded a document and need it tailored?</div>
             <div class="cta-sub">These are boilerplate templates. Ask a partner to adapt one to your specific circumstances.</div>
           </div>
-          <button class="btn btn-outline" onclick="goTo('enquiry')">Get help from a partner →</button>
+          <button class="btn btn-outline" onclick="goToEnquiry('tailor-doc')">Get help from a partner →</button>
         </div>
 
         <div class="ann-row"><span class="ann"><span class="ref">F10</span><span class="ref">F12</span><span class="ref">F14</span> Arriving from a practice tile pre-sets the Practice filter while <b>retaining any Services selection</b> made on the landing page. Download is gated by a server-enforced disclaimer; the file is never served without a recorded acceptance (F12), and every download is tracked as (member_id, client_org_id, asset_id, asset_type, practice_group, timestamp, disclaimer_version_accepted) (F14), feeding fee allocation (F15) and per-person analytics (F16).</span></div>
@@ -1821,7 +1821,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
             <div class="cta-title">Applying this to your situation?</div>
             <div class="cta-sub">Ask Sarah or a member of the Employment team to walk through your specific restructuring.</div>
           </div>
-          <button class="btn" onclick="goTo('enquiry')">Get help from a partner →</button>
+          <button class="btn" onclick="goToEnquiry('tailor-doc')">Get help from a partner →</button>
         </div>
         <div class="ann-row"><span class="ann"><span class="ref">F6</span><span class="ref">F16</span> Portal-exclusive content, locked by member group (F6). Reads are attributed per person (F16) and roll up to the practice group for fee allocation (F15) &mdash; making the value of exclusive content measurable.</span></div>
       </div>
@@ -1930,7 +1930,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
             </div>
           </div>
         </div>
-        <div class="ann-row"><span class="ann"><span class="ref">F7</span><span class="ref">F9</span> <b>Enquiry box</b> &mdash; a short message triaged by TS (F7). Deliberately <b>not</b> a document upload: uploads are avoided in Phase 1 for compliance/risk reasons. <span class="q">V2: Name and email fields removed &mdash; the member is authenticated (F9), so identity is taken from the session and shown back to them for confirmation. Topic list now includes the two new document CTAs so unmet demand is reportable.</span></span></div>
+        <div class="ann-row"><span class="ann"><span class="ref">F7</span><span class="ref">F9</span> <b>Enquiry box</b> &mdash; a short message triaged by TS (F7). Deliberately <b>not</b> a document upload: uploads are avoided in Phase 1 for compliance/risk reasons. <span class="q">V2: Name and email fields removed &mdash; the member is authenticated (F9), so identity is taken from the session and shown back to them for confirmation. Topic list now includes the two new document CTAs so unmet demand is reportable &mdash; and arriving from a CTA (&lsquo;Request a document&rsquo; or &lsquo;Get help from a partner&rsquo;) pre-selects the matching topic, so the member does not have to re-state why they came.</span></span></div>
       </div>
     </div>
     <div class="p-footer">
@@ -2102,7 +2102,7 @@ body{background:#e0e0e0;color:var(--g8);font-size:13px;line-height:1.5;}
     </div>
     <div class="modal-footer">
       <button class="btn btn-outline" onclick="closeModal('tailor-modal')">No thanks</button>
-      <button class="btn" style="flex:1;justify-content:center;" onclick="closeModal('tailor-modal');goTo('enquiry')">Get help from a partner →</button>
+      <button class="btn" style="flex:1;justify-content:center;" onclick="closeModal('tailor-modal');goToEnquiry('tailor-doc')">Get help from a partner →</button>
     </div>
     <div style="padding:0 20px 14px;"><span class="ann"><span class="ref">F7</span> <b>NEW</b> — the tailoring CTA is surfaced at the moment of highest intent (immediately post-download) as well as on the library pages. Routes into the triaged enquiry flow with the asset already known.</span></div>
   </div>
@@ -2200,6 +2200,7 @@ function goTo(id) {
     document.querySelector('.browser-frame').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
   if (id === 'video-access' && typeof resetVideoAccess === 'function') resetVideoAccess();
+  if (id === 'enquiry' && typeof resetEnqTopic === 'function') resetEnqTopic();
   document.getElementById('url-bar').textContent = '🔒 ' + (urlMap[id] || 'clients.traverssmith.com');
   document.querySelectorAll('.chrome-btn').forEach(function (b) {
     b.classList.remove('active');
@@ -2500,8 +2501,50 @@ function applyHtFilter() {
 }
 
 /* ═══ ENQUIRY ═══ */
-function selectEnqTopic(el)  { document.getElementById('enq-topic-lbl').textContent = el.textContent.trim(); closeAllDD(); }
-function selectEnqContact(el){ document.getElementById('enq-contact-lbl').textContent = el.textContent.trim(); closeAllDD(); }
+var ENQ_TOPIC_MAP = {
+  'request-doc': 'Request a document we don\u2019t have',
+  'tailor-doc':  'Help tailoring a downloaded document'
+};
+
+function selectEnqTopic(el) {
+  setEnqTopic(el.textContent.trim(), el);
+  closeAllDD();
+}
+function selectEnqContact(el) {
+  document.getElementById('enq-contact-lbl').textContent = el.textContent.trim();
+  closeAllDD();
+}
+
+/* mark the matching dropdown item selected + update the trigger label */
+function setEnqTopic(label, el) {
+  var lbl = document.getElementById('enq-topic-lbl');
+  if (lbl) {
+    lbl.textContent = label;
+    lbl.style.color = 'var(--g8)';
+  }
+  var menu = document.getElementById('dd-enq-topic');
+  if (menu) {
+    menu.querySelectorAll('.dd-menu-item').forEach(function (i) {
+      i.classList.toggle('selected', el ? (i === el) : (i.textContent.trim() === label));
+    });
+  }
+}
+function resetEnqTopic() {
+  var lbl = document.getElementById('enq-topic-lbl');
+  if (lbl) {
+    lbl.textContent = 'Select a topic\u2026';
+    lbl.style.color = '';
+  }
+  var menu = document.getElementById('dd-enq-topic');
+  if (menu) menu.querySelectorAll('.dd-menu-item').forEach(function (i) { i.classList.remove('selected'); });
+}
+
+/* navigate to enquiry with a pre-selected topic (from a CTA) */
+function goToEnquiry(topicKey) {
+  goTo('enquiry');
+  var label = ENQ_TOPIC_MAP[topicKey];
+  if (label) setEnqTopic(label, null);
+}
 
 /* ═══ MODALS ═══ */
 function openM(id)  { document.getElementById(id).classList.add('open'); }
